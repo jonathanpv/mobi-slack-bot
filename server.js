@@ -12,6 +12,16 @@ app.message('oof', ({ message, say }) => {
   say(`big oof`);
 });
 
+app.message('yaw', ({ message, say }) => {
+  // say() sends a message to the channel where the event was triggered
+  say(`YEET :yeet-dab:`);
+});
+
+app.message('yeet', ({ message, say }) => {
+  // say() sends a message to the channel where the event was triggered
+  say(`YAW :yeet-dab:`);
+});
+
 (async () => {
   // Start your app
   await app.start(process.env.PORT || 3000);
