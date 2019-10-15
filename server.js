@@ -37,6 +37,11 @@ app.message('boi', ({ message, say }) => {
   say(`:spongeboi:`);
 });
 
+app.message('goose coin', ({ message, say }) => {
+  // say() sends a message to the channel where the event was triggered
+  say(`https://slack-files.com/T96B9VBU0-FP3A32QCX-3405760330`);
+});
+
 (async () => {
   // Start your app
   await app.start(process.env.PORT || 3000);
