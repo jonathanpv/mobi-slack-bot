@@ -22,6 +22,21 @@ app.message('yeet', ({ message, say }) => {
   say(`YAW :yeet-dab:`);
 });
 
+app.message('F in the chat', ({ message, say }) => {
+  // say() sends a message to the channel where the event was triggered
+  say(`:pensive: :press-f:`);
+});
+
+app.message('rip', ({ message, say }) => {
+  // say() sends a message to the channel where the event was triggered
+  say(`:pensive: :rip:`);
+});
+
+app.message('boi', ({ message, say }) => {
+  // say() sends a message to the channel where the event was triggered
+  say(`:spongeboi:`);
+});
+
 (async () => {
   // Start your app
   await app.start(process.env.PORT || 3000);
