@@ -44,7 +44,17 @@ slack.message(/^(rip|Rip|RiP|rIp|rIP|RIp|RIP).*/, ({ message, say }) => {
   say(`:pensive: :rip:`);
 });
 
-// example of bot tagging the "local" user that triggered the phrase "hello" 
+// still reg ex, but the function was too long so that's why it looks weird
+slack.message(
+  /^(F in the chat|f in the chat|test).*/,
+  async ({ context, say }) => {
+    // RegExp matches are inside of context.matches
+    // const greeting = context.matches[0];
+    say(`:pensive: :press-f:`);
+  }
+);
+
+// example of bot tagging the "local" user that triggered the phrase "hello"
 slack.message("hello", ({ message, say }) => {
   say(`Hey there <@${message.user}>!`);
 });
@@ -59,74 +69,74 @@ slack.message("memes", ({ message, say }) => {
 });
 
 // example of posting an image block to slack chat
-// say supports "blocks", which you can learn more about here: 
+
+// say supports "blocks", which you can learn more about
+// here: https://api.slack.com/block-kit
+
+// but even more fun, you can build and experiement live with blocks
+// here: https://api.slack.com/tools/block-kit-builder
 slack.message("goose coin", ({ message, say }) => {
   say({
-	"blocks": [
-		{
-			"type": "image",
-			"title": {
-				"type": "plain_text",
-				"text": "h0nks",
-				"emoji": true
-			},
-			"image_url": "https://i.imgur.com/DwEMCMf.jpg",
-			"alt_text": "h0nks"
-		}
-	]
+    blocks: [
+      {
+        type: "image",
+        title: {
+          type: "plain_text",
+          text: "h0nks",
+          emoji: true
+        },
+        image_url: "https://i.imgur.com/DwEMCMf.jpg",
+        alt_text: "h0nks"
+      }
+    ]
+  });
 });
-});
 
-slack.message(
-  /^(F in the chat|f in the chat|test).*/,
-  async ({ context, say }) => {
-    // RegExp matches are inside of context.matches
-    // const greeting = context.matches[0];
-    say(`:pensive: :press-f:`);
-  }
-);
+// example of posting an image from an xhr request (a website that contains json)
+// ^^ if not correct defintion can someone correct it pls
+// this xhr request returns a random json type with two identifiers? message: and status:, parse message:
+// to get the url to a random doge
 
-
-//example of posting an image from an xhr request (a website that contains json) 
-// ^^ if not correct defintion can someone correct it pls 
-//this xhr request returns a random json type with two identifiers? message: and status:, parse message:
-//to get the url to a random doge
-function Get(yourUrl){
-    let Httpreq = new XMLHttpRequest(); // a new request
-    Httpreq.open("GET",yourUrl,false);
-    Httpreq.send(null);
-    return Httpreq.responseText;          
+// function to get the json from a url
+function Get(yourUrl) {
+  let Httpreq = new XMLHttpRequest(); // a new request
+  Httpreq.open("GET", yourUrl, false);
+  Httpreq.send(null);
+  return Httpreq.responseText;
 }
+
 slack.message("random doge", ({ message, say }) => {
-  let obj = Get('https://dog.ceo/api/breeds/image/random');
+  // obj is the full json
+  let obj = Get("https://dog.ceo/api/breeds/image/random");
+  // randomUrl is the parsed json, we can now access different data
+  // with the . operator
   let randomUrl = JSON.parse(obj);
   say({
-	"blocks": [
-		{
-			"type": "image",
-			"title": {
-				"type": "plain_text",
-				"text": "puppers incoming!!",
-				"emoji": true
-			},
-			"image_url": randomUrl.message,
-			"alt_text": "puppers incoming!! "
-		}
-	]
-});
+    blocks: [
+      {
+        type: "image",
+        title: {
+          type: "plain_text",
+          text: "puppers incoming!!",
+          emoji: true
+        },
+        image_url: randomUrl.message,
+        alt_text: "puppers incoming!! "
+      }
+    ]
+  });
 });
 
-
+// example of bot triggered by users reacting with a specific emoji
 slack.event("reaction_added", async ({ event, context, say }) => {
   console.log(event);
-  // jon: say(); ??
   try {
+    // if any user reacts with :press-f: emoji then do something
     if (event.reaction === "press-f") {
       say(`<@${event.user}> reacted with :press-f:`);
     }
-    // doesn't like emojis? idk imma see what would make it work
+    // here's a pig example
     if (event.reaction === "pig") {
-      // okay lol
       say(`reacted with :pig:`);
     }
   } catch (error) {
@@ -134,7 +144,7 @@ slack.event("reaction_added", async ({ event, context, say }) => {
   }
 });
 
-//calendar
+// example of a calendar block, triggered when users react with the :calendar: emoji
 slack.event("reaction_added", async ({ event, context, say }) => {
   if (event.reaction === "calendar") {
     say({
@@ -159,6 +169,8 @@ slack.event("reaction_added", async ({ event, context, say }) => {
     });
   }
 });
+
+// more examples coming...
 
 // how to make method requests, which can be found in https://api.slack.com/methods
 // example of using the dialog open method: https://api.slack.com/methods/dialog.open
