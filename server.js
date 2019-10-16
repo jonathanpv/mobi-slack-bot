@@ -17,14 +17,6 @@ slack.message("yaw", ({ message, say }) => {
   say(`YEET :yeet-dab:`);
 });
 
-// app.message("machine learning", ({ message, say }) => {
-//   say(`<@{Kenneth}>`);
-// });
-
-// app.message("testing", ({ message, say }) => {
-//   say(`<@Kenneth>`);
-// });
-
 slack.message("hello", ({ message, say }) => {
   // say() sends a message to the channel where the event was triggered
   say(`Hey there <@${message.user}>!`);
@@ -42,7 +34,7 @@ slack.message(/^(rip|Rip|RiP|rIp|rIP|RIp|RIP).*/, ({ message, say }) => {
 
 slack.message("boi", ({ message, say }) => {
   // say() sends a message to the channel where the event was triggered
-  say(`:spongeboi:`);
+  // say(`:spongeboi:`);
 });
 
 slack.message(
@@ -51,38 +43,37 @@ slack.message(
     // RegExp matches are inside of context.matches
     // const greeting = context.matches[0];
     say(`:pensive: :press-f:`);
-
-    // if (event.reaction === "calendar"){
-    //  say(`You reacted with a calendar`);
-    //   };
   }
 );
 
-// if someone can figure out how to send a message or do something when someone reacts with a certain emoji pls tell me :)
-// @jon on slack
-
-// send a message when someone reacts with a 📅 emoji
-// app.event('reaction_added', async ({ event, say }) => {
-//   if (event.reaction === "calendar"){
-//    say(`You reacted with a calenda
-
-//r`);
-//   }
-// });
-
-
-// why u no work??? why what, why no work?
-// this is from the Listening to events section
-// *shrug*
-//                                  ({ event, say }) <-- ?? maybe?
+// kolten: why????
+// jon: why what, why no work?
+// kolten: why u no work???
+// kolten: this is from the Listening to events section 
+// jon: ah ok
+// kolten: *shrug*
+// jon: gtg
+// kolten: kk
+// jon: nvm food coming later at 9:30ish 
+// kolten: are we subscribed to events in the apps config?
+// jon: thats what i was wondering but considering we can make message requests im assuming we are, or maybe not idk
+// kolten: i dont think we are or we'd at least see the event being logged
+// jon: welp maybe we can figure out how to @ someone specific?? thats another problem i havent been able to SoLvE
+// kolten: zach added the bot, i can't change the permissions
+// jon: ye i assumed that would be the case
+// jon: *big sigh*
+// kolten: food time, this should work though 
+// jon: food time? u goin?
+// kolten: not far at least
 slack.event('reaction_added', async ({ event, context }) => {
   console.log(event)
-  // say(); ??
+  // jon: say(); ??
   try {
     const result = await slack.client.chat.postMessage({
       token: context.botToken,
       text: `🎉`
     });
+    
     console.log(result);
   }
   catch (error) {
