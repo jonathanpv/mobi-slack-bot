@@ -1,4 +1,5 @@
 const { App } = require("@slack/bolt");
+// var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
 //ids for some of our channels
 const botTestID = "CPEAR8T28";
@@ -77,7 +78,7 @@ slack.message("goose coin", ({ message, say }) => {
 });
 
 function Get(yourUrl){
-    var Httpreq = new XMLHttpRequest(); // a new request
+    let Httpreq = new XMLHttpRequest(); // a new request
     Httpreq.open("GET",yourUrl,false);
     Httpreq.send(null);
     return Httpreq.responseText;          
@@ -85,6 +86,8 @@ function Get(yourUrl){
 
 slack.message("random doge", ({ message, say }) => {
   // say() sends a message to the channel where the event was triggered
+  let obj = Get('https://dog.ceo/api/breeds/image/random');
+  let randomUrl = JSON.parse(obj);
   say({
 	"blocks": [
 		{
@@ -94,7 +97,7 @@ slack.message("random doge", ({ message, say }) => {
 				"text": "here ya go: ",
 				"emoji": true
 			},
-			"image_url": "https://dog.ceo/api/breeds/image/random",
+			"image_url": randomUrl.message,
 			"alt_text": "here ya go: "
 		}
 	]
