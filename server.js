@@ -139,6 +139,9 @@ slack.event("reaction_added", async ({ event, context, say }) => {
     if (event.reaction === "pig") {
       say(`reacted with :pig:`);
     }
+    if (event.reaction === "/^(dog*).*/") {
+      
+    }
   } catch (error) {
     console.error(error);
   }
