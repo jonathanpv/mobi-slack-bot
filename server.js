@@ -8,8 +8,8 @@ const socialCodingID = 'CG1QFD1J4';
 const yeetID = 'CCNRV68BS';
 const hackathonsID = 'CCUCG24KS';
 
-const kenneth = 'DPEV5KXCM';
-const jon = 'DDAKN8DEF';
+const kenneth = 'U9E7SGE5R';
+const jon = 'UDBQ0A3BR';
 
 // Initializes your app with your bot token and signing secret
 const slack = new App({
@@ -21,6 +21,11 @@ const slack = new App({
 slack.message("oof", ({ message, say }) => {
   // say() sends a message to the channel where the event was triggered
   say(`*big* _oof_`);
+});
+
+slack.message("machine learning", ({ message, say }) => {
+  // say() sends a message to the channel where the event was triggered
+  say(`<@${kenneth}>`);
 });
 
 slack.message("yaw", ({ message, say }) => {
@@ -35,7 +40,7 @@ slack.message("hello", ({ message, say }) => {
 
 slack.message("memes", ({ message, say }) => {
   // say() sends a message to the channel where the event was triggered
-  say(`<@DDAKN8DEF>`);
+  say(`<@UDBQ0A3BR>`);
 });
 
 slack.message("yeet", ({ message, say }) => {
@@ -82,6 +87,7 @@ slack.message(
 // jon: food time? u goin?
 // kolten: not far at least
 // kolten: my work is done here :)
+
 slack.event('reaction_added', async ({ event, context, say }) => {
   console.log(event)
   // jon: say(); ??
