@@ -1,18 +1,18 @@
 const { App } = require("@slack/bolt");
 
 // Initializes your app with your bot token and signing secret
-const app = new App({
+const slack = new App({
   token: process.env.SLACK_BOT_TOKEN,
   signingSecret: process.env.SLACK_SIGNING_SECRET
 });
 
 // Listens to incoming messages that contain "hello"
-app.message("oof", ({ message, say }) => {
+slack.message("oof", ({ message, say }) => {
   // say() sends a message to the channel where the event was triggered
   say(`big oof`);
 });
 
-app.message("yaw", ({ message, say }) => {
+slack.message("yaw", ({ message, say }) => {
   // say() sends a message to the channel where the event was triggered
   say(`YEET :yeet-dab:`);
 });
@@ -25,27 +25,27 @@ app.message("yaw", ({ message, say }) => {
 //   say(`<@Kenneth>`);
 // });
 
-app.message("hello", ({ message, say }) => {
+slack.message("hello", ({ message, say }) => {
   // say() sends a message to the channel where the event was triggered
   say(`Hey there <@${message.user}>!`);
 });
 
-app.message("yeet", ({ message, say }) => {
+slack.message("yeet", ({ message, say }) => {
   // say() sends a message to the channel where the event was triggered
   say(`YAW :yeet-dab:`);
 });
 
-app.message(/^(rip|Rip|RiP|rIp|rIP|RIp|RIP).*/, ({ message, say }) => {
+slack.message(/^(rip|Rip|RiP|rIp|rIP|RIp|RIP).*/, ({ message, say }) => {
   // say() sends a message to the channel where the event was triggered
   say(`:pensive: :rip:`);
 });
 
-app.message("boi", ({ message, say }) => {
+slack.message("boi", ({ message, say }) => {
   // say() sends a message to the channel where the event was triggered
   say(`:spongeboi:`);
 });
 
-app.message(
+slack.message(
   /^(F in the chat|f in the chat|test).*/,
   async ({ context, say }) => {
     // RegExp matches are inside of context.matches
@@ -72,10 +72,27 @@ app.message(
 
 
 // why u no work??? why what, why no work?
+// this is from the Listening to events section
+// *shrug*
+//                                  ({ event, say }) <-- ?? maybe?
+slack.event('reaction_added', async ({ event, context }) => {
+  console.log(event)
+  // say(); ??
+  try {
+    const result = await slack.client.chat.postMessage({
+      token: context.botToken,
+      text: `🎉`
+    });
+    console.log(result);
+  }
+  catch (error) {
+    console.error(error);
+  }
+});
 
 (async () => {
   // Start your app
-  await app.start(process.env.PORT || 3000);
-  
-  console.log('⚡️ Bolt app is running!');
+  await slack.start(process.env.PORT || 3000);
+    
+  console.log('⚡️ Bolt app is running!!!!!!');
 })();
