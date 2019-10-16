@@ -129,14 +129,6 @@ slack.event('reaction_added', async ({ event, context, say }) => {
   }
 });
 
-// const router = '';
-// // Receive event payload to Request URL via HTTP POST
-// router.post("/", function(req, res, next) {
-//     // Get event payload
-//     let payload = req.body;
-//     // Respond to this event with HTTP 200 status
-//     res.sendStatus(200);
-// })
 
 (async () => {
   // Start your app
