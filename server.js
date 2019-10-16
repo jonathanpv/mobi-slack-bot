@@ -17,6 +17,12 @@ app.message("yaw", ({ message, say }) => {
   say(`YEET :yeet-dab:`);
 });
 
+app.message("machine learning", ({ message, say }) => {
+  say(`@Kenneth`);
+});
+
+
+
 app.message("yeet", ({ message, say }) => {
   // say() sends a message to the channel where the event was triggered
   say(`YAW :yeet-dab:`);
@@ -33,20 +39,25 @@ app.message("boi", ({ message, say }) => {
   say(`:spongeboi:`);
 });
 
-app.message(/^(F in the chat|f in the chat).*/, async ({ context, say }) => {
+app.message(/^(F in the chat|f in the chat|test).*/, async ({ context, say }) => {
   // RegExp matches are inside of context.matches
   // const greeting = context.matches[0];
   say(`:pensive: :press-f:`);
+  
+  // if (event.reaction === "calendar"){
+  //  say(`You reacted with a calendar`); 
+  //   };
+
 });
 
-const welcomeChannelId = 'C12345';
+// if someone can figure out how to send a message or do something when someone reacts with a certain emoji pls tell me :)
 
 // send a message when someone reacts with a 📅 emoji
-app.event('reaction_added', async ({ event, context }) => {
-  if (event.reaction === "calendar"){
-   say(`You reacted with a calendar`); 
-  }  
-});
+// app.event('reaction_added', async ({ event, say }) => {
+//   if (event.reaction === "calendar"){
+//    say(`You reacted with a calendar`); 
+//   }  
+// });
 
 
 (async () => {
