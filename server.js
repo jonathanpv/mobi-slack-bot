@@ -58,6 +58,25 @@ slack.message("boi", ({ message, say }) => {
   say(`:spongeboi:`);
 });
 
+slack.message("goose coin", ({ message, say }) => {
+  // say() sends a message to the channel where the event was triggered
+  say({
+    blocks: [
+      {
+        "type": "image",
+        "title": {
+          "type": "plain_text",
+          "text": "stonks",
+          "emoji": true
+        },
+        "image_url":
+          "https://files.slack.com/files-pri/T96B9VBU0-FP3A32QCX/image_from_ios.jpg",
+        "alt_text": "image1"
+      }
+    ]
+  });
+});
+
 slack.message(
   /^(F in the chat|f in the chat|test).*/,
   async ({ context, say }) => {
@@ -135,43 +154,39 @@ slack.event("reaction_added", async ({ event, context, say }) => {
 // example of using the dialog open method: https://api.slack.com/methods/dialog.open
 
 // Unix Epoch time for September 30, 2019 11:59:59 PM
-const whenSeptemberEnds = 1569887999;
+// const whenSeptemberEnds = 1569887999;
 
-slack.message("hey mobi", async ({ message, context }) => {
-  try {
-    // Call the chat.scheduleMessage method with a token
-    const result = await slack.client.dialog.open({
-      // The token you used to initialize your app is stored in the `context` object
-      // token is required for this method
-      token: context.botToken,
-      // fill the dialog thingy, on the website it says that it only takes a JSON string
-      dialog: {
-        callback_id: "ryde-46e2b0",
-        title: "Request a Ride",
-        submit_label: "Request",
-        state: "Limo",
-        elements: [
-          {
-            type: "text",
-            label: "Pickup Location",
-            name: "loc_origin"
-          },
-          {
-            type: "text",
-            label: "Dropoff Location",
-            name: "loc_destination"
-          }
-        ]
-      }
-      
-      
-      
-      
-    });
-  } catch (error) {
-    console.error(error);
-  }
-});
+// slack.message("hey mobi", async ({ message, context }) => {
+//   try {
+//     // Call the chat.scheduleMessage method with a token
+//     const result = await slack.client.dialog.open({
+//       // The token you used to initialize your app is stored in the `context` object
+//       // token is required for this method
+//       token: context.botToken,
+//       // fill the dialog thingy, on the website it says that it only takes a JSON string
+//       dialog: {
+//         callback_id: "ryde-46e2b0",
+//         title: "Request a Ride",
+//         submit_label: "Request",
+//         state: "Limo",
+//         elements: [
+//           {
+//             type: "text",
+//             label: "Pickup Location",
+//             name: "loc_origin"
+//           },
+//           {
+//             type: "text",
+//             label: "Dropoff Location",
+//             name: "loc_destination"
+//           }
+//         ]
+//       }
+//     });
+//   } catch (error) {
+//     console.error(error);
+//   }
+// });
 
 (async () => {
   // Start your app
