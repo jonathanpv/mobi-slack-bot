@@ -71,11 +71,39 @@ slack.event('reaction_added', async ({ event, context, say }) => {
   // jon: say(); ??
   try {
     if(event.reaction === "press-f"){
-      say(`<@${message.user}>! :press-f:`);
+      say(`<@${event.user}> reacted with :press-f:`);
     }
+    // doesn't like emojis? idk imma see what would make it work
+    if(event.reaction === "pig"){
+      // okay lol
+      say(`reacted with :pig:`);
+   }
   }
   catch (error) {
     console.error(error);
+  }
+});
+
+//calendar 
+slack.event('reaction_added', async ({ event, context, say }) => {
+  if (event.reaction === 'calendar') {
+    say({
+      blocks: [{
+          "type": "section",
+          "text": {
+            "type": "mrkdwn",
+            "text": "Pick a date for me to remind you"
+          },
+          "accessory": {
+            "type": "datepicker",
+            "action_id": "datepicker_remind",
+            "initial_date": "2019-04-28",
+            "placeholder": {
+              "type": "plain_text",
+              "text": "Select a date"
+             }
+          }
+        }]});
   }
 });
 
