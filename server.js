@@ -1,15 +1,15 @@
 const { App } = require("@slack/bolt");
 
 //ids for some of our channels
-const botTestID = 'CPEAR8T28';
-const catsIrlID = 'CG4HWPQ3S';
-const generalID = 'C96BA0316';
-const socialCodingID = 'CG1QFD1J4';
-const yeetID = 'CCNRV68BS';
-const hackathonsID = 'CCUCG24KS';
+const botTestID = "CPEAR8T28";
+const catsIrlID = "CG4HWPQ3S";
+const generalID = "C96BA0316";
+const socialCodingID = "CG1QFD1J4";
+const yeetID = "CCNRV68BS";
+const hackathonsID = "CCUCG24KS";
 
-const kenneth = 'U9E7SGE5R';
-const jon = 'UDBQ0A3BR';
+const kenneth = "U9E7SGE5R";
+const jon = "UDBQ0A3BR";
 
 // Initializes your app with your bot token and signing secret
 const slack = new App({
@@ -70,12 +70,12 @@ slack.message(
 // kolten: why????
 // jon: why what, why no work?
 // kolten: why u no work???
-// kolten: this is from the Listening to events section 
+// kolten: this is from the Listening to events section
 // jon: ah ok
 // kolten: *shrug*
 // jon: gtg
 // kolten: kk
-// jon: nvm food coming later at 9:30ish 
+// jon: nvm food coming later at 9:30ish
 // kolten: are we subscribed to events in the apps config?
 // jon: thats what i was wondering but considering we can make message requests im assuming we are, or maybe not idk
 // kolten: i dont think we are or we'd at least see the event being logged
@@ -83,57 +83,99 @@ slack.message(
 // kolten: zach added the bot, i can't change the permissions
 // jon: ye i assumed that would be the case
 // jon: *big sigh*
-// kolten: food time, this should work though 
+// kolten: food time, this should work though
 // jon: food time? u goin?
 // kolten: not far at least
 // kolten: my work is done here :)
 
-slack.event('reaction_added', async ({ event, context, say }) => {
-  console.log(event)
+slack.event("reaction_added", async ({ event, context, say }) => {
+  console.log(event);
   // jon: say(); ??
   try {
-    if(event.reaction === "press-f"){
+    if (event.reaction === "press-f") {
       say(`<@${event.user}> reacted with :press-f:`);
     }
     // doesn't like emojis? idk imma see what would make it work
-    if(event.reaction === "pig"){
+    if (event.reaction === "pig") {
       // okay lol
       say(`reacted with :pig:`);
-   }
-  }
-  catch (error) {
+    }
+  } catch (error) {
     console.error(error);
   }
 });
 
-//calendar 
-slack.event('reaction_added', async ({ event, context, say }) => {
-  if (event.reaction === 'calendar') {
+//calendar
+slack.event("reaction_added", async ({ event, context, say }) => {
+  if (event.reaction === "calendar") {
     say({
-      blocks: [{
-          "type": "section",
-          "text": {
-            "type": "mrkdwn",
-            "text": "Pick a date for me to remind you"
+      blocks: [
+        {
+          type: "section",
+          text: {
+            type: "mrkdwn",
+            text: "Pick a date for me to remind you"
           },
-          "accessory": {
-            "type": "datepicker",
-            "action_id": "datepicker_remind",
-            "initial_date": "2019-04-28",
-            "placeholder": {
-              "type": "plain_text",
-              "text": "Select a date"
-             }
+          accessory: {
+            type: "datepicker",
+            action_id: "datepicker_remind",
+            initial_date: "2019-04-28",
+            placeholder: {
+              type: "plain_text",
+              text: "Select a date"
+            }
           }
-        }]});
+        }
+      ]
+    });
   }
 });
 
+// how to make method requests, which can be found in https://api.slack.com/methods
+// example of using the dialog open method: https://api.slack.com/methods/dialog.open
+
+// Unix Epoch time for September 30, 2019 11:59:59 PM
+const whenSeptemberEnds = 1569887999;
+
+slack.message("hey mobi", async ({ message, context }) => {
+  try {
+    // Call the chat.scheduleMessage method with a token
+    const result = await slack.client.dialog.open({
+      // The token you used to initialize your app is stored in the `context` object
+      // token is required for this method
+      token: context.botToken,
+      // fill the dialog thingy, on the website it says that it only takes a JSON string
+      dialog: {
+        callback_id: "ryde-46e2b0",
+        title: "Request a Ride",
+        submit_label: "Request",
+        state: "Limo",
+        elements: [
+          {
+            type: "text",
+            label: "Pickup Location",
+            name: "loc_origin"
+          },
+          {
+            type: "text",
+            label: "Dropoff Location",
+            name: "loc_destination"
+          }
+        ]
+      }
+      
+      
+      
+      
+    });
+  } catch (error) {
+    console.error(error);
+  }
+});
 
 (async () => {
   // Start your app
   await slack.start(process.env.PORT || 3000);
-    
-  console.log('⚡️ Bolt app is running!!!!!!');
-})();
 
+  console.log("⚡️ Bolt app is running!!!!!!");
+})();
