@@ -38,19 +38,30 @@ app.message(/^(F in the chat|f in the chat).*/, async ({ context, say }) => {
   say(`:pensive: :press-f:`);
 });
 
-// Listener middleware that filters out messages with 'bot_message' subtype
-function noBotMessages({ message, next }) {
-  if (!message.subtype || message.subtype !== 'bot_message') {
-     next();
+// Sends a section block with datepicker when someone reacts with a 📅 emoji
+app.event('reaction_added', ({ event, say }) => {
+  if (event.reaction === 'calendar') {
+    say({
+      blocks: [{
+          "type": "section",
+          "text": {
+            "type": "mrkdwn",
+            "text": "Pick a date for me to remind you"
+          },
+          "accessory": {
+            "type": "datepicker",
+            "action_id": "datepicker_remind",
+            "initial_date": "2019-04-28",
+            "placeholder": {
+              "type": "plain_text",
+              "text": "Select a date"
+             }
+          }
+        }]});
   }
-}
+});
 
-// The listener only receives messages from humans
-app.message(noBotMessages, ({ message }) => console.log(
-  `(MSG) User: ${message.user}
-   Message: ${message.text}`
-  say(` `);
-));
+
 
 
 (async () => {
