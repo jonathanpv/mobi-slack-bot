@@ -34,7 +34,7 @@ slack.message(/^(rip|Rip|RiP|rIp|rIP|RIp|RIP).*/, ({ message, say }) => {
 
 slack.message("boi", ({ message, say }) => {
   // say() sends a message to the channel where the event was triggered
-  // say(`:spongeboi:`);
+  say(`:spongeboi:`);
 });
 
 slack.message(
