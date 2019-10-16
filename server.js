@@ -1,5 +1,5 @@
 const { App } = require("@slack/bolt");
-// var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+let XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
 //ids for some of our channels
 const botTestID = "CPEAR8T28";
@@ -25,42 +25,35 @@ slack.message("oof", ({ message, say }) => {
 });
 
 slack.message("machine learning", ({ message, say }) => {
-  // say() sends a message to the channel where the event was triggered
   say(`<@${kenneth}>`);
 });
 
 slack.message("yaw", ({ message, say }) => {
-  // say() sends a message to the channel where the event was triggered
   say(`YEET :yeet-dab:`);
 });
 
 slack.message("hello", ({ message, say }) => {
-  // say() sends a message to the channel where the event was triggered
   say(`Hey there <@${message.user}>!`);
 });
 
 slack.message("memes", ({ message, say }) => {
-  // say() sends a message to the channel where the event was triggered
   say(`<@UDBQ0A3BR>`);
 });
 
 slack.message("yeet", ({ message, say }) => {
-  // say() sends a message to the channel where the event was triggered
   say(`YAW :yeet-dab:`);
 });
 
 slack.message(/^(rip|Rip|RiP|rIp|rIP|RIp|RIP).*/, ({ message, say }) => {
-  // say() sends a message to the channel where the event was triggered
   say(`:pensive: :rip:`);
 });
 
 slack.message("boi", ({ message, say }) => {
-  // say() sends a message to the channel where the event was triggered
   say(`:spongeboi:`);
 });
 
 slack.message("goose coin", ({ message, say }) => {
-  // say() sends a message to the channel where the event was triggered
+  //example of posting an image block to slack chat
   say({
 	"blocks": [
 		{
@@ -85,7 +78,6 @@ function Get(yourUrl){
 }
 
 slack.message("random doge", ({ message, say }) => {
-  // say() sends a message to the channel where the event was triggered
   let obj = Get('https://dog.ceo/api/breeds/image/random');
   let randomUrl = JSON.parse(obj);
   say({
@@ -94,16 +86,16 @@ slack.message("random doge", ({ message, say }) => {
 			"type": "image",
 			"title": {
 				"type": "plain_text",
-				"text": "here ya go: ",
+				"text": "puppers incoming!!",
 				"emoji": true
 			},
 			"image_url": randomUrl.message,
-			"alt_text": "here ya go: "
+			"alt_text": "puppers incoming!! "
 		}
 	]
 });
 });
-//https://dog.ceo/api/breeds/image/random
+
 slack.message(
   /^(F in the chat|f in the chat|test).*/,
   async ({ context, say }) => {
@@ -112,27 +104,6 @@ slack.message(
     say(`:pensive: :press-f:`);
   }
 );
-
-// kolten: why????
-// jon: why what, why no work?
-// kolten: why u no work???
-// kolten: this is from the Listening to events section
-// jon: ah ok
-// kolten: *shrug*
-// jon: gtg
-// kolten: kk
-// jon: nvm food coming later at 9:30ish
-// kolten: are we subscribed to events in the apps config?
-// jon: thats what i was wondering but considering we can make message requests im assuming we are, or maybe not idk
-// kolten: i dont think we are or we'd at least see the event being logged
-// jon: welp maybe we can figure out how to @ someone specific?? thats another problem i havent been able to SoLvE
-// kolten: zach added the bot, i can't change the permissions
-// jon: ye i assumed that would be the case
-// jon: *big sigh*
-// kolten: food time, this should work though
-// jon: food time? u goin?
-// kolten: not far at least
-// kolten: my work is done here :)
 
 slack.event("reaction_added", async ({ event, context, say }) => {
   console.log(event);
@@ -179,8 +150,6 @@ slack.event("reaction_added", async ({ event, context, say }) => {
 
 // how to make method requests, which can be found in https://api.slack.com/methods
 // example of using the dialog open method: https://api.slack.com/methods/dialog.open
-
-
 
 // slack.message("hey mobi", async ({ message, context }) => {
 //   try {
