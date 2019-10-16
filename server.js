@@ -1,4 +1,4 @@
-const { App } = require('@slack/bolt');
+const { App } = require("@slack/bolt");
 
 // Initializes your app with your bot token and signing secret
 const app = new App({
@@ -7,17 +7,17 @@ const app = new App({
 });
 
 // Listens to incoming messages that contain "hello"
-app.message('oof', ({ message, say }) => {
+app.message("oof", ({ message, say }) => {
   // say() sends a message to the channel where the event was triggered
   say(`big oof`);
 });
 
-app.message('yaw', ({ message, say }) => {
+app.message("yaw", ({ message, say }) => {
   // say() sends a message to the channel where the event was triggered
   say(`YEET :yeet-dab:`);
 });
 
-app.message('yeet', ({ message, say }) => {
+app.message("yeet", ({ message, say }) => {
   // say() sends a message to the channel where the event was triggered
   say(`YAW :yeet-dab:`);
 });
@@ -27,7 +27,7 @@ app.message(/^(rip|Rip|RiP|rIp|rIP|RIp|RIP).*/, ({ message, say }) => {
   say(`:pensive: :rip:`);
 });
 
-app.message('boi', ({ message, say }) => {
+app.message("boi", ({ message, say }) => {
   // say() sends a message to the channel where the event was triggered
   say(`:spongeboi:`);
 });
@@ -39,34 +39,25 @@ app.message(/^(F in the chat|f in the chat).*/, async ({ context, say }) => {
 });
 
 // Sends a section block with datepicker when someone reacts with a 📅 emoji
-app.event('reaction_added', ({ event, say }) => {
-  if (event.reaction === 'calendar') {
+app.event("reaction_added", ({ event, say }) => {
+  if (event.reaction === "calendar") {
     say({
-      blocks: [{
-          "type": "section",
-          "text": {
-            "type": "mrkdwn",
-            "text": "Pick a date for me to remind you"
-          },
-          "accessory": {
-            "type": "datepicker",
-            "action_id": "datepicker_remind",
-            "initial_date": "2019-04-28",
-            "placeholder": {
-              "type": "plain_text",
-              "text": "Select a date"
-             }
+      blocks: [
+        {
+          type: "section",
+          text: {
+            type: "mrkdwn",
+            text: "Pick a date for me to remind you"
           }
-        }]});
+        }
+      ]
+    });
   }
 });
-
-
-
 
 (async () => {
   // Start your app
   await app.start(process.env.PORT || 3000);
 
-  console.log('⚡️ Bolt app is running!');
+  console.log("⚡️ Bolt app is running!");
 })();
