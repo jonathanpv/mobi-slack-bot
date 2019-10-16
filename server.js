@@ -64,14 +64,18 @@ app.message(
 // send a message when someone reacts with a 📅 emoji
 // app.event('reaction_added', async ({ event, say }) => {
 //   if (event.reaction === "calendar"){
-//    say(`You reacted with a calendar`);
+//    say(`You reacted with a calenda
+
+//r`);
 //   }
 // });
 
-// Kolten - https://api.slack.com/events/reaction_added
-app.event("reaction_added", async ({ event, context }) => {})(async () => {
+
+// why u no work??? why what, why no work?
+
+(async () => {
   // Start your app
   await app.start(process.env.PORT || 3000);
-
-  console.log("⚡️ Bolt app is running!");
+  
+  console.log('⚡️ Bolt app is running!');
 })();
