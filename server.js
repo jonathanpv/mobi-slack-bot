@@ -1,7 +1,7 @@
 const { App } = require("@slack/bolt");
 let XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
-//ids for some of our channels
+// ids for some of our channels, can be used to specify where a bot should post
 const botTestID = "CPEAR8T28";
 const catsIrlID = "CG4HWPQ3S";
 const generalID = "C96BA0316";
@@ -9,6 +9,7 @@ const socialCodingID = "CG1QFD1J4";
 const yeetID = "CCNRV68BS";
 const hackathonsID = "CCUCG24KS";
 
+// user ids for some users, can be used for a bot to tag someone
 const kenneth = "U9E7SGE5R";
 const jon = "UDBQ0A3BR";
 
@@ -18,42 +19,48 @@ const slack = new App({
   signingSecret: process.env.SLACK_SIGNING_SECRET
 });
 
-// Listens to incoming messages that contain "hello"
+// example of a bot posting messages when a phrase is triggered
+// Listens to incoming messages that contain "oof"
 slack.message("oof", ({ message, say }) => {
   // say() sends a message to the channel where the event was triggered
   say(`*big* _oof_`);
-});
-
-slack.message("machine learning", ({ message, say }) => {
-  say(`<@${kenneth}>`);
 });
 
 slack.message("yaw", ({ message, say }) => {
   say(`YEET :yeet-dab:`);
 });
 
-slack.message("hello", ({ message, say }) => {
-  say(`Hey there <@${message.user}>!`);
-});
-
-slack.message("memes", ({ message, say }) => {
-  say(`<@UDBQ0A3BR>`);
-});
-
 slack.message("yeet", ({ message, say }) => {
   say(`YAW :yeet-dab:`);
-});
-
-slack.message(/^(rip|Rip|RiP|rIp|rIP|RIp|RIP).*/, ({ message, say }) => {
-  say(`:pensive: :rip:`);
 });
 
 slack.message("boi", ({ message, say }) => {
   say(`:spongeboi:`);
 });
 
+// example of using reg ex, regular expression (useful when there's patterns of characters)
+// can be useful for email, phones, etc
+slack.message(/^(rip|Rip|RiP|rIp|rIP|RIp|RIP).*/, ({ message, say }) => {
+  say(`:pensive: :rip:`);
+});
+
+// example of bot tagging the "local" user that triggered the phrase "hello" 
+slack.message("hello", ({ message, say }) => {
+  say(`Hey there <@${message.user}>!`);
+});
+
+// example of bot tagging a specific user
+slack.message("machine learning", ({ message, say }) => {
+  say(`<@${kenneth}>`);
+});
+
+slack.message("memes", ({ message, say }) => {
+  say(`<@${jon}>`);
+});
+
+// example of posting an image block to slack chat
+// say supports "blocks", which you can learn more about here: 
 slack.message("goose coin", ({ message, say }) => {
-  //example of posting an image block to slack chat
   say({
 	"blocks": [
 		{
@@ -70,13 +77,26 @@ slack.message("goose coin", ({ message, say }) => {
 });
 });
 
+slack.message(
+  /^(F in the chat|f in the chat|test).*/,
+  async ({ context, say }) => {
+    // RegExp matches are inside of context.matches
+    // const greeting = context.matches[0];
+    say(`:pensive: :press-f:`);
+  }
+);
+
+
+//example of posting an image from an xhr request (a website that contains json) 
+// ^^ if not correct defintion can someone correct it pls 
+//this xhr request returns a random json type with two identifiers? message: and status:, parse message:
+//to get the url to a random doge
 function Get(yourUrl){
     let Httpreq = new XMLHttpRequest(); // a new request
     Httpreq.open("GET",yourUrl,false);
     Httpreq.send(null);
     return Httpreq.responseText;          
 }
-
 slack.message("random doge", ({ message, say }) => {
   let obj = Get('https://dog.ceo/api/breeds/image/random');
   let randomUrl = JSON.parse(obj);
@@ -96,14 +116,6 @@ slack.message("random doge", ({ message, say }) => {
 });
 });
 
-slack.message(
-  /^(F in the chat|f in the chat|test).*/,
-  async ({ context, say }) => {
-    // RegExp matches are inside of context.matches
-    // const greeting = context.matches[0];
-    say(`:pensive: :press-f:`);
-  }
-);
 
 slack.event("reaction_added", async ({ event, context, say }) => {
   console.log(event);
