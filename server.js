@@ -65,16 +65,14 @@ slack.message(
 // kolten: food time, this should work though 
 // jon: food time? u goin?
 // kolten: not far at least
-slack.event('reaction_added', async ({ event, context }) => {
+// kolten: my work is done here :)
+slack.event('reaction_added', async ({ event, context, say }) => {
   console.log(event)
   // jon: say(); ??
   try {
-    const result = await slack.client.chat.postMessage({
-      token: context.botToken,
-      text: `🎉`
-    });
-    
-    console.log(result);
+    if(event.reaction === "press-f"){
+      say(`<@${message.user}>! :press-f:`);
+    }
   }
   catch (error) {
     console.error(error);
