@@ -18,9 +18,13 @@ app.message("yaw", ({ message, say }) => {
 });
 
 app.message("machine learning", ({ message, say }) => {
-  say(`@Kenneth`);
+  say(`<@${Kenneth}>`);
 });
 
+app.message('hello', ({ message, say }) => {
+  // say() sends a message to the channel where the event was triggered
+  say(`Hey there <@${message.user}>!`);
+});
 
 
 app.message("yeet", ({ message, say }) => {
@@ -33,7 +37,6 @@ app.message(/^(rip|Rip|RiP|rIp|rIP|RIp|RIP).*/, ({ message, say }) => {
   say(`:pensive: :rip:`);
 });
 
-//sup d00d
 app.message("boi", ({ message, say }) => {
   // say() sends a message to the channel where the event was triggered
   say(`:spongeboi:`);
@@ -51,6 +54,7 @@ app.message(/^(F in the chat|f in the chat|test).*/, async ({ context, say }) =>
 });
 
 // if someone can figure out how to send a message or do something when someone reacts with a certain emoji pls tell me :)
+// @jon on slack 
 
 // send a message when someone reacts with a 📅 emoji
 // app.event('reaction_added', async ({ event, say }) => {
