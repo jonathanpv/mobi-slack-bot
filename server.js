@@ -76,6 +76,31 @@ slack.message("goose coin", ({ message, say }) => {
 });
 });
 
+function Get(yourUrl){
+    var Httpreq = new XMLHttpRequest(); // a new request
+    Httpreq.open("GET",yourUrl,false);
+    Httpreq.send(null);
+    return Httpreq.responseText;          
+}
+
+slack.message("random doge", ({ message, say }) => {
+  // say() sends a message to the channel where the event was triggered
+  say({
+	"blocks": [
+		{
+			"type": "image",
+			"title": {
+				"type": "plain_text",
+				"text": "here ya go: ",
+				"emoji": true
+			},
+			"image_url": "https://dog.ceo/api/breeds/image/random",
+			"alt_text": "here ya go: "
+		}
+	]
+});
+});
+//https://dog.ceo/api/breeds/image/random
 slack.message(
   /^(F in the chat|f in the chat|test).*/,
   async ({ context, say }) => {
@@ -152,8 +177,7 @@ slack.event("reaction_added", async ({ event, context, say }) => {
 // how to make method requests, which can be found in https://api.slack.com/methods
 // example of using the dialog open method: https://api.slack.com/methods/dialog.open
 
-// Unix Epoch time for September 30, 2019 11:59:59 PM
-// const whenSeptemberEnds = 1569887999;
+
 
 // slack.message("hey mobi", async ({ message, context }) => {
 //   try {
