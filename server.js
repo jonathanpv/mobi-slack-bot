@@ -1,5 +1,16 @@
 const { App } = require("@slack/bolt");
 
+//ids for some of our channels
+const botTestID = 'CPEAR8T28';
+const catsIrlID = 'CG4HWPQ3S';
+const generalID = 'C96BA0316';
+const socialCodingID = 'CG1QFD1J4';
+const yeetID = 'CCNRV68BS';
+const hackathonsID = 'CCUCG24KS';
+
+const kenneth = 'DPEV5KXCM';
+const jon = 'DDAKN8DEF';
+
 // Initializes your app with your bot token and signing secret
 const slack = new App({
   token: process.env.SLACK_BOT_TOKEN,
@@ -20,6 +31,11 @@ slack.message("yaw", ({ message, say }) => {
 slack.message("hello", ({ message, say }) => {
   // say() sends a message to the channel where the event was triggered
   say(`Hey there <@${message.user}>!`);
+});
+
+slack.message("memes", ({ message, say }) => {
+  // say() sends a message to the channel where the event was triggered
+  say(`<@DDAKN8DEF>`);
 });
 
 slack.message("yeet", ({ message, say }) => {
@@ -106,6 +122,8 @@ slack.event('reaction_added', async ({ event, context, say }) => {
         }]});
   }
 });
+
+
 
 (async () => {
   // Start your app
