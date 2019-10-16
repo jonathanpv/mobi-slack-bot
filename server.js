@@ -70,7 +70,7 @@ slack.message("memes", ({ message, say }) => {
 
 // example of posting an image block to slack chat
 
-// say supports "blocks", which you can learn more about
+// say() supports "blocks", which you can learn more about
 // here: https://api.slack.com/block-kit
 
 // but even more fun, you can build and experiement live with blocks
@@ -94,8 +94,9 @@ slack.message("goose coin", ({ message, say }) => {
 
 // example of posting an image from an xhr request (a website that contains json)
 // ^^ if not correct defintion can someone correct it pls
-// this xhr request returns a random json type with two identifiers? message: and status:, parse message:
-// to get the url to a random doge
+// this xhr request returns a random json type with two identifiers? message: and status:,
+// to get data you need to parse message:
+// and message has a url to a picutre of a random doge
 
 // function to get the json from a url
 function Get(yourUrl) {
