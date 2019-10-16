@@ -61,20 +61,19 @@ slack.message("boi", ({ message, say }) => {
 slack.message("goose coin", ({ message, say }) => {
   // say() sends a message to the channel where the event was triggered
   say({
-    blocks: [
-      {
-        "type": "image",
-        "title": {
-          "type": "plain_text",
-          "text": "stonks",
-          "emoji": true
-        },
-        "image_url":
-          "https://files.slack.com/files-pri/T96B9VBU0-FP3A32QCX/image_from_ios.jpg",
-        "alt_text": "image1"
-      }
-    ]
-  });
+	"blocks": [
+		{
+			"type": "image",
+			"title": {
+				"type": "plain_text",
+				"text": "h0nks",
+				"emoji": true
+			},
+			"image_url": "https://i.imgur.com/DwEMCMf.jpg",
+			"alt_text": "h0nks"
+		}
+	]
+});
 });
 
 slack.message(
