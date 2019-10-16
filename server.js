@@ -27,6 +27,7 @@ app.message(/^(rip|Rip|RiP|rIp|rIP|RIp|RIP).*/, ({ message, say }) => {
   say(`:pensive: :rip:`);
 });
 
+//sup d00d
 app.message("boi", ({ message, say }) => {
   // say() sends a message to the channel where the event was triggered
   say(`:spongeboi:`);
@@ -38,22 +39,15 @@ app.message(/^(F in the chat|f in the chat).*/, async ({ context, say }) => {
   say(`:pensive: :press-f:`);
 });
 
-// Sends a section block with datepicker when someone reacts with a 📅 emoji
-app.event("reaction_added", ({ event, say }) => {
-  if (event.reaction === "calendar") {
-    say({
-      blocks: [
-        {
-          type: "section",
-          text: {
-            type: "mrkdwn",
-            text: "Pick a date for me to remind you"
-          }
-        }
-      ]
-    });
-  }
+const welcomeChannelId = 'C12345';
+
+// send a message when someone reacts with a 📅 emoji
+app.event('reaction_added', async ({ event, context }) => {
+  if (event.reaction === "calendar"){
+   say(`You reacted with a calendar`); 
+  }  
 });
+
 
 (async () => {
   // Start your app
@@ -61,3 +55,5 @@ app.event("reaction_added", ({ event, say }) => {
 
   console.log("⚡️ Bolt app is running!");
 })();
+
+
