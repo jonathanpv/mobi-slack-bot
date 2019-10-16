@@ -17,15 +17,18 @@ app.message("yaw", ({ message, say }) => {
   say(`YEET :yeet-dab:`);
 });
 
-app.message("machine learning", ({ message, say }) => {
-  say(`<@${Kenneth}>`);
-});
+// app.message("machine learning", ({ message, say }) => {
+//   say(`<@{Kenneth}>`);
+// });
 
-app.message('hello', ({ message, say }) => {
+// app.message("testing", ({ message, say }) => {
+//   say(`<@Kenneth>`);
+// });
+
+app.message("hello", ({ message, say }) => {
   // say() sends a message to the channel where the event was triggered
   say(`Hey there <@${message.user}>!`);
 });
-
 
 app.message("yeet", ({ message, say }) => {
   // say() sends a message to the channel where the event was triggered
@@ -42,33 +45,33 @@ app.message("boi", ({ message, say }) => {
   say(`:spongeboi:`);
 });
 
-app.message(/^(F in the chat|f in the chat|test).*/, async ({ context, say }) => {
-  // RegExp matches are inside of context.matches
-  // const greeting = context.matches[0];
-  say(`:pensive: :press-f:`);
-  
-  // if (event.reaction === "calendar"){
-  //  say(`You reacted with a calendar`); 
-  //   };
+app.message(
+  /^(F in the chat|f in the chat|test).*/,
+  async ({ context, say }) => {
+    // RegExp matches are inside of context.matches
+    // const greeting = context.matches[0];
+    say(`:pensive: :press-f:`);
 
-});
+    // if (event.reaction === "calendar"){
+    //  say(`You reacted with a calendar`);
+    //   };
+  }
+);
 
 // if someone can figure out how to send a message or do something when someone reacts with a certain emoji pls tell me :)
-// @jon on slack 
+// @jon on slack
 
 // send a message when someone reacts with a 📅 emoji
 // app.event('reaction_added', async ({ event, say }) => {
 //   if (event.reaction === "calendar"){
-//    say(`You reacted with a calendar`); 
-//   }  
+//    say(`You reacted with a calendar`);
+//   }
 // });
 
-
-(async () => {
+// Kolten - https://api.slack.com/events/reaction_added
+app.event("reaction_added", async ({ event, context }) => {})(async () => {
   // Start your app
   await app.start(process.env.PORT || 3000);
 
   console.log("⚡️ Bolt app is running!");
 })();
-
-
