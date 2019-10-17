@@ -68,6 +68,10 @@ slack.message("memes", ({ message, say }) => {
   say(`<@${jon}>`);
 });
 
+//slack.message("webgl", ({ message, say}) => {
+//  say(`<@${}>`);
+//});
+
 // example of posting an image block to slack chat
 
 // say() supports "blocks", which you can learn more about
