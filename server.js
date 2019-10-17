@@ -19,8 +19,6 @@ const slack = new App({
   signingSecret: process.env.SLACK_SIGNING_SECRET
 });
 
-console.log(slack.client.users.list)
-
 // example of a bot posting messages when a phrase is triggered
 // Listens to incoming messages that contain "oof"
 slack.message("oof", ({ message, say }) => {
