@@ -1,8 +1,8 @@
 const { App } = require("@slack/bolt");
 let XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
-const axios = require('axios');
-axios.defaults.headers.get['Content-Type'] = 'application/json';
+const axios = require("axios");
+axios.defaults.headers.get["Content-Type"] = "application/json";
 
 // ids for some of our channels, can be used to specify where a bot should post
 const botTestID = "CPEAR8T28";
@@ -42,21 +42,40 @@ slack.message("boi", ({ message, say }) => {
   say(`:spongeboi:`);
 });
 
-slack.message('wutang', async ({ message, say }) => {
+slack.message("wutang", async ({ message, say }) => {
   let split = message.text.toLowerCase().split(" ");
   let name = split.slice(1, split.length).join("%20");
-  
+  console.log(message);
+
   let config = {
-  headers: {
-    Accept: "application/json",
-  }
-}
-  
-  let data = await axios.get(`https://wunameaas.herokuapp.com/enterthewu/${name}`, config);
+    headers: {
+      Accept: "application/json"
+    }
+  };
+
+  let data = await axios.get(
+    `https://wunameaas.herokuapp.com/enterthewu/${name}`,
+    config
+  );
   data = data.data.message;
   let newName = data.split(" ");
-  newName = newName.slice(newName.length - 2, newName.length);
-  console.log(newName);
+  newName = newName.slice(newName.length - 2, newName.length).join(" ");
+  say(`Your new wutang name is ${newName}!`);
+});
+
+slack.message("translateto dothraki", async ({ message, say }) => {
+  let split = message.text.toLowerCase().split(" ");
+  let combined = split.slice(1, split.length).join("%20");
+
+  let config = {
+    headers: {
+      Accept: "application/json"
+    }
+  };
+  
+  let data = await axios.get(`https://api.funtranslations.com/translate/dothraki.json?text=${combined}`, config);
+  
+  console.log(data);
 });
 
 // example of using reg ex, regular expression (useful when there's patterns of characters)
