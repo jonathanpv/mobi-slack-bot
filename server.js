@@ -13,6 +13,7 @@ const hackathonsID = "CCUCG24KS";
 const kenneth = "U9E7SGE5R";
 const jon = "UDBQ0A3BR";
 
+
 // Initializes your app with your bot token and signing secret
 const slack = new App({
   token: process.env.SLACK_BOT_TOKEN,
@@ -37,6 +38,7 @@ slack.message("yeet", ({ message, say }) => {
 slack.message("boi", ({ message, say }) => {
   say(`:spongeboi:`);
 });
+
 
 // example of using reg ex, regular expression (useful when there's patterns of characters)
 // can be useful for email, phones, etc
@@ -64,13 +66,22 @@ slack.message("machine learning", ({ message, say }) => {
   say(`<@${kenneth}>`);
 });
 
+// slack.message("whos this", ({ message, say }) => {
+//   say(`<@${}>`);
+// });
+
+slack.message("This is Christian", ({ message, say }) => {
+  say(`Hello Christian`);
+});
+
+
 slack.message("memes", ({ message, say }) => {
   say(`<@${jon}>`);
 });
 
-//slack.message("webgl", ({ message, say}) => {
-//  say(`<@${}>`);
-//});
+slack.message("webgl", ({ message, say}) => {
+  say(`<@${message.user}>`);
+});
 
 // example of posting an image block to slack chat
 
