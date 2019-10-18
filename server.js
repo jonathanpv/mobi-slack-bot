@@ -1,6 +1,8 @@
 const { App } = require("@slack/bolt");
 let XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
+const axios = require('axios');
+
 // ids for some of our channels, can be used to specify where a bot should post
 const botTestID = "CPEAR8T28";
 const catsIrlID = "CG4HWPQ3S";
@@ -12,7 +14,7 @@ const hackathonsID = "CCUCG24KS";
 // user ids for some users, can be used for a bot to tag someone
 const kenneth = "U9E7SGE5R";
 const jon = "UDBQ0A3BR";
-
+const long = "UCNQE0CU8";
 
 // Initializes your app with your bot token and signing secret
 const slack = new App({
@@ -39,6 +41,10 @@ slack.message("boi", ({ message, say }) => {
   say(`:spongeboi:`);
 });
 
+slack.command("/wutang", ({ ack, payload, context }) => {
+  ack();
+  console.log(payload);
+});
 
 // example of using reg ex, regular expression (useful when there's patterns of characters)
 // can be useful for email, phones, etc
@@ -74,13 +80,12 @@ slack.message("This is Christian", ({ message, say }) => {
   say(`Hello Christian`);
 });
 
-
 slack.message("memes", ({ message, say }) => {
   say(`<@${jon}>`);
 });
 
-slack.message("webgl", ({ message, say}) => {
-  say(`<@${message.user}>`);
+slack.message("webgl", ({ message, say }) => {
+  say(`<@${long}>`);
 });
 
 // example of posting an image block to slack chat
