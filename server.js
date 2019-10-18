@@ -41,9 +41,12 @@ slack.message("boi", ({ message, say }) => {
   say(`:spongeboi:`);
 });
 
-slack.command("/wutang", ({ ack, payload, context }) => {
-  ack();
-  console.log(payload);
+slack.message('wutang', async ({ message, say }) => {
+  let split = message.text.toLowerCase().split(" ");
+  let name = split.slice(1, split.length).join("%20");
+  console.log(name);
+  let newName = await axios.get(`https://wunameaas.herokuapp.com/enterthewu/${name}`);
+  console.log(newName);
 });
 
 // example of using reg ex, regular expression (useful when there's patterns of characters)
