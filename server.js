@@ -2,6 +2,7 @@ const { App } = require("@slack/bolt");
 let XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
 const axios = require('axios');
+axios.defaults.headers.get['Content-Type'] = 'application/json';
 
 // ids for some of our channels, can be used to specify where a bot should post
 const botTestID = "CPEAR8T28";
@@ -44,8 +45,17 @@ slack.message("boi", ({ message, say }) => {
 slack.message('wutang', async ({ message, say }) => {
   let split = message.text.toLowerCase().split(" ");
   let name = split.slice(1, split.length).join("%20");
-  console.log(name);
-  let newName = await axios.get(`https://wunameaas.herokuapp.com/enterthewu/${name}`);
+  
+  let config = {
+  headers: {
+    Accept: "application/json",
+  }
+}
+  
+  let data = await axios.get(`https://wunameaas.herokuapp.com/enterthewu/${name}`, config);
+  data = data.data.message;
+  let newName = data.split(" ");
+  newName = newName.slice(newName.length - 2, newName.length);
   console.log(newName);
 });
 
