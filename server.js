@@ -88,7 +88,7 @@ slack.message("translateto dothraki", async ({ message, say }) => {
   let url = `https://api.funtranslations.com/translate/${
     split[1]
   }.json?text=${combined}`;
-  console.log(url)
+  console.log(url);
   let data = await axios.get(url, config);
   console.log(data.data);
   let translated = data.data.contents.translated;
@@ -205,34 +205,34 @@ slack.message("gimmie a cat fact", async ({ message, say }) => {
   };
   let apiCall = await axios.get(url, config);
   let catImageUrl = `https://api.thecatapi.com/v1/images/search`;
-  let catImageAPI = await axios.get(catImageUrl, config)
-  
+  let catImageAPI = await axios.get(catImageUrl, config);
+
   say({
-	"blocks": [
-		{
-			"type": "divider"
-		},
-    {
-			"type": "section",
-			"block_id": "section567",
-			"text": {
-				"type": "mrkdwn",
-				"text": `${apiCall.data.text}`
-			},
-			{
-				"type": "image",
-        "title" : {
-      "type" : "plain_text",
-      "text" : "cats r kewl",
-      "emoji" : true
-    },
-    
-				"image_url": catImageAPI.data[0].url,
-				"alt_text": "cute cat"
-			}
-		}
-	]
-})
+    blocks: [
+      
+      {
+        type: "section",
+        block_id: "section567",
+        text: {
+          type: "mrkdwn",
+          text: `${apiCall.data.text}`
+        }
+      },
+      {
+        type: "divider"
+      },
+      {
+        type: "image",
+        title: {
+          type: "plain_text",
+          text: "cats r kewl",
+          emoji: true
+        },
+        image_url: catImageAPI.data[0].url,
+        alt_text: "cute cat"
+      }
+    ]
+  });
 });
 
 // example of bot triggered by users reacting with a specific emoji
