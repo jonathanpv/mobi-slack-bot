@@ -65,17 +65,24 @@ slack.message("wutang", async ({ message, say }) => {
 
 slack.message("translateto dothraki", async ({ message, say }) => {
   let split = message.text.toLowerCase().split(" ");
-  let combined = split.slice(1, split.length).join("%20");
+  let combined = split.slice(2, split.length).join("%20");
 
   let config = {
     headers: {
       Accept: "application/json"
     }
   };
-  
-  let data = await axios.get(`https://api.funtranslations.com/translate/dothraki.json?text=${combined}`, config);
-  
-  console.log(data);
+
+  let url = `https://api.funtranslations.com/translate/${
+    split[1]
+  }.json?text=${combined}`;
+  console.log(url)
+  let data = await axios.get(url, config);
+  console.log(data.data);
+  let translated = data.data.contents.translated;
+  console.log(translated);
+  say(`f: ${translated}`);
+  console.log(data.data.contents.translated);
 });
 
 // example of using reg ex, regular expression (useful when there's patterns of characters)
@@ -103,10 +110,6 @@ slack.message("hello", ({ message, say }) => {
 slack.message("machine learning", ({ message, say }) => {
   say(`<@${kenneth}>`);
 });
-
-// slack.message("whos this", ({ message, say }) => {
-//   say(`<@${}>`);
-// });
 
 slack.message("This is Christian", ({ message, say }) => {
   say(`Hello Christian`);
