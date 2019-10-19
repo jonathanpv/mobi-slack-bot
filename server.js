@@ -206,20 +206,28 @@ slack.message("gimmie a cat fact", async ({ message, say }) => {
   let apiCall = await axios.get(url, config);
   let catImageUrl = `https://api.thecatapi.com/v1/images/search`;
   let catImageAPI = await axios.get(catImageUrl, config)
-  console.log(catImageAPI.data);
-  // say(`Here ya go: ${apiCall.data.text}`);
+  
   say({
 	"blocks": [
 		{
+			"type": "divider"
+		},
+    {
 			"type": "section",
 			"block_id": "section567",
 			"text": {
 				"type": "mrkdwn",
 				"text": `${apiCall.data.text}`
 			},
-			"accessory": {
+			{
 				"type": "image",
-				"image_url": `${catImageAPI.data.url}`,
+        "title" : {
+      "type" : "plain_text",
+      "text" : "cats r kewl",
+      "emoji" : true
+    },
+    
+				"image_url": catImageAPI.data[0].url,
 				"alt_text": "cute cat"
 			}
 		}
