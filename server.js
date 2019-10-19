@@ -209,7 +209,6 @@ slack.message("gimmie a cat fact", async ({ message, say }) => {
 
   say({
     blocks: [
-      
       {
         type: "section",
         block_id: "section567",
