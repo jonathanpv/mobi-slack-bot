@@ -23,6 +23,14 @@ const slack = new App({
   signingSecret: process.env.SLACK_SIGNING_SECRET
 });
 
+// function to get the json from a url
+function Get(yourUrl) {
+  let Httpreq = new XMLHttpRequest(); // a new request
+  Httpreq.open("GET", yourUrl, false);
+  Httpreq.send(null);
+  return Httpreq.responseText;
+}
+
 // example of a bot posting messages when a phrase is triggered
 // Listens to incoming messages that contain "oof"
 slack.message("oof", ({ message, say }) => {
@@ -64,8 +72,11 @@ slack.message("wutang", async ({ message, say }) => {
 });
 
 slack.message("translateto dothraki", async ({ message, say }) => {
+  // console.log(message);
   let split = message.text.toLowerCase().split(" ");
+  console.log(split);
   let combined = split.slice(2, split.length).join("%20");
+  console.log("combined:\n\n" + combined);
 
   let config = {
     headers: {
@@ -153,13 +164,7 @@ slack.message("goose coin", ({ message, say }) => {
 // to get data you need to parse message:
 // and message has a url to a picutre of a random doge
 
-// function to get the json from a url
-function Get(yourUrl) {
-  let Httpreq = new XMLHttpRequest(); // a new request
-  Httpreq.open("GET", yourUrl, false);
-  Httpreq.send(null);
-  return Httpreq.responseText;
-}
+
 
 slack.message("random doge", ({ message, say }) => {
   // obj is the full json
