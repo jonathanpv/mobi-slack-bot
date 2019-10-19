@@ -166,8 +166,6 @@ slack.message("goose coin", ({ message, say }) => {
 // to get data you need to parse message:
 // and message has a url to a picutre of a random doge
 
-
-
 slack.message("random doge", async ({ message, say }) => {
   // obj is the full json
   // let obj = Get("https://dog.ceo/api/breeds/image/random");
@@ -196,6 +194,34 @@ slack.message("random doge", async ({ message, say }) => {
       }
     ]
   });
+});
+
+slack.message("gimmie a cat fact", async ({ message, say }) => {
+  let url = `https://cat-fact.herokuapp.com/facts/random`;
+  let config = {
+    headers: {
+      Accept: "application/json"
+    }
+  };
+  let apiCall = await axios.get(url, config);
+  // say(`Here ya go: ${apiCall.data.text}`);
+  say({
+	"blocks": [
+		{
+			"type": "section",
+			"block_id": "section567",
+			"text": {
+				"type": "mrkdwn",
+				"text": `${apiCall.data.text}`
+			},
+			"accessory": {
+				"type": "image",
+				"image_url": "https://pbs.twimg.com/profile_images/625633822235693056/lNGUneLX_400x400.jpg",
+				"alt_text": "cute cat"
+			}
+		}
+	]
+})
 });
 
 // example of bot triggered by users reacting with a specific emoji
