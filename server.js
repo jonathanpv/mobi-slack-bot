@@ -23,6 +23,7 @@ const slack = new App({
   signingSecret: process.env.SLACK_SIGNING_SECRET
 });
 
+// deprecated? lol
 // function to get the json from a url
 function Get(yourUrl) {
   let Httpreq = new XMLHttpRequest(); // a new request
@@ -96,8 +97,9 @@ slack.message("translateto dothraki", async ({ message, say }) => {
   console.log(data.data.contents.translated);
 });
 
-// example of using reg ex, regular expression (useful when there's patterns of characters)
-// can be useful for email, phones, etc
+// example of using regex, regular expression (useful when there's patterns of characters)
+// can be useful for email, phones, etc, this is not a good example of regex usage
+// don't regex and drive kids
 slack.message(/^(rip|Rip|RiP|rIp|rIP|RIp|RIP).*/, ({ message, say }) => {
   say(`:pensive: :rip:`);
 });
@@ -166,12 +168,20 @@ slack.message("goose coin", ({ message, say }) => {
 
 
 
-slack.message("random doge", ({ message, say }) => {
+slack.message("random doge", async ({ message, say }) => {
   // obj is the full json
-  let obj = Get("https://dog.ceo/api/breeds/image/random");
+  // let obj = Get("https://dog.ceo/api/breeds/image/random");
   // randomUrl is the parsed json, we can now access different data
   // with the . operator
-  let randomUrl = JSON.parse(obj);
+  // let randomUrl = JSON.parse(obj);
+  let config = {
+    headers: {
+      Accept: "application/json"
+    }
+  };
+  let url = `https://dog.ceo/api/breeds/image/random`;
+  let randomUrl = await axios.get(url, config);
+  console.log(randomUrl);
   say({
     blocks: [
       {
@@ -181,7 +191,7 @@ slack.message("random doge", ({ message, say }) => {
           text: "puppers incoming!!",
           emoji: true
         },
-        image_url: randomUrl.message,
+        image_url: randomUrl.data.message,
         alt_text: "puppers incoming!! "
       }
     ]
