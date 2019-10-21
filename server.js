@@ -173,7 +173,7 @@ slack.message("random doge", async ({ message, say }) => {
   // with the . operator
   // let randomUrl = JSON.parse(obj);
   let config = {
-    headers: {
+    headers: { 
       Accept: "application/json"
     }
   };
