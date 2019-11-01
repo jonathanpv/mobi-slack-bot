@@ -167,6 +167,8 @@ slack.message("goose coin", ({ message, say }) => {
 // and message has a url to a picutre of a random doge
 
 slack.message("random doge", async ({ message, say }) => {
+  
+  if(message.text)
   // obj is the full json
   // let obj = Get("https://dog.ceo/api/breeds/image/random");
   // randomUrl is the parsed json, we can now access different data
