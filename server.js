@@ -100,14 +100,11 @@ slack.message("translateto dothraki", async ({ message, say }) => {
 // example of using regex, regular expression (useful when there's patterns of characters)
 // can be useful for email, phones, etc, this is not a good example of regex usage
 // don't regex and drive kids
-slack.message(/^(rip|Rip|RiP|rIp|rIP|RIp|RIP).*/, ({ message, say }) => {
+slack.message(/^(rip).*/i, ({ message, say }) => {
   say(`:pensive: :rip:`);
 });
 
-// still reg ex, but the function was too long so that's why it looks weird
-slack.message(
-  /^(F in the chat|f in the chat|test).*/,
-  async ({ context, say }) => {
+slack.message(/^(f in the chat).*/i, async ({ context, say }) => {
     // RegExp matches are inside of context.matches
     // const greeting = context.matches[0];
     say(`:pensive: :press-f:`);
@@ -143,7 +140,7 @@ slack.message("webgl", ({ message, say }) => {
 
 // but even more fun, you can build and experiement live with blocks
 // here: https://api.slack.com/tools/block-kit-builder
-slack.message("goose coin", ({ message, say }) => {
+slack.message(/^(goose coin$)/i, ({ message, say }) => {
   say({
     blocks: [
       {
@@ -166,9 +163,8 @@ slack.message("goose coin", ({ message, say }) => {
 // to get data you need to parse message:
 // and message has a url to a picutre of a random doge
 
-slack.message("random doge", async ({ message, say }) => {
+slack.message(/^(random doge$)/i, async ({ message, say }) => {
   
-  if(message.text)
   // obj is the full json
   // let obj = Get("https://dog.ceo/api/breeds/image/random");
   // randomUrl is the parsed json, we can now access different data
