@@ -194,7 +194,7 @@ slack.message(/^(random doge$)/i, async ({ message, say }) => {
   });
 });
 
-slack.message("gimmie a cat fact", async ({ message, say }) => {
+slack.message(/^(gimmie a cat fact$)/i, async ({ message, say }) => {
   let url = `https://cat-fact.herokuapp.com/facts/random`;
   let config = {
     headers: {
