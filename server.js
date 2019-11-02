@@ -99,7 +99,7 @@ slack.message("translateto dothraki", async ({ message, say }) => {
 });
 
 // example of using regex, regular expression (useful when there's patterns of characters)
-// can be useful for email, phones, etc, this is not a good example of regex usage
+// can be useful for email, phones, etc.
 // don't regex and drive kids
 slack.message(/^(rip).*/i, ({ message, say }) => {
   say(`:pensive: :rip:`);
@@ -249,7 +249,7 @@ slack.event("reaction_added", async ({ event, context, say }) => {
     console.error(error);
   }
 });
-
+// console.log(slack.event("reaction_added", async({event})));
 // example of a calendar block, triggered when users react with the :calendar: emoji
 slack.event("reaction_added", async ({ event, context, say }) => {
   if (event.reaction === "calendar") {
