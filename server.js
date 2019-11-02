@@ -23,7 +23,7 @@ const slack = new App({
   signingSecret: process.env.SLACK_SIGNING_SECRET
 });
 
-// deprecated? lol
+// deprecated function? lol
 // function to get the json from a url
 function Get(yourUrl) {
   let Httpreq = new XMLHttpRequest(); // a new request
@@ -31,6 +31,7 @@ function Get(yourUrl) {
   Httpreq.send(null);
   return Httpreq.responseText;
 }
+
 
 // example of a bot posting messages when a phrase is triggered
 // Listens to incoming messages that contain "oof"
