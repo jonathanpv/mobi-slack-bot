@@ -23,7 +23,7 @@ const slack = new App({
   signingSecret: process.env.SLACK_SIGNING_SECRET
 });
 
-// deprecated function? lol
+// deprecated function? lol we don't use this one anymore, use axios.get
 // function to get the json from a url
 function Get(yourUrl) {
   let Httpreq = new XMLHttpRequest(); // a new request
