@@ -234,21 +234,21 @@ slack.message(/^(gimmie a cat fact$)/i, async ({ message, say }) => {
 });
 
 // example of bot triggered by users reacting with a specific emoji
-slack.event("reaction_added", async ({ event, context, say }) => {
-  console.log(event);
-  try {
-    // if any user reacts with :press-f: emoji then do something
-    if (event.reaction === "press-f") {
-      say(`<@${event.user}> reacted with :press-f:`);
-    }
-    // here's a pig example
-    if (event.reaction === "pig") {
-      say(`reacted with :pig:`);
-    }
-  } catch (error) {
-    console.error(error);
-  }
-});
+// slack.event("reaction_added", async ({ event, context, say }) => {
+//   console.log(event);
+//   try {
+//     // if any user reacts with :press-f: emoji then do something
+//     if (event.reaction === "press-f") {
+//       say(`<@${event.user}> reacted with :press-f:`);
+//     }
+//     // here's a pig example
+//     if (event.reaction === "pig") {
+//       say(`reacted with :pig:`);
+//     }
+//   } catch (error) {
+//     console.error(error);
+//   }
+// });
 // console.log(slack.event("reaction_added", async({event})));
 // example of a calendar block, triggered when users react with the :calendar: emoji
 slack.event("reaction_added", async ({ event, context, say }) => {
