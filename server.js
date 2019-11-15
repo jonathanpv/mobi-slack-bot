@@ -24,19 +24,13 @@ const slack = new App({
 });
 
 // we use this for get requests
-const config = {
+let config = {
     headers: { 
       Accept: "application/json"
     }
   };
 
-// slack.message("this is what im doing", ({ message, say }) => {
-//   // say() sends a message to the channel where the event was triggered
-//   say(`*working on the slack bot* _what about u?_`);
-// });
-
 // example of a bot posting messages when a phrase is triggered
-// listens to incoming messages that contain "oof"
 slack.message("oof", ({ message, say }) => {
   // say() sends a message to the channel where the event was triggered
   say(`*big* _oof_`);
@@ -58,13 +52,7 @@ slack.message("wutang", async ({ message, say }) => {
   let split = message.text.toLowerCase().split(" ");
   let name = split.slice(1, split.length).join("%20");
   console.log(message);
-
-  let config = {
-    headers: {
-      Accept: "application/json"
-    }
-  };
-
+  
   let data = await axios.get(
     `https://wunameaas.herokuapp.com/enterthewu/${name}`,
     config
@@ -81,13 +69,6 @@ slack.message("translateto dothraki", async ({ message, say }) => {
   console.log(split);
   let combined = split.slice(2, split.length).join("%20");
   console.log("combined:\n\n" + combined);
-
-  let config = {
-    headers: {
-      Accept: "application/json"
-    }
-  };
-
   let url = `https://api.funtranslations.com/translate/${
     split[1]
   }.json?text=${combined}`;
@@ -183,11 +164,6 @@ slack.message(/^(random doge$)/i, async ({ message, say }) => {
 
 slack.message(/^(gimmie a cat fact$)/i, async ({ message, say }) => {
   let url = `https://cat-fact.herokuapp.com/facts/random`;
-  let config = {
-    headers: {
-      Accept: "application/json"
-    }
-  };
   let apiCall = await axios.get(url, config);
   let catImageUrl = `https://api.thecatapi.com/v1/images/search`;
   let catImageAPI = await axios.get(catImageUrl, config);
