@@ -4,6 +4,8 @@ let XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 const axios = require("axios");
 axios.defaults.headers.get["Content-Type"] = "application/json";
 
+const test = require('./messages.js')
+
 // channel ids, can be used to specify where a bot should post
 const botTestID = "CPEAR8T28";
 const catsIrlID = "CG4HWPQ3S";
