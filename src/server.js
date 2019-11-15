@@ -38,7 +38,7 @@ slack.message("oof", ({ message, say }) => {
   say(`*big* _oof_`);
 });
 
-slack.command(' /echo', async ({ command, ack, say }) => {
+slack.command('/echo', async ({ command, ack, say }) => {
   // Acknowledge command request
   ack();
   console.log("triggerd");
@@ -46,6 +46,7 @@ slack.command(' /echo', async ({ command, ack, say }) => {
   say(`${command.text}`);
 });
 
+console.log(slack);
 
 slack.message("yaw", ({ message, say }) => {
   say(`YEET :yeet-dab:`);
