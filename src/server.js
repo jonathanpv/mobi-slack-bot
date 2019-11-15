@@ -4,7 +4,7 @@ let XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 const axios = require("axios");
 axios.defaults.headers.get["Content-Type"] = "application/json";
 
-const test = require('./messages.js')
+// const test = require('./messages.js')
 
 // channel ids, can be used to specify where a bot should post
 const botTestID = "CPEAR8T28";
@@ -37,6 +37,15 @@ slack.message("oof", ({ message, say }) => {
   // say() sends a message to the channel where the event was triggered
   say(`*big* _oof_`);
 });
+
+slack.command(' /echo', async ({ command, ack, say }) => {
+  // Acknowledge command request
+  ack();
+  console.log("triggerd");
+  
+  say(`${command.text}`);
+});
+
 
 slack.message("yaw", ({ message, say }) => {
   say(`YEET :yeet-dab:`);
