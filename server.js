@@ -29,7 +29,11 @@ const config = {
       Accept: "application/json"
     }
   };
-  
+
+// slack.message("this is what im doing", ({ message, say }) => {
+//   // say() sends a message to the channel where the event was triggered
+//   say(`*working on the slack bot* _what about u?_`);
+// });
 
 // example of a bot posting messages when a phrase is triggered
 // listens to incoming messages that contain "oof"
