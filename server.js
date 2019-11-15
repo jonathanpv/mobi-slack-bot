@@ -4,7 +4,7 @@ let XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 const axios = require("axios");
 axios.defaults.headers.get["Content-Type"] = "application/json";
 
-// ids for some of our channels, can be used to specify where a bot should post
+// channel ids, can be used to specify where a bot should post
 const botTestID = "CPEAR8T28";
 const catsIrlID = "CG4HWPQ3S";
 const generalID = "C96BA0316";
@@ -12,7 +12,7 @@ const socialCodingID = "CG1QFD1J4";
 const yeetID = "CCNRV68BS";
 const hackathonsID = "CCUCG24KS";
 
-// user ids for some users, can be used for a bot to tag someone
+// user ids, can be used for a bot to tag someone
 const kenneth = "U9E7SGE5R";
 const jon = "UDBQ0A3BR";
 const long = "UCNQE0CU8";
@@ -23,18 +23,16 @@ const slack = new App({
   signingSecret: process.env.SLACK_SIGNING_SECRET
 });
 
-// deprecated function? lol we don't use this one anymore, use axios.get
-// function to get the json from a url
-function Get(yourUrl) {
-  let Httpreq = new XMLHttpRequest(); // a new request
-  Httpreq.open("GET", yourUrl, false);
-  Httpreq.send(null);
-  return Httpreq.responseText;
-}
-
+// we use this for get requests
+const config = {
+    headers: { 
+      Accept: "application/json"
+    }
+  };
+  
 
 // example of a bot posting messages when a phrase is triggered
-// Listens to incoming messages that contain "oof"
+// listens to incoming messages that contain "oof"
 slack.message("oof", ({ message, say }) => {
   // say() sends a message to the channel where the event was triggered
   say(`*big* _oof_`);
@@ -98,26 +96,25 @@ slack.message("translateto dothraki", async ({ message, say }) => {
   console.log(data.data.contents.translated);
 });
 
-// example of using regex, regular expression (useful when there's patterns of characters)
-// can be useful for email, phones, etc.
-// don't regex and drive kids
+// example using regex
 slack.message(/^(rip).*/i, ({ message, say }) => {
   say(`:pensive: :rip:`);
 });
 
 slack.message(/^(f in the chat).*/i, async ({ context, say }) => {
     // RegExp matches are inside of context.matches
-    // const greeting = context.matches[0];
+    const matchingMessage = context.matches[0];
+    console.log(matchingMessage);
     say(`:pensive: :press-f:`);
   }
 );
 
-// example of bot tagging the "local" user that triggered the phrase "hello"
+// bot tagging the "local" user that triggered the phrase "hello"
 slack.message("hello", ({ message, say }) => {
   say(`Hey there <@${message.user}>!`);
 });
 
-// example of bot tagging a specific user
+// bot tagging a specific user
 slack.message("machine learning", ({ message, say }) => {
   say(`<@${kenneth}>`);
 });
@@ -137,10 +134,10 @@ slack.message("webgl", ({ message, say }) => {
 // example of posting an image block to slack chat
 
 // say() supports "blocks", which you can learn more about
-// here: https://api.slack.com/block-kit
+// here: api.slack.com/block-kit
 
-// but even more fun, you can build and experiement live with blocks
-// here: https://api.slack.com/tools/block-kit-builder
+// you can build and experiement live with blocks
+// here: api.slack.com/tools/block-kit-builder
 slack.message(/^(goose coin$)/i, ({ message, say }) => {
   say({
     blocks: [
@@ -158,24 +155,9 @@ slack.message(/^(goose coin$)/i, ({ message, say }) => {
   });
 });
 
-// example of posting an image from an xhr request (a website that contains json)
-// ^^ if not correct defintion can someone correct it pls
-// this xhr request returns a random json type with two identifiers? message: and status:,
-// to get data you need to parse message:
-// and message has a url to a picutre of a random doge
+// example of posting an image from an api
 
 slack.message(/^(random doge$)/i, async ({ message, say }) => {
-  
-  // obj is the full json
-  // let obj = Get("https://dog.ceo/api/breeds/image/random");
-  // randomUrl is the parsed json, we can now access different data
-  // with the . operator
-  // let randomUrl = JSON.parse(obj);
-  let config = {
-    headers: { 
-      Accept: "application/json"
-    }
-  };
   let url = `https://dog.ceo/api/breeds/image/random`;
   let randomUrl = await axios.get(url, config);
   console.log(randomUrl);
@@ -251,6 +233,7 @@ slack.message(/^(gimmie a cat fact$)/i, async ({ message, say }) => {
 // });
 // console.log(slack.event("reaction_added", async({event})));
 // example of a calendar block, triggered when users react with the :calendar: emoji
+
 slack.event("reaction_added", async ({ event, context, say }) => {
   if (event.reaction === "calendar") {
     say({
@@ -277,41 +260,6 @@ slack.event("reaction_added", async ({ event, context, say }) => {
 });
 
 // more examples coming...
-
-// how to make method requests, which can be found in https://api.slack.com/methods
-// example of using the dialog open method: https://api.slack.com/methods/dialog.open
-
-// slack.message("hey mobi", async ({ message, context }) => {
-//   try {
-//     // Call the chat.scheduleMessage method with a token
-//     const result = await slack.client.dialog.open({
-//       // The token you used to initialize your app is stored in the `context` object
-//       // token is required for this method
-//       token: context.botToken,
-//       // fill the dialog thingy, on the website it says that it only takes a JSON string
-//       dialog: {
-//         callback_id: "ryde-46e2b0",
-//         title: "Request a Ride",
-//         submit_label: "Request",
-//         state: "Limo",
-//         elements: [
-//           {
-//             type: "text",
-//             label: "Pickup Location",
-//             name: "loc_origin"
-//           },
-//           {
-//             type: "text",
-//             label: "Dropoff Location",
-//             name: "loc_destination"
-//           }
-//         ]
-//       }
-//     });
-//   } catch (error) {
-//     console.error(error);
-//   }
-// });
 
 (async () => {
   // Start your app
