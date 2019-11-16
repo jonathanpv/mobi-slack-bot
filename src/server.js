@@ -1,5 +1,6 @@
 const { App } = require("@slack/bolt");
 const messages = require('./messages');
+const helpers = require('./helpers');
 let XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
 const axios = require("axios");
@@ -153,7 +154,12 @@ slack.message(/^(gimmie a cat fact$)/i, async ({ message, say }) => {
   let apiCall = await axios.get(url, config);
   let catImageUrl = `https://api.thecatapi.com/v1/images/search`;
   let catImageAPI = await axios.get(catImageUrl, config);
-
+  
+  let messageCopy = helpers.copy(messages.cat_fact)
+    // fill in placeholder values with channel info
+  messageCopy.blocks[0].text.text = message.blocks[0].text.text.replace('`${apiCall.data.text}`', `${apiCall.data.text}`)
+  messageCopy.blocks[2].image_url
+  say(message)
   say(messages.cat_fact);
 });
 

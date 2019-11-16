@@ -21,7 +21,7 @@ module.exports = {
         block_id: "section567",
         text: {
           type: "mrkdwn",
-          text: `${apiCall.data.text}`
+          text: "`${apiCall.data.text}`"
         }
       },
       {
@@ -34,7 +34,7 @@ module.exports = {
           text: "cats r kewl",
           emoji: true
         },
-        image_url: catImageAPI.data[0].url,
+        image_url: "catImageAPI.data[0].url",
         alt_text: "cute cat"
       }
     ]
