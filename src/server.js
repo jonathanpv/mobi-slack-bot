@@ -1,4 +1,5 @@
 const { App } = require("@slack/bolt");
+const messages = require('./messages');
 let XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
 const axios = require("axios");
@@ -136,20 +137,7 @@ slack.message("webgl", ({ message, say }) => {
 // you can build and experiement live with blocks
 // here: api.slack.com/tools/block-kit-builder
 slack.message(/^(goose coin$)/i, ({ message, say }) => {
-  say({
-    blocks: [
-      {
-        type: "image",
-        title: {
-          type: "plain_text",
-          text: "h0nks",
-          emoji: true
-        },
-        image_url: "https://i.imgur.com/DwEMCMf.jpg",
-        alt_text: "h0nks"
-      }
-    ]
-  });
+  say();
 });
 
 // example of posting an image from an api
@@ -157,20 +145,7 @@ slack.message(/^(random doge$)/i, async ({ message, say }) => {
   let url = `https://dog.ceo/api/breeds/image/random`;
   let randomUrl = await axios.get(url, config);
   console.log(randomUrl);
-  say({
-    blocks: [
-      {
-        type: "image",
-        title: {
-          type: "plain_text",
-          text: "puppers incoming!!",
-          emoji: true
-        },
-        image_url: randomUrl.data.message,
-        alt_text: "puppers incoming!! "
-      }
-    ]
-  });
+  say(messages.goose_coin);
 });
 
 slack.message(/^(gimmie a cat fact$)/i, async ({ message, say }) => {
@@ -179,31 +154,7 @@ slack.message(/^(gimmie a cat fact$)/i, async ({ message, say }) => {
   let catImageUrl = `https://api.thecatapi.com/v1/images/search`;
   let catImageAPI = await axios.get(catImageUrl, config);
 
-  say({
-    blocks: [
-      {
-        type: "section",
-        block_id: "section567",
-        text: {
-          type: "mrkdwn",
-          text: `${apiCall.data.text}`
-        }
-      },
-      {
-        type: "divider"
-      },
-      {
-        type: "image",
-        title: {
-          type: "plain_text",
-          text: "cats r kewl",
-          emoji: true
-        },
-        image_url: catImageAPI.data[0].url,
-        alt_text: "cute cat"
-      }
-    ]
-  });
+  say(messages.cat_fact);
 });
 
 // example of bot triggered by users reacting with a specific emoji
