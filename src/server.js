@@ -48,8 +48,6 @@ slack.command('/echo', async ({ command, ack, say }) => {
   say(`${command.text}`);
 });
 
-console.log(slack);
-
 slack.message("yaw", ({ message, say }) => {
   say(`YEET :yeet-dab:`);
 });
@@ -135,10 +133,10 @@ slack.message("webgl", ({ message, say }) => {
 // say() supports "blocks", which you can learn more about
 // here: api.slack.com/block-kit
 
-// you can build and experiement live with blocks
+// you can build and experiment live with blocks
 // here: api.slack.com/tools/block-kit-builder
 slack.message(/^(goose coin$)/i, ({ message, say }) => {
-  say();
+  say(messages.goose_coin);
 });
 
 // example of posting an image from an api
@@ -150,17 +148,17 @@ slack.message(/^(random doge$)/i, async ({ message, say }) => {
 });
 
 slack.message(/^(gimmie a cat fact$)/i, async ({ message, say }) => {
-  let url = `https://cat-fact.herokuapp.com/facts/random`;
-  let apiCall = await axios.get(url, config);
-  let catImageUrl = `https://api.thecatapi.com/v1/images/search`;
-  let catImageAPI = await axios.get(catImageUrl, config);
+  let factUrl = `https://cat-fact.herokuapp.com/facts/random`;
+  let factAPI = await axios.get(factUrl, config);
+  let imageUrl = `https://api.thecatapi.com/v1/images/search`;
+  let imageAPI = await axios.get(catImageUrl, config);
   
   let messageCopy = helpers.copy(messages.cat_fact)
-    // fill in placeholder values with channel info
-  messageCopy.blocks[0].text.text = message.blocks[0].text.text.replace('`${apiCall.data.text}`', `${apiCall.data.text}`)
-  messageCopy.blocks[2].image_url
-  say(message)
-  say(messages.cat_fact);
+  // fill in placeholder values with api info
+  messageCopy.blocks[0].text.text = messageCopy.blocks[0].text.text.replace('{{FactAPI}}', `${apiCall.data.text}`);
+  messageCopy.blocks[2].image_url = messageCopy.blocks[2].image_url.replace('{{ImageAPI}}', catImageAPI.data[0].url);
+  say(messageCopy)
+  // say(messages.cat_fact);
 });
 
 // example of bot triggered by users reacting with a specific emoji
@@ -184,26 +182,7 @@ slack.message(/^(gimmie a cat fact$)/i, async ({ message, say }) => {
 
 slack.event("reaction_added", async ({ event, context, say }) => {
   if (event.reaction === "calendar") {
-    say({
-      blocks: [
-        {
-          type: "section",
-          text: {
-            type: "mrkdwn",
-            text: "Pick a date for me to remind you"
-          },
-          accessory: {
-            type: "datepicker",
-            action_id: "datepicker_remind",
-            initial_date: "2019-04-28",
-            placeholder: {
-              type: "plain_text",
-              text: "Select a date"
-            }
-          }
-        }
-      ]
-    });
+    say(messages.calendar);
   }
 });
 
