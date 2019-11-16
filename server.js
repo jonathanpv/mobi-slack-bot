@@ -16,6 +16,7 @@ const hackathonsID = "CCUCG24KS";
 const kenneth = "U9E7SGE5R";
 const jon = "UDBQ0A3BR";
 const long = "UCNQE0CU8";
+const ivan =  "U9F7BUD0X";
 
 // Initializes your app with your bot token and signing secret
 const slack = new App({
@@ -114,6 +115,10 @@ slack.message("memes", ({ message, say }) => {
 
 slack.message("webgl", ({ message, say }) => {
   say(`<@${long}>`);
+});
+
+slack.message("big brain", ({ message, say }) => {
+  say(`<@${ivan}>`);
 });
 
 // example of posting an image block to slack chat
