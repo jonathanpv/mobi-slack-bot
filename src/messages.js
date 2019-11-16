@@ -14,7 +14,7 @@ module.exports = {
     ]
   },
   
-  cat_fact:{
+  cat_fact: {
     blocks: [
       {
         type: "section",
@@ -40,7 +40,7 @@ module.exports = {
     ]
   },
   
-  calendar:{
+  calendar: {
       blocks: [
         {
           type: "section",
@@ -61,6 +61,5 @@ module.exports = {
       ]
     },
   
-  
-  
+  //insert more here
 }

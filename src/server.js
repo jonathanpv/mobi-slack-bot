@@ -151,13 +151,13 @@ slack.message(/^(gimmie a cat fact$)/i, async ({ message, say }) => {
   let factUrl = `https://cat-fact.herokuapp.com/facts/random`;
   let factAPI = await axios.get(factUrl, config);
   let imageUrl = `https://api.thecatapi.com/v1/images/search`;
-  let imageAPI = await axios.get(catImageUrl, config);
+  let imageAPI = await axios.get(imageUrl, config);
   
-  let messageCopy = helpers.copy(messages.cat_fact)
+  let messageFormat = helpers.copy(messages.cat_fact)
   // fill in placeholder values with api info
-  messageCopy.blocks[0].text.text = messageCopy.blocks[0].text.text.replace('{{FactAPI}}', `${apiCall.data.text}`);
-  messageCopy.blocks[2].image_url = messageCopy.blocks[2].image_url.replace('{{ImageAPI}}', catImageAPI.data[0].url);
-  say(messageCopy)
+  messageFormat.blocks[0].text.text = messageFormat.blocks[0].text.text.replace('{{FactAPI}}', `${factAPI.data.text}`);
+  messageFormat.blocks[2].image_url = messageFormat.blocks[2].image_url.replace('{{ImageAPI}}', imageAPI.data[0].url);
+  say(messageFormat)
   // say(messages.cat_fact);
 });
 
