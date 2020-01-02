@@ -194,6 +194,11 @@ slack.event("reaction_added", async ({ event, context, say }) => {
   }
 });
 
+slack.event("team_join", async({event, context, say}) => {
+  console.log(event);
+});
+
+
 // more examples coming...
 
 (async () => {
