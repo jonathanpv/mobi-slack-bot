@@ -194,8 +194,9 @@ slack.event("reaction_added", async ({ event, context, say }) => {
   }
 });
 
-slack.event("team_join", async({event, context, say}) => {
+slack.event("member_joined_channel", async({event, context, say}) => {
   console.log(event);
+  // console.log(user);
 });
 
 
