@@ -2,20 +2,12 @@ const { App } = require("@slack/bolt");
 const messages = require('./messages');
 const helpers = require('./helpers');
 const users = require('./users');
+const channel = require('./channel-id');
 let XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
 const axios = require("axios");
 axios.defaults.headers.get["Content-Type"] = "application/json";
 
-// const test = require('./messages.js')
-
-// channel ids, can be used to specify where a bot should post
-const botTestId = "CPEAR8T28";
-const catsIrlId = "CG4HWPQ3S";
-const generalId = "C96BA0316";
-const socialCodingId = "CG1QFD1J4";
-const yeetId = "CCNRV68BS";
-const hackathonsId = "CCUCG24KS";
 
 // Initializes your app with your bot token and signing secret
 const slack = new App({
@@ -56,6 +48,7 @@ slack.message("boi", ({ message, say }) => {
   say(`:spongeboi:`);
 });
 
+// wutang 
 slack.message("wutang", async ({ message, say }) => {
   let split = message.text.toLowerCase().split(" ");
   let name = split.slice(1, split.length).join("%20");
@@ -71,6 +64,7 @@ slack.message("wutang", async ({ message, say }) => {
   say(`Your new wutang name is ${newName}!`);
 });
 
+// fun api call to translate a message to dothraki
 slack.message("translateto dothraki", async ({ message, say }) => {
   // console.log(message);
   let split = message.text.toLowerCase().split(" ");
@@ -107,7 +101,7 @@ slack.message("hello", ({ message, say }) => {
   say(`Hey there <@${message.user}>!`);
 });
 
-// bot tagging a specific user
+// bot tagging a specific user, look at users.js to add your own user id to tag
 slack.message("machine learning", ({ message, say }) => {
   say(`<@${users.kenneth}>`);
 });
@@ -153,7 +147,7 @@ slack.message(/^(gimmie a cat fact$)/i, async ({ message, say }) => {
   // fill in placeholder values with api info
   messageFormat.blocks[0].text.text = messageFormat.blocks[0].text.text.replace('{{FactAPI}}', `${factAPI.data.text}`);
   messageFormat.blocks[2].image_url = messageFormat.blocks[2].image_url.replace('{{ImageAPI}}', imageAPI.data[0].url);
-  say(messageFormat)
+  say(messageFormat);
   // say(messages.cat_fact);
 });
 
