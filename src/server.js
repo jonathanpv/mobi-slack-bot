@@ -21,14 +21,14 @@ slack.message("oof", ({ message, say }) => {
   say(`*big* _oof_`);
 });
 
-slack.command('testing command', async ({ command, ack, say }) => {
-  console.log(command);
-  // Acknowledge command request
-  ack();
-  console.log("triggerd");
+// slack.command('testing command', async ({ command, ack, say }) => {
+//   console.log(command);
+//   // Acknowledge command request
+//   ack();
+//   console.log("triggerd");
   
-  say(`${command.text}`);
-});
+//   say(`${command.text}`);
+// });
 
 slack.message("yaw", ({ message, say }) => {
   say(`YEET :yeet-dab:`);
