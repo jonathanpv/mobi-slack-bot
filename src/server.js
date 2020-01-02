@@ -1,6 +1,7 @@
 const { App } = require("@slack/bolt");
 const messages = require('./messages');
 const helpers = require('./helpers');
+const users = require('./users');
 let XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
 const axios = require("axios");
@@ -9,17 +10,12 @@ axios.defaults.headers.get["Content-Type"] = "application/json";
 // const test = require('./messages.js')
 
 // channel ids, can be used to specify where a bot should post
-const botTestID = "CPEAR8T28";
-const catsIrlID = "CG4HWPQ3S";
-const generalID = "C96BA0316";
-const socialCodingID = "CG1QFD1J4";
-const yeetID = "CCNRV68BS";
-const hackathonsID = "CCUCG24KS";
-
-// user ids, can be used for a bot to tag someone
-const kenneth = "U9E7SGE5R";
-const jon = "UDBQ0A3BR";
-const long = "UCNQE0CU8";
+const botTestId = "CPEAR8T28";
+const catsIrlId = "CG4HWPQ3S";
+const generalId = "C96BA0316";
+const socialCodingId = "CG1QFD1J4";
+const yeetId = "CCNRV68BS";
+const hackathonsId = "CCUCG24KS";
 
 // Initializes your app with your bot token and signing secret
 const slack = new App({
@@ -113,7 +109,7 @@ slack.message("hello", ({ message, say }) => {
 
 // bot tagging a specific user
 slack.message("machine learning", ({ message, say }) => {
-  say(`<@${kenneth}>`);
+  say(`<@${users.kenneth}>`);
 });
 
 slack.message("This is Christian", ({ message, say }) => {
@@ -121,11 +117,11 @@ slack.message("This is Christian", ({ message, say }) => {
 });
 
 slack.message("memes", ({ message, say }) => {
-  say(`<@${jon}>`);
+  say(`<@${users.jon}>`);
 });
 
 slack.message("webgl", ({ message, say }) => {
-  say(`<@${long}>`);
+  say(`<@${users.long}>`);
 });
 
 // example of posting an image block to slack chat
