@@ -15,20 +15,14 @@ const slack = new App({
   signingSecret: process.env.SLACK_SIGNING_SECRET
 });
 
-// we use this for get requests
-let config = {
-    headers: { 
-      Accept: "application/json"
-    }
-  };
-
 // example of a bot posting messages when a phrase is triggered
 slack.message("oof", ({ message, say }) => {
   // say() sends a message to the channel where the event was triggered
   say(`*big* _oof_`);
 });
 
-slack.command('/echo', async ({ command, ack, say }) => {
+slack.command('testing command', async ({ command, ack, say }) => {
+  console.log(command);
   // Acknowledge command request
   ack();
   console.log("triggerd");
@@ -48,8 +42,14 @@ slack.message("boi", ({ message, say }) => {
   say(`:spongeboi:`);
 });
 
-// wutang 
+// wutang name generator, ex: "wutang jonathan" gives jonathan's wutang name
 slack.message("wutang", async ({ message, say }) => {
+    // we use this for get requests
+  let config = {
+    headers: { 
+      Accept: "application/json"
+    }
+  };
   let split = message.text.toLowerCase().split(" ");
   let name = split.slice(1, split.length).join("%20");
   console.log(message);
@@ -67,6 +67,12 @@ slack.message("wutang", async ({ message, say }) => {
 // fun api call to translate a message to dothraki
 slack.message("translateto dothraki", async ({ message, say }) => {
   // console.log(message);
+    // we use this for get requests
+  let config = {
+    headers: { 
+      Accept: "application/json"
+    }
+  };
   let split = message.text.toLowerCase().split(" ");
   console.log(split);
   let combined = split.slice(2, split.length).join("%20");
@@ -131,6 +137,12 @@ slack.message(/^(goose coin$)/i, ({ message, say }) => {
 
 // example of posting an image from an api
 slack.message(/^(random doge$)/i, async ({ message, say }) => {
+  // we use this for get requests
+  let config = {
+    headers: { 
+      Accept: "application/json"
+    }
+  };
   let url = `https://dog.ceo/api/breeds/image/random`;
   let randomUrl = await axios.get(url, config);
   console.log(randomUrl);
@@ -138,6 +150,12 @@ slack.message(/^(random doge$)/i, async ({ message, say }) => {
 });
 
 slack.message(/^(gimmie a cat fact$)/i, async ({ message, say }) => {
+    // we use this for get requests
+  let config = {
+    headers: { 
+      Accept: "application/json"
+    }
+  };
   let factUrl = `https://cat-fact.herokuapp.com/facts/random`;
   let factAPI = await axios.get(factUrl, config);
   let imageUrl = `https://api.thecatapi.com/v1/images/search`;
