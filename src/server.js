@@ -157,10 +157,11 @@ slack.message(/^(gimmie a cat fact$)/i, async ({ message, say }) => {
     }
   };
   let factUrl = `https://cat-fact.herokuapp.com/facts/random`;
-  let factAPI = await axios.get(factUrl, config);
+  let fact-get-API = await axios.get(factUrl, config);
   let imageUrl = `https://api.thecatapi.com/v1/images/search`;
   let imageAPI = await axios.get(imageUrl, config);
   
+  // load the gui block format that will display in the text chat 
   let messageFormat = helpers.copy(messages.cat_fact)
   // fill in placeholder values with api info
   messageFormat.blocks[0].text.text = messageFormat.blocks[0].text.text.replace('{{FactAPI}}', `${factAPI.data.text}`);
