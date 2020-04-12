@@ -179,21 +179,28 @@ slack.message("$", async ({ message, say }) => {
     }
   };
   let split = message.text.toLowerCase().split(" ");
-  let name = split.slice(1, split.length).join("%20");
-  console.log(message);
+  let symbol = split.slice(1, split.length).join("%20");
+  console.log(symbol);
+  // let name = split.slice(1, split.length).join("%20");
+  // console.log(message);
   
-  let stockPriceUrl = `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=IBM&interval=5min&outputsize=full&apikey=demo`; 
+  let stockFunction = "TIME_SERIES_INTRADAY";
+  
+  let interval = "5min";
+  let outputSize = "full";
+  let apiKey = process.env.STOCKS_API;
+  let stockPriceUrl = `https://www.alphavantage.co/query?function=${stockFunction}&symbol=${symbol}&interval=${interval}&outputsize=${outputSize}&apikey=${apiKey}`; 
   
   let data = await axios.get(
-    `https://wunameaas.herokuapp.com/enterthewu/${name}`,
+    stockPriceUrl,
     config
   );
   
-  
-  data = data.data.message;
-  let newName = data.split(" ");
-  newName = newName.slice(newName.length - 2, newName.length).join(" ");
-  say(`Your new wutang name is ${newName}!`);
+  console.log(data);
+  // data = data.data.message;
+  // let newName = data.split(" ");
+  // newName = newName.slice(newName.length - 2, newName.length).join(" ");
+  // say(`Your new wutang name is ${newName}!`);
 });
 // example of bot triggered by users reacting with a specific emoji
 // slack.event("reaction_added", async ({ event, context, say }) => {
