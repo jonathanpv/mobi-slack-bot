@@ -199,8 +199,13 @@ slack.message("$", async ({ message, say }) => {
   
   let lastRefreshed = data.data["Meta Data"]["3. Last Refreshed"];
   let timeSeries = `Time Series (${interval})`
-  console.log(data.data);
-  console.log(data.data[timeSeries][lastRefreshed]["4. close"]);
+  // console.log(data.data);
+  let open = data.data[timeSeries][lastRefreshed]["1. open"];
+  let high = data.data[timeSeries][lastRefreshed]["2. high"];
+  let low = data.data[timeSeries][lastRefreshed]["3. low"];
+  let close = data.data[timeSeries][lastRefreshed]["4. close"];
+  let volume = data.data[timeSeries][lastRefreshed]["5. volume"];
+
   
   // console.log(data);
   // data = data.data.message;
