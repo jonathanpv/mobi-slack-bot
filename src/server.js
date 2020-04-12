@@ -170,6 +170,31 @@ slack.message(/^(gimmie a cat fact$)/i, async ({ message, say }) => {
   // say(messages.cat_fact);
 });
 
+// stock price viewer, ex: "$ SPY" gives SPY's live stock price
+slack.message("$", async ({ message, say }) => {
+    // we use this for get requests
+  let config = {
+    headers: { 
+      Accept: "application/json"
+    }
+  };
+  let split = message.text.toLowerCase().split(" ");
+  let name = split.slice(1, split.length).join("%20");
+  console.log(message);
+  
+  let stockPriceUrl = `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=IBM&interval=5min&outputsize=full&apikey=demo`; 
+  
+  let data = await axios.get(
+    `https://wunameaas.herokuapp.com/enterthewu/${name}`,
+    config
+  );
+  
+  
+  data = data.data.message;
+  let newName = data.split(" ");
+  newName = newName.slice(newName.length - 2, newName.length).join(" ");
+  say(`Your new wutang name is ${newName}!`);
+});
 // example of bot triggered by users reacting with a specific emoji
 // slack.event("reaction_added", async ({ event, context, say }) => {
 //   console.log(event);
