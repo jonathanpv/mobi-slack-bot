@@ -162,7 +162,7 @@ slack.message(/^(gimmie a cat fact$)/i, async ({ message, say }) => {
   let imageAPI = await axios.get(imageUrl, config);
   
   // load the gui block format that will display in the text chat 
-  let messageFormat = helpers.copy(messages.cat_fact)
+  let messageFormat = helpers.copy(messages.cat_fact);
   // fill in placeholder values with api info
   messageFormat.blocks[0].text.text = messageFormat.blocks[0].text.text.replace('{{FactAPI}}', `${factAPI.data.text}`);
   messageFormat.blocks[2].image_url = messageFormat.blocks[2].image_url.replace('{{ImageAPI}}', imageAPI.data[0].url);
@@ -206,7 +206,13 @@ slack.message("$", async ({ message, say }) => {
   let close = data.data[timeSeries][lastRefreshed]["4. close"];
   let volume = data.data[timeSeries][lastRefreshed]["5. volume"];
 
-  
+  let stockPriceMessage = helpers.copy(messages.stock_price);
+  /*
+  messageFormat.blocks[0].text.text = messageFormat.blocks[0].text.text.replace('{{FactAPI}}', `${factAPI.data.text}`);
+  messageFormat.blocks[2].image_url = messageFormat.blocks[2].image_url.replace('{{ImageAPI}}', imageAPI.data[0].url);
+  */
+  stockPriceMessage.blocks[0].text.text = stockPriceMessage.blocks[0].text.text.replace('{{symbol}}', `${symbol}`);
+  stockPriceMessage.blocks[1].fields[0] = stockPriceMessage.blocks[1].fields[0].replace('{{symbol}}', `${symbol}`);
   // console.log(data);
   // data = data.data.message;
   // let newName = data.split(" ");

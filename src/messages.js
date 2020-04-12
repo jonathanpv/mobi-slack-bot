@@ -64,6 +64,68 @@ module.exports = {
   start_project: 
   {
     
+  },
+  
+  stock_price: {
+    blocks: [
+	{
+		"type": "section",
+		"text": {
+			"type": "mrkdwn",
+			"text": "Alpha Vantage API ${{symbol}}:\n*<google.com/search?q=%24{{symbol}}|${{symbol}} chart link>*"
+		}
+	},
+	{
+		"type": "section",
+		"fields": [
+			{
+				"type": "mrkdwn",
+				"text": "*Open:*\n{{open}}"
+			},
+			{
+				"type": "mrkdwn",
+				"text": "*High:*\n{{high}}"
+			},
+			{
+				"type": "mrkdwn",
+				"text": "*Low:*\n{{low}}"
+			},
+			{
+				"type": "mrkdwn",
+				"text": "*Close:*\n{{close}}"
+			},
+			{
+				"type": "mrkdwn",
+				"text": "*Volume:*\n{{volume}}"
+			}
+		]
+	},
+	{
+		"type": "actions",
+		"elements": [
+			{
+				"type": "button",
+				"text": {
+					"type": "plain_text",
+					"emoji": true,
+					"text": "Buy"
+				},
+				"style": "primary",
+				"value": "click_me_123"
+			},
+			{
+				"type": "button",
+				"text": {
+					"type": "plain_text",
+					"emoji": true,
+					"text": "Sell"
+				},
+				"style": "danger",
+				"value": "click_me_123"
+			}
+		]
+	}
+]
   }
   
   //insert more here
