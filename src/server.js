@@ -185,7 +185,7 @@ slack.message("$", async ({ message, say }) => {
   // console.log(message);
   
   let stockFunction = "TIME_SERIES_INTRADAY";
-  let interval = "5min";
+  let interval = "min";
   let outputSize = "compact";
   let apiKey = process.env.STOCKS_API;
   let stockPriceUrl = `https://www.alphavantage.co/query?function=${stockFunction}&symbol=${symbol}&interval=${interval}&outputsize=${outputSize}&apikey=${apiKey}`; 
