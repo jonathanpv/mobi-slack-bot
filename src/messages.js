@@ -72,7 +72,7 @@ module.exports = {
 		"type": "section",
 		"text": {
 			"type": "mrkdwn",
-			"text": "Alpha Vantage API $ {{symbol}}:\n*<www.google.com/search?q=%24{{symbol}}|${{symbol}} chart link>*"
+			"text": "Alpha Vantage API $ {{symbol}}:\n*<http://www.google.com/search?q=%24{{symbol}}|${{symbol}} chart link>*"
 		}
 	},
 	{
