@@ -181,8 +181,6 @@ slack.message("$", async ({ message, say }) => {
   let split = message.text.toUpperCase().split(" ");
   let symbol = split.slice(1, split.length).join("%20");
   console.log(symbol);
-  // let name = split.slice(1, split.length).join("%20");
-  // console.log(message);
   
   let stockFunction = "TIME_SERIES_INTRADAY";
   let interval = "1min";
@@ -208,14 +206,21 @@ slack.message("$", async ({ message, say }) => {
   let close = data.data[timeSeries][lastRefreshed]["4. close"];
   let volume = data.data[timeSeries][lastRefreshed]["5. volume"];
 
+  let stockNameUrl = `https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${symbol}&apikey=${apiKey}`;
+  
+  data = await axios.get(
+    stockNameUrl,
+    config
+  );
+  
+  let stockName = data.data.bestMatches[0]["2. name"];
+  
   let stockPriceMessage = helpers.copy(messages.stock_price);
-  /*
-  messageFormat.blocks[0].text.text = messageFormat.blocks[0].text.text.replace('{{FactAPI}}', `${factAPI.data.text}`);
-  messageFormat.blocks[2].image_url = messageFormat.blocks[2].image_url.replace('{{ImageAPI}}', imageAPI.data[0].url);
-  */
+
+  stockPriceMessage.blocks[0].text.text = stockPriceMessage.blocks[0].text.text.replace('{{name}}', `${stockName}`);
   stockPriceMessage.blocks[0].text.text = stockPriceMessage.blocks[0].text.text.replace('{{symbol}}', `${symbol}`);
   stockPriceMessage.blocks[0].text.text = stockPriceMessage.blocks[0].text.text.replace('{{symbol}}', `${symbol}`);
-  stockPriceMessage.blocks[0].text.text = stockPriceMessage.blocks[0].text.text.replace('{{symbol}}', `${symbol}`);
+  
   
   stockPriceMessage.blocks[1].fields[0].text = stockPriceMessage.blocks[1].fields[0].text.replace('{{open}}', `${open}`);
   stockPriceMessage.blocks[1].fields[1].text = stockPriceMessage.blocks[1].fields[1].text.replace('{{high}}', `${high}`);
@@ -224,11 +229,6 @@ slack.message("$", async ({ message, say }) => {
   stockPriceMessage.blocks[1].fields[4].text = stockPriceMessage.blocks[1].fields[4].text.replace('{{volume}}', `${volume}`);
   
   say(stockPriceMessage);
-  // console.log(data);
-  // data = data.data.message;
-  // let newName = data.split(" ");
-  // newName = newName.slice(newName.length - 2, newName.length).join(" ");
-  // say(`Your new wutang name is ${newName}!`);
 });
 // example of bot triggered by users reacting with a specific emoji
 // slack.event("reaction_added", async ({ event, context, say }) => {
