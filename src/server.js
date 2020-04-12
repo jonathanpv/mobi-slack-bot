@@ -185,7 +185,7 @@ slack.message("$", async ({ message, say }) => {
   // console.log(message);
   
   let stockFunction = "TIME_SERIES_INTRADAY";
-  let interval = "min";
+  let interval = "1min";
   let outputSize = "compact";
   let apiKey = process.env.STOCKS_API;
   let stockPriceUrl = `https://www.alphavantage.co/query?function=${stockFunction}&symbol=${symbol}&interval=${interval}&outputsize=${outputSize}&apikey=${apiKey}`; 
@@ -196,7 +196,7 @@ slack.message("$", async ({ message, say }) => {
     stockPriceUrl,
     config
   );
-  
+  console.log(data.data["Error Message"]);
   let lastRefreshed = data.data["Meta Data"]["3. Last Refreshed"];
   let timeSeries = `Time Series (${interval})`
   // console.log(data.data);
@@ -212,7 +212,16 @@ slack.message("$", async ({ message, say }) => {
   messageFormat.blocks[2].image_url = messageFormat.blocks[2].image_url.replace('{{ImageAPI}}', imageAPI.data[0].url);
   */
   stockPriceMessage.blocks[0].text.text = stockPriceMessage.blocks[0].text.text.replace('{{symbol}}', `${symbol}`);
-  stockPriceMessage.blocks[1].fields[0] = stockPriceMessage.blocks[1].fields[0].replace('{{symbol}}', `${symbol}`);
+  stockPriceMessage.blocks[0].text.text = stockPriceMessage.blocks[0].text.text.replace('{{symbol}}', `${symbol}`);
+  stockPriceMessage.blocks[0].text.text = stockPriceMessage.blocks[0].text.text.replace('{{symbol}}', `${symbol}`);
+  
+  stockPriceMessage.blocks[1].fields[0].text = stockPriceMessage.blocks[1].fields[0].text.replace('{{open}}', `${open}`);
+  stockPriceMessage.blocks[1].fields[1].text = stockPriceMessage.blocks[1].fields[1].text.replace('{{high}}', `${high}`);
+  stockPriceMessage.blocks[1].fields[2].text = stockPriceMessage.blocks[1].fields[2].text.replace('{{low}}', `${low}`);
+  stockPriceMessage.blocks[1].fields[3].text = stockPriceMessage.blocks[1].fields[3].text.replace('{{close}}', `${close}`);
+  stockPriceMessage.blocks[1].fields[4].text = stockPriceMessage.blocks[1].fields[4].text.replace('{{volume}}', `${volume}`);
+  
+  say(stockPriceMessage);
   // console.log(data);
   // data = data.data.message;
   // let newName = data.split(" ");
