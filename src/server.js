@@ -197,7 +197,7 @@ slack.message("$", async ({ message, say }) => {
     config
   );
   
-  console.log(data.data[1][0]);
+  console.log(data.data);
   
   // console.log(data);
   // data = data.data.message;
