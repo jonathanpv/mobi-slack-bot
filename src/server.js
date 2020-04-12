@@ -178,25 +178,28 @@ slack.message("$", async ({ message, say }) => {
       Accept: "application/json"
     }
   };
-  let split = message.text.toLowerCase().split(" ");
+  let split = message.text.toUpperCase().split(" ");
   let symbol = split.slice(1, split.length).join("%20");
   console.log(symbol);
   // let name = split.slice(1, split.length).join("%20");
   // console.log(message);
   
   let stockFunction = "TIME_SERIES_INTRADAY";
-  
   let interval = "5min";
-  let outputSize = "full";
+  let outputSize = "compact";
   let apiKey = process.env.STOCKS_API;
   let stockPriceUrl = `https://www.alphavantage.co/query?function=${stockFunction}&symbol=${symbol}&interval=${interval}&outputsize=${outputSize}&apikey=${apiKey}`; 
+  
+  // let stockPriceUrl = `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=IBM&interval=5min&apikey=PAMHIVU89KUZ8QR5`;
   
   let data = await axios.get(
     stockPriceUrl,
     config
   );
   
-  console.log(data);
+  console.log(data.data[1][0]);
+  
+  // console.log(data);
   // data = data.data.message;
   // let newName = data.split(" ");
   // newName = newName.slice(newName.length - 2, newName.length).join(" ");
