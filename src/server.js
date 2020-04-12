@@ -196,7 +196,9 @@ slack.message("$", async ({ message, say }) => {
     stockPriceUrl,
     config
   );
-  console.log(data.data["Error Message"]);
+  if(data.data["Error Message"]) {
+    say(data.data["Error Message"] + "\nPerhaps an invalid ticker symbol?\n");
+  };
   let lastRefreshed = data.data["Meta Data"]["3. Last Refreshed"];
   let timeSeries = `Time Series (${interval})`
   // console.log(data.data);
