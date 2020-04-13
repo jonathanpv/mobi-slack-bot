@@ -199,7 +199,7 @@ slack.message("$", async ({ message, say }) => {
   };
   let lastRefreshed = data.data["Meta Data"]["3. Last Refreshed"];
   let timeSeries = `Time Series (${interval})`
-  console.log(data.data["Meta Data"]);
+  console.log(data.data);
   let open = data.data[timeSeries][lastRefreshed]["1. open"];
   let high = data.data[timeSeries][lastRefreshed]["2. high"];
   let low = data.data[timeSeries][lastRefreshed]["3. low"];
@@ -228,15 +228,11 @@ slack.message("$", async ({ message, say }) => {
   stockPriceMessage.blocks[1].fields[2].text = stockPriceMessage.blocks[1].fields[2].text.replace('{{low}}', `${low}`);
   stockPriceMessage.blocks[1].fields[3].text = stockPriceMessage.blocks[1].fields[3].text.replace('{{close}}', `${close}`);
   stockPriceMessage.blocks[1].fields[4].text = stockPriceMessage.blocks[1].fields[4].text.replace('{{volume}}', `${volume}`);
-  
-  // Requiring fs module in which 
-  // writeFile function is defined. 
-  
 
   // Data which will write in a file. 
   let outputData = `${message.user} ${symbol}`;
 
-  // Write data in 'Output.txt' . 
+  // Write data in 'stock-balance.dat' . 
   fs.writeFile('/app/data/stock-balance.dat', outputData, (err) => { 
     // In case of a error throw err. 
     if (err) throw err;
