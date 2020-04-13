@@ -189,7 +189,7 @@ slack.message("$", async ({ message, say }) => {
   let stockPriceUrl = `https://www.alphavantage.co/query?function=${stockFunction}&symbol=${symbol}&interval=${interval}&outputsize=${outputSize}&apikey=${apiKey}`; 
   
   // let stockPriceUrl = `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=IBM&interval=5min&apikey=PAMHIVU89KUZ8QR5`;
-  
+  console.log(apiKey);
   let data = await axios.get(
     stockPriceUrl,
     config
