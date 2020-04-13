@@ -1,3 +1,9 @@
+// this file is a where all the message templates for different chat commands
+// for example goose_coin is the chat template that can be processed in the server.js file
+// we can add some obvious place holder values such as "{{name}}" and when we processes it 
+// in server.js we can use the replace function to replace "{{name}}" with the actual
+// data we want
+
 module.exports = {
   goose_coin: {
     blocks: [
