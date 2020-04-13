@@ -172,7 +172,6 @@ slack.message(/^(gimmie a cat fact$)/i, async ({ message, say }) => {
 
 // stock price viewer, ex: "$ SPY" gives SPY's live stock price
 slack.message("$", async ({ message, say }) => {
-    // we use this for get requests
   let config = {
     headers: { 
       Accept: "application/json"
@@ -206,6 +205,7 @@ slack.message("$", async ({ message, say }) => {
   let close = data.data[timeSeries][lastRefreshed]["4. close"];
   let volume = data.data[timeSeries][lastRefreshed]["5. volume"];
 
+  // alphavantage api has the stock's name in a different endpoint *sigh* so we'll have to make another get request
   let stockNameUrl = `https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${symbol}&apikey=${apiKey}`;
   
   data = await axios.get(
