@@ -237,7 +237,7 @@ slack.message("$", async ({ message, say }) => {
   let outputData = `${message.user} ${symbol}`;
 
   // Write data in 'Output.txt' . 
-  fs.writeFile('/app/data/stock-balance.dat', data, (err) => { 
+  fs.writeFile('/app/data/stock-balance.dat', outputData, (err) => { 
     // In case of a error throw err. 
     if (err) throw err;
   }) 
