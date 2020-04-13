@@ -100,7 +100,7 @@ module.exports = {
 			},
 			{
 				"type": "mrkdwn",
-				"text": "*Volume:*\n{{volume}}"
+				"text": "*Time:*\n{{time}}"
 			}
 		]
 	},

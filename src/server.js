@@ -228,6 +228,7 @@ slack.message("$", async ({ message, say }) => {
   stockPriceMessage.blocks[1].fields[2].text = stockPriceMessage.blocks[1].fields[2].text.replace('{{low}}', `${low}`);
   stockPriceMessage.blocks[1].fields[3].text = stockPriceMessage.blocks[1].fields[3].text.replace('{{close}}', `${close}`);
   stockPriceMessage.blocks[1].fields[4].text = stockPriceMessage.blocks[1].fields[4].text.replace('{{volume}}', `${volume}`);
+  stockPriceMessage.blocks[1].fields[5].text = stockPriceMessage.blocks[1].fields[5].text.replace('{{time}}', `${lastRefreshed}`);
 
   // Data which will write in a file. 
   let outputData = `${message.user} ${symbol}`;
