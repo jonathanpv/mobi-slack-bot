@@ -9,3 +9,5 @@ exports.getUrlWithParams = (url, params) => {
 exports.copy = (message) => {
   return JSON.parse(JSON.stringify(message))
 }
+
+// exports.copy = (messageLocation, )
