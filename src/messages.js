@@ -97,6 +97,10 @@ module.exports = {
 			{
 				"type": "mrkdwn",
 				"text": "*Volume:*\n{{volume}}"
+			},
+			{
+				"type": "mrkdwn",
+				"text": "*Volume:*\n{{volume}}"
 			}
 		]
 	},
