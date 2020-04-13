@@ -3,6 +3,7 @@ const messages = require('./messages');
 const helpers = require('./helpers');
 const users = require('./users');
 const channel = require('./channel-id');
+const fs = require('fs');
 let XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
 const axios = require("axios");
@@ -228,6 +229,18 @@ slack.message("$", async ({ message, say }) => {
   stockPriceMessage.blocks[1].fields[3].text = stockPriceMessage.blocks[1].fields[3].text.replace('{{close}}', `${close}`);
   stockPriceMessage.blocks[1].fields[4].text = stockPriceMessage.blocks[1].fields[4].text.replace('{{volume}}', `${volume}`);
   
+  // Requiring fs module in which 
+  // writeFile function is defined. 
+  
+
+  // Data which will write in a file. 
+  let outputData = `${message.user} ${symbol}`;
+
+  // Write data in 'Output.txt' . 
+  fs.writeFile('/app/data/stock-balance.dat', data, (err) => { 
+    // In case of a error throw err. 
+    if (err) throw err;
+  }) 
   say(stockPriceMessage);
 });
 // example of bot triggered by users reacting with a specific emoji
