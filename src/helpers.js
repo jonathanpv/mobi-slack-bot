@@ -11,3 +11,6 @@ exports.copy = (message) => {
 }
 
 // exports.copy = (messageLocation, )
+exports.messageReplace = (templateMessage, placeholder, data) => {
+  
+}
