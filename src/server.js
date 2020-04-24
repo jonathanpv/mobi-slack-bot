@@ -219,8 +219,8 @@ slack.message("$", async ({ message, say }) => {
   // load the message template from the messages.js file, we called this message block "stock_price" in messages.js, so copy it
   let stockPriceMessage = helpers.copy(messages.stock_price);
 
-  
-  stockPriceMessage.blocks[0].text.text = stockPriceMessage.blocks[0].text.text.replace('{{name}}', `${stockName}`);
+  helpers.messageReplace(stockPriceMessage, `blocks[0].text.text`, `{{name}}`, `${stockName}`);
+  // stockPriceMessage.blocks[0].text.text = stockPriceMessage.blocks[0].text.text.replace('{{name}}', `${stockName}`);
   stockPriceMessage.blocks[0].text.text = stockPriceMessage.blocks[0].text.text.replace('{{symbol}}', `${symbol}`);
   stockPriceMessage.blocks[0].text.text = stockPriceMessage.blocks[0].text.text.replace('{{symbol}}', `${symbol}`);
   
