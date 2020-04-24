@@ -219,8 +219,8 @@ slack.message("$", async ({ message, say }) => {
   // load the message template from the messages.js file, we called this message block "stock_price" in messages.js, so copy it
   let stockPriceMessage = helpers.copy(messages.stock_price);
 
-  helpers.messageReplace(stockPriceMessage, `blocks[0].text.text`, `{{name}}`, `${stockName}`);
-  // stockPriceMessage.blocks[0].text.text = stockPriceMessage.blocks[0].text.text.replace('{{name}}', `${stockName}`);
+  // remove the placeholder values with the actual data
+  stockPriceMessage.blocks[0].text.text = stockPriceMessage.blocks[0].text.text.replace('{{name}}', `${stockName}`);
   stockPriceMessage.blocks[0].text.text = stockPriceMessage.blocks[0].text.text.replace('{{symbol}}', `${symbol}`);
   stockPriceMessage.blocks[0].text.text = stockPriceMessage.blocks[0].text.text.replace('{{symbol}}', `${symbol}`);
   
@@ -232,14 +232,15 @@ slack.message("$", async ({ message, say }) => {
   stockPriceMessage.blocks[1].fields[4].text = stockPriceMessage.blocks[1].fields[4].text.replace('{{volume}}', `${volume}`);
   stockPriceMessage.blocks[1].fields[5].text = stockPriceMessage.blocks[1].fields[5].text.replace('{{time}}', `${lastRefreshed}`);
 
+  // learning how to store into files for new feature, want to be careful about emfile error
   // Data which will write in a file. 
-  let outputData = `${message.user} ${symbol}`;
+  // let outputData = `${message.user} ${symbol}`;
 
   // Write data in 'stock-balance.dat' . 
-  fs.writeFile('/app/data/stock-balance.dat', outputData, (err) => { 
+  // fs.writeFile('/app/data/stock-balance.dat', outputData, (err) => { 
     // In case of a error throw err. 
-    if (err) throw err;
-  }) 
+    // if (err) throw err;
+  // }) 
   say(stockPriceMessage);
 });
 // example of bot triggered by users reacting with a specific emoji
