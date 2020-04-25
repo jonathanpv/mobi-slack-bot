@@ -150,7 +150,7 @@ slack.message(/^(random doge$)/i, async ({ message, say }) => {
   say(messages.goose_coin);
 });
 
-slack.message(/^(gimmie a cat fact$)/i, async ({ message, say }) => {
+slack.message(/^(cat$)/i, async ({ message, say }) => {
     // we use this for get requests
   let config = {
     headers: { 
@@ -171,14 +171,14 @@ slack.message(/^(gimmie a cat fact$)/i, async ({ message, say }) => {
   // say(messages.cat_fact);
 });
 
-// stock price viewer, ex: "$ SPY" gives SPY's live stock price
-slack.message("$", async ({ message, say }) => {
+// stock price viewer, ex: "$SPY" gives SPY's live stock price
+slack.message(/^\$/, async ({ message, say }) => {
   let config = {
     headers: { 
       Accept: "application/json"
     }
   };
-  let split = message.text.toUpperCase().split(" ");
+  let split = message.text.toUpperCase().split(/^\$/);
   let symbol = split.slice(1, split.length).join("%20");
   console.log(symbol);
   
