@@ -214,6 +214,8 @@ slack.message(/^\$/, async ({ message, say }) => {
     config
   );
   
+  console.log(data)
+  
   let stockName = data.data.bestMatches[0]["2. name"];
   
   // load the message template from the messages.js file, we called this message block "stock_price" in messages.js, so copy it
@@ -271,6 +273,7 @@ slack.event("reaction_added", async ({ event, context, say }) => {
 slack.event("member_joined_channel", async({event, context, say}) => {
   console.log(event);
   // console.log(user);
+  await slack
 });
 
 
