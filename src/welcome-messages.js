@@ -1,42 +1,42 @@
 // add your own welcome message here
 module.exports = {
-  DiscordUser123 just joined the server - glhf!
-  DiscordUser123 just joined. Everyone, look busy!
-  DiscordUser123 just joined. Can I get a heal?
-  DiscordUser123 joined your party.
-  DiscordUser123 joined. You must construct additional pylons.
-  Ermagherd. DiscordUser123 is here.
-  Welcome, DiscordUser123. Stay awhile and listen.
-  Welcome, DiscordUser123. We were expecting you ( ͡° ͜ʖ ͡°)
-  Welcome, DiscordUser123. We hope you brought pizza.
-  Welcome DiscordUser123. Leave your weapons by the door.
-  A wild DiscordUser123 appeared.
-  Swoooosh. DiscordUser123 just landed.
-  Brace yourselves. DiscordUser123 just joined the server.
-  DiscordUser123 just joined. Hide your bananas.
-  DiscordUser123 just arrived. Seems OP - please nerf.
-  DiscordUser123 just slid into the server.
-  A DiscordUser123 has spawned in the server.
-  Big DiscordUser123 showed up!
-  Where’s DiscordUser123? In the server!
-  DiscordUser123 hopped into the server. Kangaroo!!
-  DiscordUser123 just showed up. Hold my beer.
-  Challenger approaching - DiscordUser123 has appeared!
-  It's a bird! It's a plane! Nevermind, it's just DiscordUser123.
-  It's DiscordUser123! Praise the sun! [T]/
-  Never gonna give DiscordUser123 up. Never gonna let DiscordUser123 down.
-  Ha! DiscordUser123 has joined! You activated my trap card!
-  Cheers, love! DiscordUser123's here!
-  Hey! Listen! DiscordUser123 has joined!
-  We've been expecting you DiscordUser123
-  It's dangerous to go alone, take DiscordUser123!
-  DiscordUser123 has joined the server! It's super effective!
-  Cheers, love! DiscordUser123 is here!
-  DiscordUser123 is here, as the prophecy foretold.
-  DiscordUser123 has arrived. Party's over.
-  Ready player DiscordUser123
-  DiscordUser123 is here to kick butt and chew bubblegum. And DiscordUser123 is all out of gum.
-  Hello. Is it DiscordUser123 you're looking for?
-  DiscordUser123 has joined. Stay a while and listen!
-  Roses are red, violets are blue, DiscordUser123 joined this server with you
+  m1: "{{user}} just joined the server - glhf!",
+  m2: "{{user}} just joined. Everyone, look busy!",
+  m3: "{{user}} just joined. Can I get a heal?",
+  m4: "{{user}} joined your party.",
+  m5: "{{user}} joined. You must construct additional pylons.",
+  m6: "Ermagherd. {{user}} is here.",
+  m7: "Welcome, {{user}}. Stay awhile and listen.",
+  m8: "Welcome, {{user}}. We were expecting you ( ͡° ͜ʖ ͡°)",
+  m9: "Welcome, {{user}}. We hope you brought pizza.",
+  m10: "Welcome {{user}}. Leave your weapons by the door.",
+  m11: "A wild {{user}} appeared.",
+  m12: "Swoooosh. {{user}} just landed.",
+  m13: "Brace yourselves. {{user}} just joined the server.",
+  m14: "{{user}} just joined. Hide your bananas.",
+  m15: "{{user}} just arrived. Seems OP - please nerf.",
+  m16: "{{user}} just slid into the server.",
+  m17: "A {{user}} has spawned in the server.",
+  m18: "Big {{user}} showed up!",
+  m19: "Where’s {{user}}? In the server!",
+  m20: "{{user}} hopped into the server. Kangaroo!!",
+  m21: "{{user}} just showed up. Hold my beer.",
+  m22: "Challenger approaching - {{user}} has appeared!",
+  m23: "It's a bird! It's a plane! Nevermind, it's just {{user}}.",
+  m24: "It's {{user}}! Praise the sun! [T]/",
+  m25: "Never gonna give {{user}} up. Never gonna let {{user}} down.",
+  m26: "Ha! {{user}} has joined! You activated my trap card!",
+  m27: "Cheers, love! {{user}}'s here!",
+  m28: "Hey! Listen! {{user}} has joined!",
+  m29: "We've been expecting you {{user}}",
+  m30: "It's dangerous to go alone, take {{user}}!",
+  m31: "{{user}} has joined the server! It's super effective!",
+  m32: "Cheers, love! {{user}} is here!",
+  m33: "{{user}} is here, as the prophecy foretold.",
+  m34: "{{user}} has arrived. Party's over.",
+  m35: "Ready player {{user}}",
+  m36: "{{user}} is here to kick butt and chew bubblegum. And {{user}} is all out of gum.",
+  m37: "Hello. Is it {{user}} you're looking for?",
+  m38: "{{user}} has joined. Stay a while and listen!",
+  m39: "Roses are red, violets are blue, {{user}} joined this server with you"
 };
