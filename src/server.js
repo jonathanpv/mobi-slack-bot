@@ -152,17 +152,18 @@ slack.message(/^(cat$)/i, async ({ message, say }) => {
   // say(messages.cat_fact);
 });
 
-// stock price viewer, ex: "$SPY" gives SPY's live stock price
+// stock price viewer, ex: "$ SPY" gives SPY's live stock price
 slack.message(/^\$/, async ({ message, say }) => {
-  let split = message.text.toUpperCase().split(/^\$/);
-  console.log(split);
-  let symbol = split.slice(1, split.length).join("%20");
-  console.log(symbol);
+  // since event is triggered by $ TICKERSYMBOL split the message
+  // using .split and also take care of cases when people use $ tickErsYmBol
+  let split = message.text.toUpperCase().split(/^\$ /);
+  let symbol = split[1];
 
   let stockFunction = "TIME_SERIES_INTRADAY";
   let interval = "1min";
   let outputSize = "compact";
   let apiKey = process.env.STOCKS_API;
+  
   let stockPriceUrl = `https://www.alphavantage.co/query?` + 
       `function=${stockFunction}` + 
       `&symbol=${symbol}` +
@@ -170,12 +171,11 @@ slack.message(/^\$/, async ({ message, say }) => {
       `&outputsize=${outputSize}` +
       `&apikey=${apiKey}`;
 
-  console.log(stockPriceUrl);
-  console.log(apiKey);
   let data = await axios.get(stockPriceUrl, config);
   if (data.data["Error Message"]) {
     say(data.data["Error Message"] + "\nPerhaps an invalid ticker symbol?\n");
   }
+  
   let lastRefreshed = data.data["Meta Data"]["3. Last Refreshed"];
   let timeSeries = `Time Series (${interval})`;
 
@@ -186,11 +186,14 @@ slack.message(/^\$/, async ({ message, say }) => {
   let volume = data.data[timeSeries][lastRefreshed]["5. volume"];
 
   // alphavantage api has the stock's name in a different endpoint *sigh* so we'll have to make another get request
-  let stockNameUrl = `https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${symbol}&apikey=${apiKey}`;
+  let stockNameUrl = `https://www.alphavantage.co/query?` +
+      `function=SYMBOL_SEARCH` +
+      `&keywords=${symbol}` +
+      `&apikey=${apiKey}`;
 
   data = await axios.get(stockNameUrl, config);
 
-  console.log(data);
+  // console.log(data.data);
 
   let stockName = data.data.bestMatches[0]["2. name"];
 
