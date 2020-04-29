@@ -155,6 +155,7 @@ slack.message(/^(cat$)/i, async ({ message, say }) => {
 // stock price viewer, ex: "$SPY" gives SPY's live stock price
 slack.message(/^\$/, async ({ message, say }) => {
   let split = message.text.toUpperCase().split(/^\$/);
+  console.log(split);
   let symbol = split.slice(1, split.length).join("%20");
   console.log(symbol);
 
@@ -162,8 +163,14 @@ slack.message(/^\$/, async ({ message, say }) => {
   let interval = "1min";
   let outputSize = "compact";
   let apiKey = process.env.STOCKS_API;
-  let stockPriceUrl = `https://www.alphavantage.co/query?function=${stockFunction}&symbol=${symbol}&interval=${interval}&outputsize=${outputSize}&apikey=${apiKey}`;
+  let stockPriceUrl = `https://www.alphavantage.co/query?` + 
+      `function=${stockFunction}` + 
+      `&symbol=${symbol}` +
+      `&interval=${interval}` +
+      `&outputsize=${outputSize}` +
+      `&apikey=${apiKey}`;
 
+  console.log(stockPriceUrl);
   console.log(apiKey);
   let data = await axios.get(stockPriceUrl, config);
   if (data.data["Error Message"]) {
