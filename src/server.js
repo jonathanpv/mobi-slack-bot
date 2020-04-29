@@ -5,6 +5,7 @@ const messages = require("./messages");
 const helpers = require("./helpers");
 const users = require("./users");
 const channel = require("./channel-id");
+const welcome = require("./welcome-messages")
 const fs = require("fs");
 let XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
@@ -281,11 +282,10 @@ slack.event("reaction_added", async ({ event, context, say }) => {
 
 slack.event("member_joined_channel", async ({ event, context, say }) => {
   console.log(event);
-  let jokeUrl = `https://geek-jokes.sameerkumar.website/api`;
-  let data = await axios.get(jokeUrl, config);
-  
-  console.log(data.data);
-  say(`Looking good <@${event.user}>  :party-porg: Here's a joke cuz I'm a jokester  :ditto:  ` + `${data.data}`);
+  let random = Math.floor(Math.random() * 41);
+  let message = helpers.copy(welcome.random);
+  message = message.replace("{{user}}", `${event.user}`); 
+  say(message);
   console.log("ya boi joined");
 });
 
