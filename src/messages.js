@@ -5,6 +5,12 @@
 // in server.js we can use the replace function to replace "{{FactAPI}}" with the actual
 // data we want
 
+// messages are called "blocks", which you can learn more about
+// here: api.slack.com/block-kit
+
+// you can build and experiment live with blocks
+// here: api.slack.com/tools/block-kit-builder
+
 module.exports = {
   goose_coin: {
     blocks: [
@@ -75,69 +81,83 @@ module.exports = {
   
   stock_price: {
     blocks: [
-	{
-		"type": "section",
-		"text": {
-			"type": "mrkdwn",
-			"text": "{{name}}\n*<http://www.google.com/search?q=%24{{symbol}}|${{symbol}} chart link>*"
-		}
-	},
-	{
-		"type": "section",
-		"fields": [
-			{
-				"type": "mrkdwn",
-				"text": "*Open:*\n{{open}}"
-			},
-			{
-				"type": "mrkdwn",
-				"text": "*High:*\n{{high}}"
-			},
-			{
-				"type": "mrkdwn",
-				"text": "*Low:*\n{{low}}"
-			},
-			{
-				"type": "mrkdwn",
-				"text": "*Close:*\n{{close}}"
-			},
-			{
-				"type": "mrkdwn",
-				"text": "*Volume:*\n{{volume}}"
-			},
-			{
-				"type": "mrkdwn",
-				"text": "*Time:*\n{{time}}"
-			}
-		]
-	},
-	{
-		"type": "actions",
-		"elements": [
-			{
-				"type": "button",
-				"text": {
-					"type": "plain_text",
-					"emoji": true,
-					"text": "Buy"
-				},
-				"style": "primary",
-				"value": "click_me_123"
-			},
-			{
-				"type": "button",
-				"text": {
-					"type": "plain_text",
-					"emoji": true,
-					"text": "Sell"
-				},
-				"style": "danger",
-				"value": "click_me_123"
-			}
-		]
-	}
-]
-  }
+      {
+        "type": "section",
+        "text": {
+          "type": "mrkdwn",
+          "text": "{{name}}\n*<http://www.google.com/search?q=%24{{symbol}}|${{symbol}} chart link>*"
+        }
+      },
+      {
+        "type": "section",
+        "fields": [
+          {
+            "type": "mrkdwn",
+            "text": "*Open:*\n{{open}}"
+          },
+          {
+            "type": "mrkdwn",
+            "text": "*High:*\n{{high}}"
+          },
+          {
+            "type": "mrkdwn",
+            "text": "*Low:*\n{{low}}"
+          },
+          {
+            "type": "mrkdwn",
+            "text": "*Close:*\n{{close}}"
+          },
+          {
+            "type": "mrkdwn",
+            "text": "*Volume:*\n{{volume}}"
+          },
+          {
+            "type": "mrkdwn",
+            "text": "*Time:*\n{{time}}"
+          }
+        ]
+      },
+      {
+        "type": "actions",
+        "elements": [
+          {
+            "type": "button",
+            "text": {
+              "type": "plain_text",
+              "emoji": true,
+              "text": "Buy"
+            },
+            "style": "primary",
+            "value": "click_me_123"
+          },
+          {
+            "type": "button",
+            "text": {
+              "type": "plain_text",
+              "emoji": true,
+              "text": "Sell"
+            },
+            "style": "danger",
+            "value": "click_me_123"
+          }
+        ]
+      },
+    ]
+  },
+  random_doge: {
+    blocks: [
+      {
+        type: "image",
+        title: {
+          type: "plain_text",
+          text: "d0ge",
+          emoji: true
+        },
+        image_url: "{{DogImage}}",
+        alt_text: "h0nks"
+      }
+    ]
+  },
   
   //insert more here
 }

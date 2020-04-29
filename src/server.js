@@ -43,7 +43,7 @@ slack.message("boi", ({ message, say }) => {
   say(`:spongeboi:`);
 });
 
-// wutang name generator, ex: "wutang jonathan" gives jonathan's wutang name
+// wutang name generator, ex: "wutang jonathan" gives jonathan's wutang name, uses an api :^)
 slack.message("wutang", async ({ message, say }) => {
   let split = message.text.toLowerCase().split(" ");
   let name = split.slice(1, split.length).join("%20");
@@ -112,13 +112,12 @@ slack.message("webgl", ({ message, say }) => {
   say(`<@${users.long}>`);
 });
 
-// example of posting an image block to slack chat
 
-// say() supports "blocks", which you can learn more about
-// here: api.slack.com/block-kit
+// example of posting an image to slack chat
+// here we called an external message 
+// look at goose_coin in the messages.js file
+// the goose_coin block has a link to an image, and that's how we post images!
 
-// you can build and experiment live with blocks
-// here: api.slack.com/tools/block-kit-builder
 slack.message(/^(goose coin$)/i, ({ message, say }) => {
   say(messages.goose_coin);
 });
@@ -148,11 +147,6 @@ slack.message(/^(cat$)/i, async ({ message, say }) => {
 
 // stock price viewer, ex: "$SPY" gives SPY's live stock price
 slack.message(/^\$/, async ({ message, say }) => {
-  let config = {
-    headers: { 
-      Accept: "application/json"
-    }
-  };
   let split = message.text.toUpperCase().split(/^\$/);
   let symbol = split.slice(1, split.length).join("%20");
   console.log(symbol);
