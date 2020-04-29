@@ -1,3 +1,5 @@
+// this is the server file, it's where our commands and message events are defined check the bot-test channel 
+// to find more resources!
 const { App } = require("@slack/bolt");
 const messages = require('./messages');
 const helpers = require('./helpers');
@@ -16,20 +18,18 @@ const slack = new App({
   signingSecret: process.env.SLACK_SIGNING_SECRET
 });
 
+// we use this for get requests
+const config = {
+  headers: { 
+    Accept: "application/json"
+  }
+};
+
 // example of a bot posting messages when a phrase is triggered
 slack.message("oof", ({ message, say }) => {
   // say() sends a message to the channel where the event was triggered
   say(`*big* _oof_`);
 });
-
-// slack.command('testing command', async ({ command, ack, say }) => {
-//   console.log(command);
-//   // Acknowledge command request
-//   ack();
-//   console.log("triggerd");
-  
-//   say(`${command.text}`);
-// });
 
 slack.message("yaw", ({ message, say }) => {
   say(`YEET :yeet-dab:`);
@@ -45,12 +45,6 @@ slack.message("boi", ({ message, say }) => {
 
 // wutang name generator, ex: "wutang jonathan" gives jonathan's wutang name
 slack.message("wutang", async ({ message, say }) => {
-    // we use this for get requests
-  let config = {
-    headers: { 
-      Accept: "application/json"
-    }
-  };
   let split = message.text.toLowerCase().split(" ");
   let name = split.slice(1, split.length).join("%20");
   console.log(message);
@@ -67,13 +61,6 @@ slack.message("wutang", async ({ message, say }) => {
 
 // fun api call to translate a message to dothraki
 slack.message("translateto dothraki", async ({ message, say }) => {
-  // console.log(message);
-    // we use this for get requests
-  let config = {
-    headers: { 
-      Accept: "application/json"
-    }
-  };
   let split = message.text.toLowerCase().split(" ");
   console.log(split);
   let combined = split.slice(2, split.length).join("%20");
@@ -138,12 +125,6 @@ slack.message(/^(goose coin$)/i, ({ message, say }) => {
 
 // example of posting an image from an api
 slack.message(/^(random doge$)/i, async ({ message, say }) => {
-  // we use this for get requests
-  let config = {
-    headers: { 
-      Accept: "application/json"
-    }
-  };
   let url = `https://dog.ceo/api/breeds/image/random`;
   let randomUrl = await axios.get(url, config);
   console.log(randomUrl);
@@ -151,12 +132,6 @@ slack.message(/^(random doge$)/i, async ({ message, say }) => {
 });
 
 slack.message(/^(cat$)/i, async ({ message, say }) => {
-    // we use this for get requests
-  let config = {
-    headers: { 
-      Accept: "application/json"
-    }
-  };
   let factUrl = `https://cat-fact.herokuapp.com/facts/random`;
   let factAPI = await axios.get(factUrl, config);
   let imageUrl = `https://api.thecatapi.com/v1/images/search`;
@@ -187,8 +162,7 @@ slack.message(/^\$/, async ({ message, say }) => {
   let outputSize = "compact";
   let apiKey = process.env.STOCKS_API;
   let stockPriceUrl = `https://www.alphavantage.co/query?function=${stockFunction}&symbol=${symbol}&interval=${interval}&outputsize=${outputSize}&apikey=${apiKey}`; 
-  
-  // let stockPriceUrl = `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=IBM&interval=5min&apikey=PAMHIVU89KUZ8QR5`;
+
   console.log(apiKey);
   let data = await axios.get(
     stockPriceUrl,
@@ -199,7 +173,7 @@ slack.message(/^\$/, async ({ message, say }) => {
   };
   let lastRefreshed = data.data["Meta Data"]["3. Last Refreshed"];
   let timeSeries = `Time Series (${interval})`
-  // console.log(data.data);
+  
   let open = data.data[timeSeries][lastRefreshed]["1. open"];
   let high = data.data[timeSeries][lastRefreshed]["2. high"];
   let low = data.data[timeSeries][lastRefreshed]["3. low"];
@@ -245,7 +219,9 @@ slack.message(/^\$/, async ({ message, say }) => {
   // }) 
   say(stockPriceMessage);
 });
+
 // example of bot triggered by users reacting with a specific emoji
+// REMOVED BECAUSE WE CAN'T HAVE NICE THINGS
 // slack.event("reaction_added", async ({ event, context, say }) => {
 //   console.log(event);
 //   try {
@@ -274,8 +250,6 @@ slack.event("member_joined_channel", async({event, context, say}) => {
   console.log(event);
   
 });
-
-// more examples coming...
 
 (async () => {
   // Start your app
