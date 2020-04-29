@@ -285,7 +285,7 @@ slack.event("member_joined_channel", async ({ event, context, say }) => {
   let data = await axios.get(jokeUrl, config);
   
   console.log(data.data);
-  say(`Looking good <@${event.user}> :party-porg:! Here's a joke cuz I'm a jokester :ditto:` + `${data.data}`);
+  say(`Looking good <@${event.user}>  :party-porg: Here's a joke cuz I'm a jokester  :ditto:  ` + `${data.data}`);
   console.log("ya boi joined");
 });
 
