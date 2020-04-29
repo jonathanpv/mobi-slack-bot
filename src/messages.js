@@ -1,7 +1,7 @@
 // file where all the message templates are found they are used for many different chat commands
 
 // for example cat_fact is the chat template that can be processed in the server.js file
-// we can add some obvious place holder values such as "{{FactAPI}}" and when we processes it 
+// we can add some obvious place holder values such as "{{FactAPI}}" and when we processes it
 // in server.js we can use the replace function to replace "{{FactAPI}}" with the actual
 // data we want
 
@@ -26,7 +26,7 @@ module.exports = {
       }
     ]
   },
-  
+
   cat_fact: {
     blocks: [
       {
@@ -52,96 +52,94 @@ module.exports = {
       }
     ]
   },
-  
+
   calendar: {
-      blocks: [
-        {
-          type: "section",
-          text: {
-            type: "mrkdwn",
-            text: "Pick a date for me to remind you"
-          },
-          accessory: {
-            type: "datepicker",
-            action_id: "datepicker_remind",
-            initial_date: "2019-04-28",
-            placeholder: {
-              type: "plain_text",
-              text: "Select a date"
-            }
+    blocks: [
+      {
+        type: "section",
+        text: {
+          type: "mrkdwn",
+          text: "Pick a date for me to remind you"
+        },
+        accessory: {
+          type: "datepicker",
+          action_id: "datepicker_remind",
+          initial_date: "2019-04-28",
+          placeholder: {
+            type: "plain_text",
+            text: "Select a date"
           }
         }
-      ]
-    },
-  
-  start_project: 
-  {
-    
+      }
+    ]
   },
-  
+
+  start_project: {},
+
   stock_price: {
     blocks: [
       {
-        "type": "section",
-        "text": {
-          "type": "mrkdwn",
-          "text": "{{name}}\n*<http://www.google.com/search?q=%24{{symbol}}|${{symbol}} chart link>*"
+        type: "section",
+        text: {
+          type: "mrkdwn",
+          text:
+            "{{name}}\n*<http://www.google.com/search?q=%24{{symbol}}|${{symbol}} chart link>*"
         }
       },
       {
-        "type": "section",
-        "fields": [
+        type: "section",
+        fields: [
           {
-            "type": "mrkdwn",
-            "text": "*Open:*\n{{open}}"
+            type: "mrkdwn",
+            text: "*Open:*\n{{open}}"
           },
           {
-            "type": "mrkdwn",
-            "text": "*High:*\n{{high}}"
+            type: "mrkdwn",
+            text: "*High:*\n{{high}}"
           },
           {
-            "type": "mrkdwn",
-            "text": "*Low:*\n{{low}}"
+            type: "mrkdwn",
+            text: "*Low:*\n{{low}}"
           },
           {
-            "type": "mrkdwn",
-            "text": "*Close:*\n{{close}}"
+            type: "mrkdwn",
+            text: "*Close:*\n{{close}}"
           },
           {
-            "type": "mrkdwn",
-            "text": "*Volume:*\n{{volume}}"
+            type: "mrkdwn",
+            text: "*Volume:*\n{{volume}}"
           },
           {
-            "type": "mrkdwn",
-            "text": "*Time:*\n{{time}}"
+            type: "mrkdwn",
+            text: "*Time:*\n{{time}}"
           }
         ]
       },
       {
-        "type": "actions",
-        "elements": [
+        type: "actions",
+        elements: [
           {
-            "type": "button",
-            "text": {
-              "type": "plain_text",
-              "emoji": true,
-              "text": "Buy"
+            type: "button",
+            text: {
+              type: "plain_text",
+              emoji: true,
+              text: "Buy"
             },
-            "style": "primary",
-            "value": "click_me_123"
+            style: "primary",
+            value: "click_me_123"
           },
           {
-            "type": "button",
-            "text": {
-              "type": "plain_text",
-              "emoji": true,
-              "text": "Sell"
+            type: "button",
+            text: {
+              type: "plain_text",
+              emoji: true,
+              text: "Sell"
             },
-            "style": "danger",
-            "value": "click_me_123"
+            style: "danger",
+            value: "click_me_123"
           }
         ]
-      },
+      }
     ]
   },
   random_doge: {
@@ -157,7 +155,7 @@ module.exports = {
         alt_text: "h0nks"
       }
     ]
-  },
-  
+  }
+
   //insert more here
-}
+};

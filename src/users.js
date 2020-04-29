@@ -10,4 +10,4 @@ module.exports = {
   jon: "UDBQ0A3BR",
   long: "UCNQE0CU8"
   // add more users here
-}
+};

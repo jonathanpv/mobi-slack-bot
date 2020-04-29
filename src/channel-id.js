@@ -11,4 +11,4 @@ module.exports = {
   yeet: "CCNRV68BS",
   hackathons: "CCUCG24KS"
   // add more channel ids here
-}
+};
