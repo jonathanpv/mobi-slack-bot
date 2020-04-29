@@ -163,19 +163,20 @@ slack.message(/^\$/, async ({ message, say }) => {
   let interval = "1min";
   let outputSize = "compact";
   let apiKey = process.env.STOCKS_API;
-  
-  let stockPriceUrl = `https://www.alphavantage.co/query?` + 
-      `function=${stockFunction}` + 
-      `&symbol=${symbol}` +
-      `&interval=${interval}` +
-      `&outputsize=${outputSize}` +
-      `&apikey=${apiKey}`;
+
+  let stockPriceUrl =
+    `https://www.alphavantage.co/query?` +
+    `function=${stockFunction}` +
+    `&symbol=${symbol}` +
+    `&interval=${interval}` +
+    `&outputsize=${outputSize}` +
+    `&apikey=${apiKey}`;
 
   let data = await axios.get(stockPriceUrl, config);
   if (data.data["Error Message"]) {
     say(data.data["Error Message"] + "\nPerhaps an invalid ticker symbol?\n");
   }
-  
+
   let lastRefreshed = data.data["Meta Data"]["3. Last Refreshed"];
   let timeSeries = `Time Series (${interval})`;
 
@@ -186,10 +187,11 @@ slack.message(/^\$/, async ({ message, say }) => {
   let volume = data.data[timeSeries][lastRefreshed]["5. volume"];
 
   // alphavantage api has the stock's name in a different endpoint *sigh* so we'll have to make another get request
-  let stockNameUrl = `https://www.alphavantage.co/query?` +
-      `function=SYMBOL_SEARCH` +
-      `&keywords=${symbol}` +
-      `&apikey=${apiKey}`;
+  let stockNameUrl =
+    `https://www.alphavantage.co/query?` +
+    `function=SYMBOL_SEARCH` +
+    `&keywords=${symbol}` +
+    `&apikey=${apiKey}`;
 
   data = await axios.get(stockNameUrl, config);
 
@@ -278,7 +280,13 @@ slack.event("reaction_added", async ({ event, context, say }) => {
 });
 
 slack.event("member_joined_channel", async ({ event, context, say }) => {
-  console.log(event); 
+  console.log(event);
+  let jokeUrl = `https://geek-jokes.sameerkumar.website/api`;
+  let data = await axios.get(jokeUrl, config);
+  
+  console.log(data.data);
+  say(`Looking good <@${event.user}> :party-porg:! Here's a joke cuz I'm a jokester :ditto:` + `${data.data}`);
+  console.log("ya boi joined");
 });
 
 (async () => {
