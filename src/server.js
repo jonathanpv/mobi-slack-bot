@@ -283,7 +283,7 @@ slack.event("reaction_added", async ({ event, context, say }) => {
 slack.event("member_joined_channel", async ({ event, context, say }) => {
   console.log(event);
   let random = Math.floor(Math.random() * 41);
-  let message = helpers.copy(welcome.random);
+  let message = welcome[random];
   message = message.replace("{{user}}", `${event.user}`); 
   say(message);
   console.log("ya boi joined");
