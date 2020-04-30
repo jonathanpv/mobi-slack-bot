@@ -304,7 +304,13 @@ slack.event("member_joined_channel", async ({ event, context, say }) => {
 
 slack.command('/echo', async ({command, ack, say}) => {
   await ack();
-  await say(`hello world`);
+  reddit.getSubreddit('cscareerquestions').getHot().then(console.log)
+  // => Listing [
+  //  Submission { ... },
+  //  Submission { ... },
+  //  ...
+  // ]
+  // await say(`hello world`);
 });
 
 (async () => {
