@@ -246,6 +246,8 @@ slack.message(/^\$/, async ({ message, say }) => {
   // Data which will write in a file.
   // let outputData = `${message.user} ${symbol}`;
 
+  // MONGODB IT IS 
+  
   // Write data in 'stock-balance.dat' .
   // fs.writeFile('/app/data/stock-balance.dat', outputData, (err) => {
   // In case of a error throw err.
@@ -282,7 +284,8 @@ slack.event("reaction_added", async ({ event, context, say }) => {
 
 slack.event("member_joined_channel", async ({ event, context, say }) => {
   console.log(event);
-  let random = Math.floor(Math.random() * 41);
+  let size = parseInt(welcome.size);
+  let random = Math.floor(Math.random() * (size + 1));
   let message = welcome[random];
   message = message.replace("{{user}}", `${event.user}`); 
   say(message);
