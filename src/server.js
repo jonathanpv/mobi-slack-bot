@@ -314,17 +314,13 @@ slack.command('/echo', async ({command, ack, say}) => {
     imageUrl = list[timesRequested].url;
     size = list.length;
   });
-  
   console.log(title);
   console.log(imageUrl);
   console.log(timesRequested);
   console.log(size);
-  // => Listing [
-  //  Submission { ... },
-  //  Submission { ... },
-  //  ...
-  // ]
-  // await say(`hello world`);
+  redditMessage.blocks[0].text.text = redditMessage.blocks[0].text.text.replace("{{title}}", `${title}`);
+  redditMessage.blocks[1].image_url = redditMessage.blocks[1].image_url.replace("{{url}}", `${imageUrl}`);
+  await say(redditMessage);
   timesRequested++;   
 });
 
