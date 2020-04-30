@@ -302,17 +302,19 @@ slack.event("member_joined_channel", async ({ event, context, say }) => {
   say(message);
 });
 
+let timesRequested = 0;
 slack.command('/echo', async ({command, ack, say}) => {
   await ack();
   let result;
   let size = 0;
-  await reddit.getSubreddit('cscareerquestions').getHot({limit: 5}).then(list =>{
+  await reddit.getSubreddit('cscareerquestions').getHot({limit: 25}).then(list =>{
     // console.log(list);
-    result = list;
+    result = list[timesRequested].title + "\n" + list[timesRequested].selftext;
     size = list.length;
   });
   // reddit.getSubreddit('cscareerquestions').getHot({limit: 25}).then(console.log)
   console.log(result);
+  console.log(timesRequested);
   console.log(size);
   // => Listing [
   //  Submission { ... },
@@ -320,6 +322,7 @@ slack.command('/echo', async ({command, ack, say}) => {
   //  ...
   // ]
   // await say(`hello world`);
+  timesRequested++;
 });
 
 (async () => {
