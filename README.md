@@ -8,20 +8,23 @@ Click `Show` in the header to see your app live. Updates to your code will insta
 Find out more [about Glitch](https://glitch.com/about).
 
 
-Your Project
+The Mobi Bot Project
 ------------
 
 On the front-end,
-- edit `public/client.js`, `public/style.css` and `views/index.html`
+- we don't have one but if you want to make one just create the files `public/client.js`, `public/style.css` and `views/index.html` and hack away!
 - drag in `assets`, like images or music, to add them to your project
 
 On the back-end,
 - your app starts at `server.js`
-- add frameworks and packages in `package.json`
-- safely store app secrets in `.env` (nobody can see this but you and people you invite)
+- add frameworks and packages in `package.json` these packages are usually found in npm
+- safely store app secrets in `.env` (nobody can see this but you and people you invite) plz no dox
+- we use axios for get requests
+- mongodb is used for a database why? because mongo sounds like mango
+- we tried keeping things neat by keeping things seperated which is why there's `src/channel-id.js` and more
+- look at some of the examples on `src/server.js` if you need help ping us on slack! hope you have fun and learn! :)
 
-
-Made by [Glitch](https://glitch.com/)
+Made by [Mobi](https://utamobi.com/)
 -------------------
 
 \ ゜o゜)ノ

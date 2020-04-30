@@ -39,5 +39,5 @@ module.exports = {
   37: "Hello. Is it <@{{user}}> you're looking for?",
   38: "<@{{user}}> has joined. Stay a while and listen!",
   39: "Roses are red, violets are blue, <@{{user}}> joined this server with you",
-  40: "Looking good <@{{user}}>} :party-porg: I'm you because I'm a  :ditto:  "
+  40: "Looking good <@{{user}}> :party-porg: I'm you because I'm a  :ditto:  "
 };
