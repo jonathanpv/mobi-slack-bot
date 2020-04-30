@@ -2,7 +2,6 @@
 // please increment the size when done :) if not then... ok i guess idk a better method so if u find something
 // i can improve lmk!
 module.exports = {
-  size: "40",
   1: "<@{{user}}> just joined the server - glhf!",
   2: "<@{{user}}> just joined. Everyone, look busy!",
   3: "<@{{user}}> just joined. Can I get a heal?",

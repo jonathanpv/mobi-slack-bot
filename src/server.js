@@ -157,8 +157,8 @@ slack.message(/^(cat$)/i, async ({ message, say }) => {
 slack.message(/^\$/, async ({ message, say }) => {
   // since event is triggered by $ TICKERSYMBOL split the message
   // using .split and also take care of cases when people use $ tickErsYmBol
-  let split = message.text.toUpperCase().split(/^\$ /);
-  let symbol = split[1];
+  let split = message.text.toUpperCase().split(/^\$/);
+  let symbol = split[1].replace(' ', '');
 
   let stockFunction = "TIME_SERIES_INTRADAY";
   let interval = "1min";
@@ -283,13 +283,11 @@ slack.event("reaction_added", async ({ event, context, say }) => {
 });
 
 slack.event("member_joined_channel", async ({ event, context, say }) => {
-  console.log(event);
-  let size = parseInt(welcome.size);
+  let size = Object.keys(welcome).length;
   let random = Math.floor(Math.random() * (size + 1));
   let message = welcome[random];
   message = message.replace("{{user}}", `${event.user}`); 
   say(message);
-  console.log("ya boi joined");
 });
 
 (async () => {
