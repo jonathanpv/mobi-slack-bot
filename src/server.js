@@ -6,10 +6,8 @@ const messages = require("./messages");
 const helpers = require("./helpers");
 const users = require("./users");
 const channel = require("./channel-id");
-const welcome = require("./welcome-messages")
+const welcome = require("./welcome-messages");
 const fs = require("fs");
-
-
 
 let XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
@@ -18,7 +16,7 @@ axios.defaults.headers.get["Content-Type"] = "application/json";
 
 // Create a new snoowrap requester with OAuth credentials
 const reddit = new snoowrap({
-  userAgent: 'reddit bot that reads top posts',
+  userAgent: "reddit bot that reads top posts",
   clientId: process.env.REDDIT_CLIENT_ID,
   clientSecret: process.env.REDDIT_CLIENT_SECRET,
   refreshToken: process.env.REDDIT_REFRESH_TOKEN
@@ -170,7 +168,7 @@ slack.message(/^\$/, async ({ message, say }) => {
   // since event is triggered by $ TICKERSYMBOL split the message
   // using .split and also take care of cases when people use $ tickErsYmBol
   let split = message.text.toUpperCase().split(/^\$/);
-  let symbol = split[1].replace(' ', '');
+  let symbol = split[1].replace(" ", "");
 
   let stockFunction = "TIME_SERIES_INTRADAY";
   let interval = "1min";
@@ -258,8 +256,8 @@ slack.message(/^\$/, async ({ message, say }) => {
   // Data which will write in a file.
   // let outputData = `${message.user} ${symbol}`;
 
-  // MONGODB IT IS 
-  
+  // MONGODB IT IS
+
   // Write data in 'stock-balance.dat' .
   // fs.writeFile('/app/data/stock-balance.dat', outputData, (err) => {
   // In case of a error throw err.
@@ -298,30 +296,39 @@ slack.event("member_joined_channel", async ({ event, context, say }) => {
   let size = Object.keys(welcome).length;
   let random = Math.floor(Math.random() * (size + 1));
   let message = welcome[random];
-  message = message.replace("{{user}}", `${event.user}`); 
+  message = message.replace("{{user}}", `${event.user}`);
   say(message);
 });
 
 let timesRequested = 0;
-slack.command('/echo', async ({command, ack, say}) => {
+slack.command("/echo", async ({ command, ack, say }) => {
   await ack();
   let title;
   let imageUrl;
   let size = 0;
   let redditMessage = helpers.copy(messages.reddit_meme);
-  await reddit.getSubreddit('programmerhumor').getHot({limit: 25}).then(list =>{
-    title = list[timesRequested].title;
-    imageUrl = list[timesRequested].url;
-    size = list.length;
-  });
+  await reddit
+    .getSubreddit("programmerhumor")
+    .getHot({ limit: 25 })
+    .then(list => {
+      title = list[timesRequested].title;
+      imageUrl = list[timesRequested].url;
+      size = list.length;
+    });
   console.log(title);
   console.log(imageUrl);
   console.log(timesRequested);
   console.log(size);
-  redditMessage.blocks[0].text.text = redditMessage.blocks[0].text.text.replace("{{title}}", `${title}`);
-  redditMessage.blocks[1].image_url = redditMessage.blocks[1].image_url.replace("{{url}}", `${imageUrl}`);
+  redditMessage.blocks[0].text.text = redditMessage.blocks[0].text.text.replace(
+    "{{title}}",
+    `${title}`
+  );
+  redditMessage.blocks[1].image_url = redditMessage.blocks[1].image_url.replace(
+    "{{url}}",
+    `${imageUrl}`
+  );
   await say(redditMessage);
-  timesRequested++;   
+  timesRequested++;
 });
 
 (async () => {
