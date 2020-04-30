@@ -1,19 +1,28 @@
 // this is the server file, it's where our commands and message events are defined check the bot-test channel
 // to find more resources!
 const { App } = require("@slack/bolt");
+const snoowrap = require("snoowrap");
 const messages = require("./messages");
 const helpers = require("./helpers");
 const users = require("./users");
 const channel = require("./channel-id");
 const welcome = require("./welcome-messages")
 const fs = require("fs");
-const snoowrap = require("snoowrap");
+
 
 
 let XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
 const axios = require("axios");
 axios.defaults.headers.get["Content-Type"] = "application/json";
+
+// Create a new snoowrap requester with OAuth credentials
+const reddit = new snoowrap({
+  userAgent: 'reddit bot that reads top posts',
+  clientId: process.env.REDDIT_CLIENT_ID,
+  clientSecret: process.env.REDDIT_CLIENT_SECRET,
+  refreshToken: process.env.REDDIT_REFRESH_TOKEN
+});
 
 // Initializes your app with your bot token and signing secret
 const slack = new App({
@@ -291,6 +300,11 @@ slack.event("member_joined_channel", async ({ event, context, say }) => {
   let message = welcome[random];
   message = message.replace("{{user}}", `${event.user}`); 
   say(message);
+});
+
+slack.command('/echo', async ({command, ack, say}) => {
+  await ack();
+  await say(`hello world`);
 });
 
 (async () => {
