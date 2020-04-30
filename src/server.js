@@ -301,7 +301,7 @@ slack.event("member_joined_channel", async ({ event, context, say }) => {
 });
 
 let timesRequested = 0;
-slack.command("/echo", async ({ command, ack, say }) => {
+slack.command("/meme", async ({ command, ack, say }) => {
   await ack();
   let title;
   let imageUrl;
