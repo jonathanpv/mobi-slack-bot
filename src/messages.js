@@ -155,7 +155,27 @@ module.exports = {
         alt_text: "h0nks"
       }
     ]
-  }
-
+  },
+  reddit_meme: {
+	"blocks": [
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "*{{title}}*"
+			}
+		},
+		{
+			"type": "image",
+			"title": {
+				"type": "plain_text",
+				"text": "stolen from REEEEddit",
+				"emoji": true
+			},
+			"image_url": "{{url}}",
+			"alt_text": "Example Image"
+		}
+	]
+}
   //insert more here
 };

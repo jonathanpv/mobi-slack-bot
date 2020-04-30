@@ -305,15 +305,18 @@ slack.event("member_joined_channel", async ({ event, context, say }) => {
 let timesRequested = 0;
 slack.command('/echo', async ({command, ack, say}) => {
   await ack();
-  let result;
+  let title;
+  let imageUrl;
   let size = 0;
-  await reddit.getSubreddit('cscareerquestions').getHot({limit: 25}).then(list =>{
-    // console.log(list);
-    result = list[timesRequested].title + "\n" + list[timesRequested].selftext;
+  let redditMessage = helpers.copy(messages.reddit_meme);
+  await reddit.getSubreddit('programmerhumor').getHot({limit: 25}).then(list =>{
+    title = list[timesRequested].title;
+    imageUrl = list[timesRequested].url;
     size = list.length;
   });
-  // reddit.getSubreddit('cscareerquestions').getHot({limit: 25}).then(console.log)
-  console.log(result);
+  
+  console.log(title);
+  console.log(imageUrl);
   console.log(timesRequested);
   console.log(size);
   // => Listing [
@@ -322,7 +325,7 @@ slack.command('/echo', async ({command, ack, say}) => {
   //  ...
   // ]
   // await say(`hello world`);
-  timesRequested++;
+  timesRequested++;   
 });
 
 (async () => {
