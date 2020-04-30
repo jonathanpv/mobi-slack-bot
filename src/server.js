@@ -11,8 +11,15 @@ const fs = require("fs");
 
 let XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
+// we use this for get requests
 const axios = require("axios");
 axios.defaults.headers.get["Content-Type"] = "application/json";
+
+const config = {
+  headers: {
+    Accept: "application/json"
+  }
+};
 
 // Create a new snoowrap requester with OAuth credentials
 const reddit = new snoowrap({
@@ -27,13 +34,6 @@ const slack = new App({
   token: process.env.SLACK_BOT_TOKEN,
   signingSecret: process.env.SLACK_SIGNING_SECRET
 });
-
-// we use this for get requests
-const config = {
-  headers: {
-    Accept: "application/json"
-  }
-};
 
 // example of a bot posting messages when a phrase is triggered
 slack.message("oof", ({ message, say }) => {
@@ -252,17 +252,6 @@ slack.message(/^\$/, async ({ message, say }) => {
     `${lastRefreshed}`
   );
 
-  // learning how to store into files for new feature, want to be careful about emfile error
-  // Data which will write in a file.
-  // let outputData = `${message.user} ${symbol}`;
-
-  // MONGODB IT IS
-
-  // Write data in 'stock-balance.dat' .
-  // fs.writeFile('/app/data/stock-balance.dat', outputData, (err) => {
-  // In case of a error throw err.
-  // if (err) throw err;
-  // })
   say(stockPriceMessage);
 });
 
@@ -305,7 +294,6 @@ slack.command("/meme", async ({ command, ack, say }) => {
   await ack();
   let title;
   let imageUrl;
-  let size = 0;
   let redditMessage = helpers.copy(messages.reddit_meme);
   await reddit
     .getSubreddit("programmerhumor")
@@ -313,12 +301,7 @@ slack.command("/meme", async ({ command, ack, say }) => {
     .then(list => {
       title = list[timesRequested].title;
       imageUrl = list[timesRequested].url;
-      size = list.length;
     });
-  console.log(title);
-  console.log(imageUrl);
-  console.log(timesRequested);
-  console.log(size);
   redditMessage.blocks[0].text.text = redditMessage.blocks[0].text.text.replace(
     "{{title}}",
     `${title}`
