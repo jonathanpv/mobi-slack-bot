@@ -1,6 +1,5 @@
 /*
 channel ids, can be used to specify where a bot should post
-
 */
 
 module.exports = {
