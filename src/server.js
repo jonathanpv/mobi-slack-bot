@@ -286,7 +286,12 @@ slack.event("member_joined_channel", async ({ event, context, say }) => {
   let random = Math.floor(Math.random() * (size + 1));
   let message = welcome[random];
   message = message.replace("{{user}}", `${event.user}`);
-  say(message);
+  // say(message);
+  const result = await app.client.chat.postMessage({
+    token: context.botToken,
+    channel: channel.random,
+    blocks: messafe
+  });
 });
 
 let timesRequested = 0;
