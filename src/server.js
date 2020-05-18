@@ -281,16 +281,19 @@ slack.event("reaction_added", async ({ event, context, say }) => {
   }
 });
 
-slack.event("member_joined_channel", async ({ event, context, say }) => {
+slack.event("team_join", async ({ event, context, say }) => {
   let size = Object.keys(welcome).length;
   let random = Math.floor(Math.random() * (size + 1));
   let message = welcome[random];
   message = message.replace("{{user}}", `${event.user}`);
   // say(message);
-  const result = await app.client.chat.postMessage({
+  
+  // should only fire once since its team_join instead of member_joined channel 
+  console.log(message);
+  const result = await slack.client.chat.postMessage({
     token: context.botToken,
-    channel: channel.random,
-    blocks: messafe
+    channel: channel.botTest,
+    text: `${message}`
   });
 });
 
