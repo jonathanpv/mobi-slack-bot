@@ -335,7 +335,7 @@ slack.event('app_home_opened', async ({ event, context, payload }) => {
       user_id: event.user,
       view: homeView
     });
-    console.log("RESULT: " + result);
+    // console.log("RESULT: " + result);
     
   } catch(e) {
     slack.error(e);
@@ -346,9 +346,24 @@ slack.event('app_home_opened', async ({ event, context, payload }) => {
 
 slack.command("/faq", async ({ command, ack, say}) => {
   console.log(`${command.user_name} ${command.user_id} ${command.channel_name}`);
+  await ack();
+  
+  // result will hold the channel id of the direct message the bot opened
+  // we use the web api method conversations.open to open a conversation 
+  // lol go figure
   const result = await slack.client.conversations.open({
     token: process.env.SLACK_BOT_TOKEN,
-    users: command.user_name
+    users: command.user_id,
+    // return_im: true
+  });
+  
+  // use the channel id from result to post a message to that channel
+  // since the channel is a direct message then mobi bot will
+  // direct message the user that triggered the command /faq
+  const messageUser = await slack.client.chat.postMessage({
+    token: process.env.SLACK_BOT_TOKEN,
+    channel: result.channel.id,
+    text: `testing`
   });
 });
 
