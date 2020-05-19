@@ -328,7 +328,7 @@ slack.command("/meme", async ({ command, ack, say }) => {
 slack.event('app_home_opened', async ({ event, context, payload }) => {
   // Display App Home
   const homeView = await appHome.createHome(event.user);
-  
+  // console.log(homeView);
   try {
     const result = await slack.client.views.publish({
       token: context.botToken,

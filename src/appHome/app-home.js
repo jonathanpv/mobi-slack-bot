@@ -5,7 +5,7 @@ const updateView = async user => {
   // Intro message - (default message)
   
   let blocks = helpers.copy(messages.stocks_app_home);
-
+  console.log(blocks);
   // Append new data blocks after the intro -
 
   let newData = [];
