@@ -116,7 +116,7 @@ slack.message("This is Christian", ({ message, say }) => {
 });
 
 slack.message("memes", ({ message, say }) => {
-  say(`<@${users.jon}>`);
+  say(`<@${users.jon}> is being summoned`);
 });
 
 slack.message("webgl", ({ message, say }) => {
