@@ -346,6 +346,10 @@ slack.event('app_home_opened', async ({ event, context, payload }) => {
 
 slack.command("/faq", async ({ command, ack, say}) => {
   console.log(`${command.user_name} ${command.user_id} ${command.channel_name}`);
+  const result = await slack.client.conversations.open({
+    token: process.env.SLACK_BOT_TOKEN,
+    users: command.user_name
+  });
 });
 
 
