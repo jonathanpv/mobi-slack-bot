@@ -7,6 +7,7 @@ const helpers = require("./helpers");
 const users = require("./users");
 const channel = require("./channel-id");
 const welcome = require("./welcome-messages");
+const appHome = require('./appHome');
 const fs = require("fs");
 
 let XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
@@ -325,6 +326,17 @@ slack.command("/meme", async ({ command, ack, say }) => {
 // app home section
 slack.event("app_home_opened", async ({ event, context, say }) => {
   console.log(`${event.user}`);
+  const homeView = await appHome.createHome(event.user);
+  try {
+    const result = await slack.client.views.publish({
+      token: context.botToken,
+      user_id: event.user,
+      view: homeView
+    });
+    
+  } catch(e) {
+    slack.error(e);
+  }
 });
 
 

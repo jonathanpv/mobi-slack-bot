@@ -1,5 +1,5 @@
 // temp save of app home for simulated trading 
-[
+stock-app-home: [
 	{
 		"type": "section",
 		"text": {
