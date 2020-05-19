@@ -54,7 +54,7 @@ const updateView = async user => {
     callback_id: "home_view",
     title: {
       type: "plain_text",
-      text: "Keep notes!"
+      text: "Stock portfolio !"
     },
     blocks: blocks
   };
@@ -62,11 +62,13 @@ const updateView = async user => {
   return JSON.stringify(view);
 };
 
+
+/* Display App Home */
 exports.createHome = async (user, data) => {
   if (data) {
     // Store in the mongodb
   }
-
   const userView = await updateView(user);
+  
   return userView;
 };
