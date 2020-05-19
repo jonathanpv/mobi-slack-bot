@@ -1,6 +1,6 @@
 // temp save of app home for simulated trading
 module.exports = {
-  stock_app_home: {
+  stocks_app_home: {
     /* stock_app_home block start here  */
     blocks: [
       {

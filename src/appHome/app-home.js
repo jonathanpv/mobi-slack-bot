@@ -1,26 +1,28 @@
-const message = require('./app-home-messages');
-const helper = require('../src/helpers');
+const messages = require('./app-home-messages');
+const helpers = require('../src/helpers');
 
 const updateView = async user => {
-  // Intro message -
-
-  let blocks = 
+  // Intro message - (default message)
+  
+  let blocks = helpers.copy(messages.stocks_app_home);
 
   // Append new data blocks after the intro -
 
   let newData = [];
 
   try {
-    const rawData = db.getData(`/${user}/data/`);
+    // get all data from api and put it into an array form / object form? idk rn 
+    // const rawData = db.getData(`/${user}/data/`);
 
-    newData = rawData.slice().reverse(); // Reverse to make the latest first
-    newData = newData.slice(0, 50); // Just display 20. BlockKit display has some limit.
+    // newData = rawData.slice().reverse(); // Reverse to make the latest first
+    // newData = newData.slice(0, 50); // Just display 20. BlockKit display has some limit.
   } catch (error) {
     //console.error(error);
   }
 
   if (newData) {
     let noteBlocks = [];
+    let accountHistoryBlocks = [];
 
     for (const o of newData) {
       const color = o.color ? o.color : "yellow";
@@ -31,6 +33,8 @@ const updateView = async user => {
         console.log(note.length);
       }
 
+      accountHistoryBlocks = helpers.copy(messages.account_history_block);
+      
       noteBlocks = [
         {
           type: "section",
