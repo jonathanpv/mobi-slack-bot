@@ -157,25 +157,74 @@ module.exports = {
     ]
   },
   reddit_meme: {
-	"blocks": [
-		{
-			"type": "section",
-			"text": {
-				"type": "mrkdwn",
-				"text": "*{{title}}*"
-			}
-		},
-		{
-			"type": "image",
-			"title": {
-				"type": "plain_text",
-				"text": "stolen from REEEEddit",
-				"emoji": true
-			},
-			"image_url": "{{url}}",
-			"alt_text": "Example Image"
-		}
-	]
-}
-  //insert more here
+    blocks: [
+      {
+        type: "section",
+        text: {
+          type: "mrkdwn",
+          text: "*{{title}}*"
+        }
+      },
+      {
+        type: "image",
+        title: {
+          type: "plain_text",
+          text: "stolen from REEEEddit",
+          emoji: true
+        },
+        image_url: "{{url}}",
+        alt_text: "Example Image"
+      }
+    ]
+  },
+  new_user_message: {
+    blocks: [
+      {
+        type: "section",
+        text: {
+          type: "mrkdwn",
+          text:
+            "Hey {{user}} 👋 I'm Mobi Bot. I'm here to enhance your Mobi experience.\nThere are a few fun and cool commands you can do :"
+        }
+      },
+      {
+        type: "section",
+        text: {
+          type: "mrkdwn",
+          text:
+            "*:one: Use the `/faq` command*. Type `/faq` and I'll tell you some dank information. Try it out by using the `/faq` command in this channel."
+        }
+      },
+      {
+        type: "section",
+        text: {
+          type: "mrkdwn",
+          text:
+            "*:two: Use the _translateto dothraki_ event.* If you want to translate your message to dothraki, type `translateto dothraki hello world` in a message and see the magic!"
+        }
+      },
+      {
+        type: "section",
+        text: {
+          type: "mrkdwn",
+          text:
+            "*:three: Use the `/meme` command.* If you want to see the top posts from r/programmerhumor, type `/meme` and get ready for some laughs!"
+        }
+      },
+      {
+        type: "divider"
+      },
+      {
+        type: "context",
+        elements: [
+          {
+            type: "mrkdwn",
+            text:
+              ":party-porg: These are just a few of the cool things I can do, hope you enjoy Mobi! \n :question: Get help by asking any of the officers and admins"
+          }
+        ]
+      }
+    ]
+  }
+  //insert more here don't forget to add a comma before adding your block message
 };

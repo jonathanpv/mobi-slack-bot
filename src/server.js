@@ -358,13 +358,16 @@ slack.command("/faq", async ({ command, ack, say}) => {
     // return_im: true
   });
   
+  let welcomeMessage = messages.new_user_message;
+  
   // use the channel id from result to post a message to that channel
   // since the channel is a direct message then mobi bot will
   // direct message the user that triggered the command /faq
   const messageUser = await slack.client.chat.postMessage({
     token: process.env.SLACK_BOT_TOKEN,
     channel: result.channel.id,
-    text: `testing`
+    text: `testing`,
+    blocks: [{"type": "section", "text": {"type": "plain_text", "text": "Hello world"}}]
   });
 });
 
