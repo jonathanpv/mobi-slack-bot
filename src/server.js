@@ -330,8 +330,6 @@ slack.event('app_home_opened', async ({ event, context, payload }) => {
   const homeView = await appHome.createHome(event.user);
   // console.log(homeView);
   try {
-    console.log
-    console.log(context.botToken);
     const result = await slack.client.views.publish({
       token: context.botToken,
       user_id: event.user,
