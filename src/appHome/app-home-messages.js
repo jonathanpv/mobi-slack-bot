@@ -1,7 +1,7 @@
 // temp save of app home for simulated trading
 module.exports = {
   stock_app_home: {
-    /* blocks start here  */
+    /* stock_app_home block start here  */
     blocks: [
       {
         type: "section",
@@ -57,7 +57,16 @@ module.exports = {
       },
       {
         type: "divider"
-      },
+      }
+      // stock_app_home block end here
+    ]
+  },
+  
+  // this is the account history block, we will use this to stack them onto the app home page 
+  // when data is present, the more data (users having more stocks in their portfolio)
+  // the more we will stack this block
+  account_history_block: {
+    blocks: [
       {
         type: "context",
         elements: [
@@ -117,9 +126,7 @@ module.exports = {
       },
       {
         type: "divider"
-      } 
-    // blocks end here  
+      }
     ]
   }
 };
-
