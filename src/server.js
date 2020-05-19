@@ -288,11 +288,11 @@ slack.event("team_join", async ({ event, context, say }) => {
   message = message.replace("{{user}}", `${event.user}`);
   // say(message);
   
-  // should only fire once since its team_join instead of member_joined channel 
+  // should only fire once since its team_join instead of member_joined_channel 
   console.log(message);
   const result = await slack.client.chat.postMessage({
     token: context.botToken,
-    channel: channel.botTest,
+    channel: channel.random,
     text: `${message}`
   });
 });
@@ -321,6 +321,12 @@ slack.command("/meme", async ({ command, ack, say }) => {
   await say(redditMessage);
   timesRequested++;
 });
+
+// app home section
+slack.event("app_home_opened", async ({ event, context, say }) => {
+  
+});
+
 
 (async () => {
   // Start your app
