@@ -344,6 +344,10 @@ slack.event('app_home_opened', async ({ event, context, payload }) => {
   console.log(`${event.user}`);
 });
 
+slack.command("/faq", async ({ command, ack, say}) => {
+  console.log(`${command.user_name} ${command.user_id} ${command.channel_name}`);
+});
+
 
 (async () => {
   // Start your app
