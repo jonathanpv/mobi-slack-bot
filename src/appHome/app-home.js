@@ -1,5 +1,5 @@
 const messages = require('./app-home-messages');
-const helpers = require('../src/helpers');
+const helpers = require('./../helpers');
 
 const updateView = async user => {
   // Intro message - (default message)
@@ -11,7 +11,7 @@ const updateView = async user => {
   let newData = [];
 
   try {
-    // get all data from api and put it into an array form / object form? idk rn 
+    // get all data from mongodb and put it into an array form / object form? idk rn 
     // const rawData = db.getData(`/${user}/data/`);
 
     // newData = rawData.slice().reverse(); // Reverse to make the latest first
@@ -21,47 +21,29 @@ const updateView = async user => {
   }
 
   if (newData) {
-    let noteBlocks = [];
+    // let noteBlocks = [];
     let accountHistoryBlocks = [];
 
     for (const o of newData) {
-      const color = o.color ? o.color : "yellow";
+      
+      // processing of data goes here
+      
+      // const color = o.color ? o.color : "yellow";
 
-      let note = o.note;
-      if (note.length > 3000) {
-        note = note.substr(0, 2980) + "... _(truncated)_";
-        console.log(note.length);
-      }
+      // let note = o.note;
+      // if (note.length > 3000) {
+      //   note = note.substr(0, 2980) + "... _(truncated)_";
+      //   console.log(note.length);
+      // }
 
+      // loading of block to be stacked goes here
       accountHistoryBlocks = helpers.copy(messages.account_history_block);
       
-      noteBlocks = [
-        {
-          type: "section",
-          text: {
-            type: "mrkdwn",
-            text: note
-          },
-          accessory: {
-            type: "image",
-            image_url: `https://cdn.glitch.com/0d5619da-dfb3-451b-9255-5560cd0da50b%2Fstickie_${color}.png`,
-            alt_text: "stickie note"
-          }
-        },
-        {
-          type: "context",
-          elements: [
-            {
-              type: "mrkdwn",
-              text: o.timestamp
-            }
-          ]
-        },
-        {
-          type: "divider"
-        }
-      ];
-      blocks = blocks.concat(noteBlocks);
+      // populate the block with the data retrieved from mongodb
+      // accountHistoryBlocks.replace
+      
+      // finally concatinate it to the master block (app home block that the user will see)
+      blocks = blocks.concat(accountHistoryBlocks);
     }
   }
 

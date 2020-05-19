@@ -16,6 +16,7 @@ let XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 const axios = require("axios");
 axios.defaults.headers.get["Content-Type"] = "application/json";
 
+
 const config = {
   headers: {
     Accept: "application/json"
