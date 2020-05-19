@@ -258,7 +258,8 @@ slack.message(/^\$/, async ({ message, say }) => {
 });
 
 // example of bot triggered by users reacting with a specific emoji
-// REMOVED BECAUSE WE CAN'T HAVE NICE THINGS
+// REMOVED BECAUSE WE CAN'T HAVE NICE THINGS 
+// (ppl spammed it and called it recursion *cough* *cough* ivan)
 // slack.event("reaction_added", async ({ event, context, say }) => {
 //   console.log(event);
 //   try {
