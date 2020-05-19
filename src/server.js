@@ -7,7 +7,7 @@ const helpers = require("./helpers");
 const users = require("./users");
 const channel = require("./channel-id");
 const welcome = require("./welcome-messages");
-const appHome = require('./appHome');
+const appHome = require('./stocks-app-home');
 const fs = require("fs");
 
 let XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
