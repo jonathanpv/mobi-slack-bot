@@ -324,7 +324,7 @@ slack.command("/meme", async ({ command, ack, say }) => {
 
 // app home section
 slack.event("app_home_opened", async ({ event, context, say }) => {
-  
+  console.log(`${event.user}`);
 });
 
 
