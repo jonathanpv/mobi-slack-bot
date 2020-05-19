@@ -254,4 +254,4 @@ let accountHistoryBlocks = [
       }
     ]
 
-module.exports = { blocks, accountHistory }
+module.exports = { blocks, accountHistoryBlocks };

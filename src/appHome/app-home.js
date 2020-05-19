@@ -4,8 +4,8 @@ const helpers = require('./../helpers');
 const updateView = async user => {
   // Intro message - (default message)
   
-  let blocks = helpers.copy(messages.stocks_app_home);
-  console.log(blocks);
+  let blocks = messages.blocks;
+  // console.log(blocks);
   // Append new data blocks after the intro -
 
   let newData = [];
@@ -37,7 +37,7 @@ const updateView = async user => {
       // }
 
       // loading of block to be stacked goes here
-      accountHistoryBlocks = helpers.copy(messages.account_history_block);
+      accountHistoryBlocks = messages.accountHistoryBlocks;
       
       // populate the block with the data retrieved from mongodb
       // accountHistoryBlocks.replace
