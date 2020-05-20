@@ -180,11 +180,14 @@ module.exports = {
   new_user_message: {
     blocks: [
       {
+        type: "divider"
+      },
+      {
         type: "section",
         text: {
           type: "mrkdwn",
           text:
-            "Hey {{user}} 👋 I'm Mobi Bot. I'm here to enhance your Mobi experience.\nThere are a few fun and cool commands you can do :"
+            "Hey {{user}} 👋 I'm Mobi Bot. I'm here to enhance your Mobi experience.\nThere are a lot of fun and cool commands you can do such as :"
         }
       },
       {
@@ -223,6 +226,35 @@ module.exports = {
               ":party-porg: These are just a few of the cool things I can do, hope you enjoy Mobi! \n :question: Get help by asking any of the officers and admins"
           }
         ]
+      },
+      {
+        type: "divider"
+      }
+    ]
+  },
+  faq: {
+    blocks: [
+      {
+        type: "divider"
+      },
+      {
+        type: "section",
+        text: {
+          type: "mrkdwn",
+          text:
+            "Here are the answers to some questions that we get frequently, don't copy my answers plz I don't need academic dishonesty :yeet-dab:"
+        }
+      },
+      {
+        type: "section",
+        text: {
+          type: "mrkdwn",
+          text:
+            "*Do I pay to attend Mobi Learn Workshops?*\n Nope! All our workshops are free to the University of Texas at Arlington Students.\n*How do I become a member?*\nBecoming a member means getting a t-shirt and access to the member dashboard. Speak to one of our officers at the end of a Mobi Learn Workshop.\n*I’m not an Engineering Major. Can I still join?*\nOf course! Any student of any major can join Mobi and attend workshops, we encourage it.\n*But I don't know how to code!*\nThat is perfectly fine! Our workshops are for beginners.\n*I have an idea for a start-up. Can you guys help me create it?*\nUnfortunately, we only create projects for Social Coding and hackathons. But if you have a start-up idea you want to pursue on your own and need guidance check out the EpicMavs Startup Lounge!\n*I have an idea for a Mobi Social Coding Project.*\nAwesome! Tell us about it at the next Social Coding Meeting!"
+        }
+      },
+      {
+        type: "divider"
       }
     ]
   }

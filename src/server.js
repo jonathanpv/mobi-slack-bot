@@ -358,9 +358,7 @@ slack.command("/faq", async ({ command, ack, say}) => {
     // return_im: true
   });
   
-  let welcomeMessage = helpers.copy(messages.new_user_message);
-  welcomeMessage.blocks[0].text.text = welcomeMessage.blocks[0].text.text.replace("{{user}}", `<@${command.user_id}>`);
-  
+  let faqMessage = helpers.copy(messages.faq);
   
   // use the channel id from result to post a message to that channel
   // since the channel is a direct message then mobi bot will
@@ -369,7 +367,7 @@ slack.command("/faq", async ({ command, ack, say}) => {
     token: process.env.SLACK_BOT_TOKEN,
     channel: result.channel.id,
     text: `Mobi vibes coming your way`,
-    blocks: welcomeMessage.blocks
+    blocks: messages.faq.blocks
   });
 });
 
@@ -387,7 +385,7 @@ slack.command("/newusertest", async ({ command, ack, say}) => {
   });
   
   let welcomeMessage = helpers.copy(messages.new_user_message);
-  welcomeMessage.blocks[0].text.text = welcomeMessage.blocks[0].text.text.replace("{{user}}", `<@${command.user_id}>`);
+  welcomeMessage.blocks[1].text.text = welcomeMessage.blocks[1].text.text.replace("{{user}}", `<@${command.user_id}>`);
   
   
   // use the channel id from result to post a message to that channel
