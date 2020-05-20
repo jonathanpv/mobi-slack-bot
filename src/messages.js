@@ -223,7 +223,7 @@ module.exports = {
           {
             type: "mrkdwn",
             text:
-              ":party-porg: These are just a few of the cool things I can do, hope you enjoy Mobi! \n :question: Get help by asking any of the officers and admins"
+              ":question: Here's a link to <https://utamobi.com/index.html|our faq>. If you need anymore help feel free to ping any of our <https://utamobi.com/pages/About.html | officers and admins>\n:party-porg: These are just a few of the cool things I can do, hope you enjoy Mobi !"
           }
         ]
       },
