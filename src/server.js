@@ -102,7 +102,7 @@ slack.message(/^(f in the chat).*/i, async ({ context, say }) => {
 });
 
 // bot tagging the "local" user that triggered the phrase "hello"
-slack.message("hello", ({ message, say }) => {
+slack.message(/^(hello$)/i, ({ message, say }) => {
   say(`Hey there <@${message.user}>!`);
 });
 
@@ -212,7 +212,7 @@ slack.message(/^\$/, async ({ message, say }) => {
 
   let stockName = data.data.bestMatches[0]["2. name"];
 
-  // load the message template from the messages.js file, we called this message block "stock_price" in messages.js, so copy it
+  // load the message template from the messages.js file, we called this message block "stock_price" in messages.js
   let stockPriceMessage = helpers.copy(messages.stock_price);
 
   // remove the placeholder values with the actual data
@@ -368,7 +368,35 @@ slack.command("/faq", async ({ command, ack, say}) => {
   const messageUser = await slack.client.chat.postMessage({
     token: process.env.SLACK_BOT_TOKEN,
     channel: result.channel.id,
-    text: `testing`,
+    text: `Mobi vibes coming your way`,
+    blocks: welcomeMessage.blocks
+  });
+});
+
+slack.command("/newusertest", async ({ command, ack, say}) => {
+  console.log(`${command.user_name} ${command.user_id} ${command.channel_name}`);
+  await ack();
+  
+  // result will hold the channel id of the direct message the bot opened
+  // we use the web api method conversations.open to open a conversation 
+  // lol go figure
+  const result = await slack.client.conversations.open({
+    token: process.env.SLACK_BOT_TOKEN,
+    users: command.user_id,
+    // return_im: true
+  });
+  
+  let welcomeMessage = helpers.copy(messages.new_user_message);
+  welcomeMessage.blocks[0].text.text = welcomeMessage.blocks[0].text.text.replace("{{user}}", `<@${command.user_id}>`);
+  
+  
+  // use the channel id from result to post a message to that channel
+  // since the channel is a direct message then mobi bot will
+  // direct message the user that triggered the command /faq
+  const messageUser = await slack.client.chat.postMessage({
+    token: process.env.SLACK_BOT_TOKEN,
+    channel: result.channel.id,
+    text: `Mobi vibes coming your way`,
     blocks: welcomeMessage.blocks
   });
 });

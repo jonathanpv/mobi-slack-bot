@@ -192,7 +192,7 @@ module.exports = {
         text: {
           type: "mrkdwn",
           text:
-            "*:one: Use the `/faq` command*. Type `/faq` and I'll tell you some dank information. Try it out by using the `/faq` command in this channel."
+            "*:one: Use the `/faq` command*. Type `/faq` and I'll tell you some important information. Try it out by using the `/faq` command in this channel."
         }
       },
       {
