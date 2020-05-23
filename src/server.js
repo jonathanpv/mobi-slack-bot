@@ -9,6 +9,7 @@ const channel = require("./channel-id");
 const welcome = require("./welcome-messages");
 const appHome = require('./appHome/app-home');
 const fs = require("fs");
+console.log("module: " + snoowrap);
 
 let XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
