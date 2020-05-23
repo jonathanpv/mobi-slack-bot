@@ -108,26 +108,29 @@ slack.message(/^(hello$)/i, ({ message, say }) => {
 });
 
 // bot tagging a specific user, look at users.js to add your own user id to tag
-slack.message("machine learning", ({ message, say }) => {
-  say(`<@${users.kenneth}>`);
-});
+// slack.message("machine learning", ({ message, say }) => {
+//   say(`<@${users.kenneth}>`);
+// });
 
-slack.message("This is Christian", ({ message, say }) => {
-  say(`Hello Christian`);
-});
+// slack.message("This is Christian", ({ message, say }) => {
+//   say(`Hello Christian`);
+// });
 
-slack.message("memes", ({ message, say }) => {
-  say(`<@${users.jon}> is being summoned`);
-});
+// slack.message("memes", ({ message, say }) => {
+//   say(`<@${users.jon}> is being summoned`);
+// });
 
-slack.message("webgl", ({ message, say }) => {
-  say(`<@${users.long}>`);
-});
+// slack.message("webgl", ({ message, say }) => {
+//   say(`<@${users.long}>`);
+// });
 
 // example of posting an image to slack chat
 // here we called an external message
 // look at goose_coin in the messages.js file
-// the goose_coin block has a link to an image, and that's how we post images!
+// the goose_coin block has a link to an image, 
+// which we load when we call messages.goose_coin
+// we pass that to the say() function and that's 
+// how we post images!
 
 slack.message(/^(goose coin$)/i, ({ message, say }) => {
   say(messages.goose_coin);

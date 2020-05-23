@@ -5,7 +5,7 @@
 // in server.js we can use the replace function to replace "{{FactAPI}}" with the actual
 // data we want
 
-// messages are called "blocks", which you can learn more about
+// messages can be constructed with "blocks", which you can learn more about them
 // here: api.slack.com/block-kit
 
 // you can build and experiment live with blocks
