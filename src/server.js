@@ -297,11 +297,12 @@ slack.event("team_join", async ({ event, context, say }) => {
   
   // should only fire once since its team_join instead of member_joined_channel 
   console.log(message);
-  const result = await slack.client.chat.postMessage({
-    token: context.botToken,
-    channel: channel.random,
-    text: `${message}`
-  });
+  // TODO: fix team_join event
+  // const result = await slack.client.chat.postMessage({
+  //   token: context.botToken,
+  //   channel: channel.random,
+  //   text: `${message}`
+  // });
 });
 
 let timesRequested = 0;
