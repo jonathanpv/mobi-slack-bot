@@ -1,4 +1,4 @@
-// this is the server file, it's where our commands and message events are defined check the bot-test channel
+// this is the server file, it's where our commands and message events are defined, check out the bot-test channel
 // to find more resources!
 const { App } = require("@slack/bolt");
 const snoowrap = require("snoowrap");
@@ -297,7 +297,7 @@ slack.event("team_join", async ({ event, context, say }) => {
   
   // should only fire once since its team_join instead of member_joined_channel 
   console.log(message);
-  // TODO: fix team_join event
+  // TODO: fix team_join event because this sometimes posts a bad/malformed message like "welcome undefined has joined"
   // const result = await slack.client.chat.postMessage({
   //   token: context.botToken,
   //   channel: channel.random,
@@ -354,7 +354,7 @@ slack.command("/faq", async ({ command, ack, say}) => {
   console.log(`${command.user_name} ${command.user_id} ${command.channel_name}`);
   await ack();
   
-  // result will hold the channel id of the direct message the bot opened
+  // result will hold the channel id of the direct message the bot opened.
   // we use the web api method conversations.open to open a conversation 
   // lol go figure
   const result = await slack.client.conversations.open({
