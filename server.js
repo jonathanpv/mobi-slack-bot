@@ -2,12 +2,12 @@
 // to find more resources!
 const { App } = require("@slack/bolt");
 const snoowrap = require("snoowrap");
-const messages = require("./messages");
-const helpers = require("./helpers");
-const users = require("./users");
-const channel = require("./channel-id");
-const welcome = require("./welcome-messages");
-const appHome = require('./appHome/app-home');
+const messages = require("./src/messages");
+const helpers = require("./src/helpers");
+const users = require("./src/users");
+const channel = require("./src/channel-id");
+const welcome = require("./src/welcome-messages");
+const appHome = require('./src/appHome/app-home');
 const fs = require("fs");
 // console.log("module: " + snoowrap);
 
@@ -409,5 +409,5 @@ slack.command("/newusertest", async ({ command, ack, say}) => {
   // Start your app
   await slack.start(process.env.PORT || 3000);
 
-  console.log("⚡️ Bolt app is running!!!!!!");
+  console.log("⚡️ Bolt app is running!!!!!!"); 
 })();
