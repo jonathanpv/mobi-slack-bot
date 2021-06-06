@@ -3,15 +3,9 @@
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
 <!-- PROJECT LOGO -->
-<br />
-<style>
-.logo-img {
-    border-radius: 20%;
-}
-</style>
 <p align="center">
   <a href="https://github.com/jonathanpv/mobi-slack-bot">
-    <img src="readme-images/mobi-slack-bot-logo-512.png" class="logo-img" alt="Logo" width="80" height="80">
+    <img src="readme-images/mobi-slack-bot-logo-512.png" style="border-radius:20%" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">Mobi Slack Bot</h3>
@@ -63,14 +57,9 @@ During a session of [social coding](https://utamobi.com/pages/SocialCoding.html)
 code a few fun messages and get an introduction to Javascript, after a few days I found myself being the most active on the fun project and decided
 to expand and deliver a few features.
 
-<style>
-.screenshot-img {
-    border-radius: 2%;
-}
-</style>
 <p align="center">
   <a href="https://github.com/jonathanpv/mobi-slack-bot">
-    <img src="readme-images/mobi-slack-bot-screenshot.png" class="screenshot-img" alt="product-screenshot" width="800" height="450">
+    <img src="readme-images/mobi-slack-bot-screenshot.png" style="border-radius: 2%;" alt="product-screenshot" width="800" height="450">
   </a>
 </p>
 
@@ -175,23 +164,9 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## Demo
 Below is a gif deomnstrating the commands and the responses mobi bot has for them, although it shows the channel being in a dm with the bot these messages also work in public and private channels since the bot can listen to events server-wide
-<style>
-.crop-gif {
-    width: 800px;
-    height: 450px;
-    overflow: hidden;
-    align: center;
-    margin: auto;
-}
 
-.crop-gif .demo-gif {
-    border-radius: 2%;
-    margin: 0 0 0 -1px;
-}
-
-</style>
-<div class="crop-gif">
-    <img src="readme-images/mobi-slack-bot-demo.gif" class="demo-gif" alt="product-screenshot">
+<div class="crop-gif" style="width: 800px; height: 450px; overflow: hidden; align: center; margin: auto;">
+    <img src="readme-images/mobi-slack-bot-demo.gif" style="border-radius: 2%; margin: 0 0 0 -1px;" alt="product-screenshot">
 </div>
 
 <!-- CONTACT -->
