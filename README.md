@@ -63,19 +63,6 @@ to expand and deliver a few features.
   </a>
 </p>
 
-### On the Front-End
-- we don't have one but if you want to make one just create the files `public/client.js`, `public/style.css` and `views/index.html` and hack away!
-- drag in `assets`, like images or music, to add them to your project
-
-### On the Back-End
-- your app starts at `server.js`
-- add frameworks and packages in `package.json` these packages are usually found in npm
-- safely store app secrets in `.env` (nobody can see this but you and people you invite) plz no dox
-- we use axios for get requests
-- mongodb is used for a database why? because mongo sounds like mango
-- we tried keeping things neat by keeping things seperated which is why there's `src/channel-id.js` and more
-- look at some of the examples on `src/server.js` if you need help ping us on slack! hope you have fun and learn! :)
-
 ### Feature Overview
 * Members can easily access Mobi's frequently asked questions through a command
 * Browse the top posts of Reddit's r/programmerhumor within Slack 
@@ -95,16 +82,10 @@ For more information on how to add your own feature keep reading!
 
 ### Built With
 
-This section should list any major frameworks that you built your project using. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
 * [Glitch](https://glitch.com/)
 * [Slack Bolt Javascript](https://slack.dev/bolt-js/concepts)
 * [NodeJS](https://nodejs.org/en/)
 * [Fun APIs we found from Google, here's a neat article of some](https://dev.to/biplov/15-fun-apis-for-your-next-project-5053)
-
-### Glitch
-Glitch is the friendly community where you'll build the app of your dreams. Glitch lets you instantly create, remix, edit, and host an app, bot or site, and you can invite collaborators or helpers to simultaneously edit code with you.
-
-Find out more [about Glitch](https://glitch.com/about).
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -127,7 +108,7 @@ Set up your first Slack app with Glitch [by following these steps](https://dreis
 <!-- USAGE EXAMPLES -->
 ## Docs
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+A list of chat event triggers and commands the app currently supports is down below
 | Command | Description |
 | --- | --- |
 | /faq | List most frequently asked questions along with their answers |
@@ -163,7 +144,7 @@ Contributions are what make the open source community such an amazing place to b
 Distributed under the MIT License. See `LICENSE` for more information.
 
 ## Demo
-Below is a gif deomnstrating the commands and the responses mobi bot has for them, although it shows the channel being in a dm with the bot these messages also work in public and private channels since the bot can listen to events server-wide
+Below is a gif demonstrating the commands and the responses mobi bot has for them, although it shows the channel being in a dm with the bot these messages also work in public and private channels since the bot can listen to events server-wide
 
 <div class="crop-gif" style="width: 800px; height: 450px; overflow: hidden; align: center; margin: auto;">
     <img src="readme-images/mobi-slack-bot-demo.gif" style="border-radius: 2%; margin: 0 0 0 -1px;" alt="product-screenshot">
